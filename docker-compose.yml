@@ -17,3 +17,13 @@ services:
       - 9229:9229 # NodeJS debugger
     volumes:
       - .:/usr/code
+
+  prod:
+    container_name: angular_prod
+    image: angular_prod:1.0.0
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run build:nginx
