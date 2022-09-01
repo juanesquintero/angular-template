@@ -43,4 +43,4 @@ Thumbs.db
 
 *.log
 .env
-/nginx
+/nginx/www/site
