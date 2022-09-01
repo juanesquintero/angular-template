@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  dev:
+    container_name: angular_dev
+    image: angular_dev:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run start:dev
+    env_file:
+      - ./.env
+    ports:
+      - 4200:4200 # Angular
+      - 9876:9876 # Karma
+      - 9229:9229 # NodeJS debugger
+    volumes:
+      - .:/usr/code
