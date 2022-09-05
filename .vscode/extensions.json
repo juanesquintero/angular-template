@@ -1,4 +1,19 @@
 {
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "angular.ng-template",
+    "alexiv.vscode-angular2-files",
+    "johnpapa.angular2",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "ms-azuretools.vscode-docker",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "mintlify.document",
+    "massi.javascript-docstrings",
+    "sibiraj-s.vscode-scss-formatter",
+    "syler.sass-indented",
+    "tabnine.tabnine-vscode",
+    "Gruntfuggly.todo-tree"
+  ]
 }
