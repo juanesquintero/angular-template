@@ -1,4 +1,4 @@
-FROM node:16-alpine3.16 AS development
+FROM node:18-alpine3.16 AS development
 
 WORKDIR /usr/code
 
@@ -14,7 +14,7 @@ RUN npm run build
 
 # ---------------------------
 
-FROM node:16-alpine3.16 as production
+FROM node:18-alpine3.16 as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
