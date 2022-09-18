@@ -13,9 +13,11 @@ services:
     ports:
       - 4200:4200 # Angular
       - 9876:9876 # Karma
-      - 9229:9229 # NodeJS debugger
     volumes:
       - .:/usr/code
+      - /usr/code/node_modules
+    networks:
+      - nestjs-template_dev-net
     command: npm run start:dev
 
   prod:
@@ -40,3 +42,7 @@ services:
       - 80:80
     depends_on:
       - prod
+
+networks:
+  nestjs-template_dev-net:
+    external: true
