@@ -8,14 +8,13 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   public title: string = 'angular-template';
-  public appName: string = 'Angular Template';
+  public appName: string = this.title;
 
   constructor(private appService: AppService) {}
 
-  async showAppName(): Promise<void> {
-    // this.appName = 'Academy';
-    await this.appService.getAppName().subscribe(appName => {
-      this.appName = appName.api;
+  showAppName(): void {
+    this.appService.getAppName().subscribe(appName => {
+      this.appName = appName.api.toUpperCase();
     });
   }
 }
