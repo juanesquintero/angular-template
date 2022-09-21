@@ -8,15 +8,18 @@
 </section>
 
 <section class="content">
-
   <main role="main">
-
-    <span><b>{{ appName }}</b></span>
-
+    <span>
+      <b>{{ appName }}</b>
+    </span>
     <button (click)="showAppName()">Show App Name</button>
-
   </main>
 
+  <nav class="menu">
+    <ul>
+      <li><a (click)="goTo(routes.courses)" href="#">Courses</a></li>
+      <li><a href="#">Users</a></li>
+      <li><a href="#">Students</a></li>
+    </ul>
+  </nav>
 </section>
-
-<router-outlet></router-outlet>
