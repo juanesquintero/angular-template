@@ -7,11 +7,11 @@ import { HomeService } from './home/home.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <router-outlet></router-outlet>
-  `,
+  templateUrl: './app.component.html',
 })
-export class AppComponent { }
+export class AppComponent {
+  public title: string = 'angular-template';
+}
 @NgModule({
   declarations: [
     AppComponent,

@@ -9,7 +9,7 @@ export class HomeService {
 
   private apiPath: string = 'http://localhost:3000'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAppName(): Observable<IAppName> {
     return this.http.get<IAppName>(this.apiPath);
