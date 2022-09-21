@@ -8,8 +8,14 @@ const routes: Routes = [
   {
     path: '',
     runGuardsAndResolvers: 'always',
-    component: HomeComponent,
     pathMatch: 'full',
+    component: HomeComponent,
+  },
+  {
+    path: 'courses',
+    runGuardsAndResolvers: 'always',
+    pathMatch: 'full',
+    loadChildren: () => import('./courses/courses.module').then(x => x.CoursesModule)
   },
   {
     path: '**',
