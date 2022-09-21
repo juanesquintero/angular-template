@@ -17,9 +17,15 @@
 
   <nav class="menu">
     <ul>
-      <li><a (click)="goTo(routes.courses)" href="#">Courses</a></li>
-      <li><a href="#">Users</a></li>
-      <li><a href="#">Students</a></li>
+      <li>
+        <a class="home__link" [routerLink]="routes.courses">Courses</a>
+      </li>
+      <li>
+        <a href="#">Users</a>
+      </li>
+      <li>
+        <a href="#">Students</a>
+      </li>
     </ul>
   </nav>
 </section>
