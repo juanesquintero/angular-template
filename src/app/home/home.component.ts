@@ -14,10 +14,7 @@ export class HomeComponent implements OnInit {
   public appName: string = this.title.replace('-', ' ').toUpperCase();
   public routes = APP_ROUTES;
 
-  constructor(
-    private homeService: HomeService,
-    private router: Router
-  ) { }
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
   }
@@ -26,11 +23,5 @@ export class HomeComponent implements OnInit {
     this.homeService.getAppName().subscribe((appName: IAppName) => {
       this.appName = appName.api.toUpperCase();
     });
-    this.goTo(this.routes.courses as IAppRoute);
-  }
-
-  goTo(route: IAppRoute | string): void {
-    route = route as IAppRoute;
-    this.router.navigate([route]);
   }
 }
