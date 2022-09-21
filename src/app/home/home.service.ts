@@ -1,13 +1,14 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { IAppName } from '../shared/models';
+import { environment } from './../../environments/environment';
 
 
 @Injectable()
 export class HomeService {
 
-  private apiPath: string = 'http://localhost:3000'
+  private apiPath: string = environment.apiPath;
 
   constructor(private http: HttpClient) { }
 
