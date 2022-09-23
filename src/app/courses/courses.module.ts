@@ -2,6 +2,9 @@ import { CoursesRoutingModule } from './courses-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesListComponent } from './list/courses-list.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { CoursesService } from './courses.service';
 
 
 
@@ -11,7 +14,10 @@ import { CoursesListComponent } from './list/courses-list.component';
   ],
   imports: [
     CommonModule,
-    CoursesRoutingModule
-  ]
+    CoursesRoutingModule,
+    MatSortModule,
+    MatTableModule,
+  ],
+  providers: [CoursesService]
 })
 export class CoursesModule { }
