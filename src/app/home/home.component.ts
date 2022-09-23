@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { }
 
   showAppName(): void {
-    this.homeService.getAppName().subscribe((appName: IAppName) => {
-      this.appName = appName.api.toUpperCase();
+    this.homeService.getAppName().subscribe((res: IAppName) => {
+      this.appName = res.api.toUpperCase();
     });
   }
 }
