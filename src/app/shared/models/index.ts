@@ -6,3 +6,7 @@ export interface IAppName {
   api: string;
 }
 
+export interface IModalOptions {
+  newMode: boolean;
+  editMode: boolean,
+}
