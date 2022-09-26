@@ -2,6 +2,8 @@ import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
 import { ICourseDTO, ICourseRow, ICoursesTable } from '../../shared/models/courses.model';
 import { CoursesService } from '../courses.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CourseModalComponent } from '../modal/course-modal.component';
 
 @Component({
   selector: 'app-courses-list',
@@ -15,7 +17,10 @@ export class CoursesListComponent implements OnInit {
     { id: c.id, title: c.title, price: c.price }
   );
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(
+    private coursesService: CoursesService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.coursesService.getCourses().subscribe((res: ICourseDTO[]) => {
@@ -25,7 +30,26 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  openModal(courseId: string) {
-    console.log(_.find(this.courses, { id: courseId }))
+  get admin(): boolean {
+    // TODO: ngrx for user/session info
+    return false;
+  }
+
+  openModal(courseId: string ) {
+    const selectedCourse = _.find(this.courses, { id: courseId });
+    const dialogRef = this.dialog.open(CourseModalComponent, {
+      width: '16rem',
+      data: {
+        course: selectedCourse,
+        options: {
+          editMode: this.admin,
+          newMode: false,
+        }
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The MODAL was closed');
+    });
   }
 }
