@@ -14,7 +14,7 @@ RUN npm run build
 
 # ---------------------------
 
-FROM node:18-alpine3.16 as production
+FROM node:18-alpine3.16 AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}

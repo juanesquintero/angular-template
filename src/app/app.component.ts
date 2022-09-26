@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   public title: string = 'angular-template';
-  public appName: string = this.title.replace('-', '').toUpperCase();
+  public appName: string = this.title.replace('-', ' ').toUpperCase();
 
   constructor(private appService: AppService) {}
 
