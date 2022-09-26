@@ -1,0 +1,10 @@
+.courses-modal{
+  &-form{
+    &__field{
+      display: flex;
+      width: auto;
+      min-width: 0.5rem;
+    }
+  }
+}
+
