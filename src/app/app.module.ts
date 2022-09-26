@@ -1,21 +1,30 @@
+import { Component, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AppService } from './app.service';
+import { HomeComponent } from './home/home.component';
+import { HomeService } from './home/home.service';
 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent {
+  public title: string = 'angular-template';
+}
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
-  providers: [AppService],
+  providers: [HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

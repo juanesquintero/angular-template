@@ -44,3 +44,4 @@ Thumbs.db
 *.log
 .env
 /nginx/www/site
+/ignored

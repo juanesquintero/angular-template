@@ -6,17 +6,6 @@
   />
   <span>Welcome to {{ title }} </span>
 </section>
-
-<section class="content">
-
-  <main role="main">
-
-    <span><b>{{ appName }}</b></span>
-
-    <button (click)="showAppName()">Show App Name</button>
-
-  </main>
-
-</section>
-
-<router-outlet></router-outlet>
+<main class="router-container">
+  <router-outlet></router-outlet>
+</main>
