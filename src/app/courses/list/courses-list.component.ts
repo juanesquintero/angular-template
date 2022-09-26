@@ -38,7 +38,7 @@ export class CoursesListComponent implements OnInit {
   openModal(courseId: string ) {
     const selectedCourse = _.find(this.courses, { id: courseId });
     const dialogRef = this.dialog.open(CourseModalComponent, {
-      width: '16rem',
+      width: '18rem',
       data: {
         course: selectedCourse,
         options: {

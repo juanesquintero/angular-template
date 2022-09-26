@@ -1,10 +1,37 @@
-.courses-modal{
-  &-form{
-    &__field{
+@import "../../../variables.scss";
+
+.courses-modal {
+  border: 0.08rem solid;
+  border-radius: 0.3rem;
+  margin: -0.6rem;
+  padding: 0 1rem;
+
+  &-form {
+    mat-form-field {
+      h3 {
+        margin: -0.5rem 0rem;
+      }
+    }
+
+    &__field {
       display: flex;
-      width: auto;
-      min-width: 0.5rem;
+      color: $black;
+
+      &--small {
+        width: 7rem;
+      }
     }
   }
 }
 
+.mat-input-element:disabled {
+  color: $black;
+}
+
+::ng-deep .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+  background-image: none !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 100%;
+}
