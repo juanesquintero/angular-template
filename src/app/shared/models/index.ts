@@ -7,6 +7,10 @@ export interface IAppName {
 }
 
 export interface IModalOptions {
-  newMode: boolean;
-  editMode: boolean,
+  mode: string;
+  action: any;
+  message: string;
 }
+
+
+export type IModalMode = 'edit' | 'remove' | 'new' | 'detail';

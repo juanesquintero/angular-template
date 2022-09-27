@@ -4,6 +4,7 @@ import { ICourseDTO, ICourseRow, ICoursesTable } from '../../shared/models/cours
 import { CoursesService } from '../courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseModalComponent } from '../modal/course-modal.component';
+import { IModalMode } from '../../shared/models';
 
 @Component({
   selector: 'app-courses-list',
@@ -17,12 +18,21 @@ export class CoursesListComponent implements OnInit {
     { id: c.id, title: c.title, price: c.price }
   );
 
+  get admin(): boolean {
+    // TODO: ngrx for user/session info
+    return true;
+  }
+
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.fetchCourses();
+  }
+
+  fetchCourses(): void {
     this.coursesService.getCourses().subscribe((res: ICourseDTO[]) => {
       this.courses = res;
       this.table.rows = res.map(this.rowsFn);
@@ -30,26 +40,38 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  get admin(): boolean {
-    // TODO: ngrx for user/session info
-    return false;
-  }
-
-  openModal(courseId: string ) {
+  openModal(
+    courseId: string,
+    mode: IModalMode,
+    action: any = null,
+    msg: string = ''
+  ) {
     const selectedCourse = _.find(this.courses, { id: courseId });
     const dialogRef = this.dialog.open(CourseModalComponent, {
       width: '18rem',
       data: {
         course: selectedCourse,
         options: {
-          editMode: this.admin,
-          newMode: false,
+          mode: mode,
+          action: action,
+          message: msg,
         }
       },
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The MODAL was closed');
+    dialogRef.afterClosed().subscribe((result) => {
+      alert(result + '\n' + msg);
     });
   }
+
+  detail(courseId: string): void {
+    this.openModal(courseId, 'detail');
+  }
+
+  edit(courseId: string): void {
+    this.openModal(courseId, 'edit', this.coursesService.putCourse, 'Course Updated')
+  }
+
+  // remove(courseId: string): void {
+  //   this.openModal(courseId, 'remove', this.coursesService.deleteCourse, 'Course Deleted');
+  // }
 }
