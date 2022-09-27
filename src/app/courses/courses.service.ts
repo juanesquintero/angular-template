@@ -18,4 +18,12 @@ export class CoursesService {
   getCourses(): Observable<ICourseDTO[]> {
     return this.http.get<ICourseDTO[]>(this.apiPath + this.endpoint);
   }
+
+  putCourse(courseId: string, courseData: ICourseDTO): Observable<ICourseDTO> {
+    return this.http.put<ICourseDTO>(this.apiPath + this.endpoint + '/' + courseId, courseData);
+  }
+
+  // deleteCourse(courseId: string): Observable<ICourseDTO> {
+  //   return this.http.delete<ICourseDTO>(this.apiPath + this.endpoint + '/' + courseId);
+  // }
 }

@@ -23,7 +23,7 @@
     <ng-container matColumnDef="actions">
       <th class="mat-column-actions" *matHeaderCellDef> Actions </th>
       <td mat-cell class="mat-column-actions" *matCellDef="let course">
-        <mat-icon (click)="openModal(course.id)">info_outline</mat-icon>
+        <mat-icon (click)="detail(course.id)">info_outline</mat-icon>
         <mat-icon *ngIf="admin">more_vert</mat-icon>
       </td>
     </ng-container>
