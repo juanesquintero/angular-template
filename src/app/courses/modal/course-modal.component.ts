@@ -16,26 +16,38 @@ export class CourseModalComponent implements OnInit {
   public options: IModalOptions;
 
   get editable(): boolean {
-    return this.options.editMode || this.options.newMode;
+    return (this.isNew || this.isEdit) && this.admin;
   }
 
+  get admin(): boolean {
+    // TODO: ngrx for user/session info
+    return true;
+  }
+
+  get isNew(): boolean {
+    return this.options.mode === 'new';
+  }
+
+  get isEdit(): boolean {
+    return this.options.mode === 'edit';
+  }
 
   constructor(
     public dialogRef: MatDialogRef<CourseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IModalData,
   ) {
-    this.options = data.options;
+    this.options = data.options
   }
 
   ngOnInit(): void {
-    const course = this.options.newMode ? {} as ICourseDTO : this.data.course;
+    const course = this.isNew ? {} as ICourseDTO : this.data.course;
     this.initForm(course as ICourseDTO);
   }
 
   initControl(value: any): FormControl {
     return new FormControl({
       value: value,
-      disabled: !this.options.editMode
+      disabled: !this.editable
     },
       Validators.required
     );
