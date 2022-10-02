@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IModalOptions } from '../../shared/models';
 import { ICourseDTO } from '../../shared/models/courses.model';
 
-type IModalData =  { course?: ICourseDTO, options: IModalOptions };
+type IModalData = { course?: ICourseDTO, options: IModalOptions };
 
 @Component({
   selector: 'app-course-modal',
@@ -16,20 +16,20 @@ export class CourseModalComponent implements OnInit {
   public options: IModalOptions;
 
   get editable(): boolean {
-    return (this.isNew || this.isEdit) && this.admin;
+    return this.isNew || this.isEdit;
   }
 
-  get admin(): boolean {
+  get isAdmin(): boolean {
     // TODO: ngrx for user/session info
     return true;
   }
 
   get isNew(): boolean {
-    return this.options.mode === 'new';
+    return this.options.mode === 'new' && this.isAdmin;
   }
 
   get isEdit(): boolean {
-    return this.options.mode === 'edit';
+    return this.options.mode === 'edit' && this.isAdmin;
   }
 
   constructor(
@@ -62,4 +62,10 @@ export class CourseModalComponent implements OnInit {
     })
   }
 
+  update(): void {
+    const { id, ...course } = this.data.course as ICourseDTO;
+    if (this.isEdit) {
+      this.options.action(id, course)
+    };
+  }
 }
