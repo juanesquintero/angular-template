@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatOptionModule,
     MatMenuModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule { }
