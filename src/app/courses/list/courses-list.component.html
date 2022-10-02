@@ -21,10 +21,21 @@
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th class="mat-column-actions" *matHeaderCellDef> Actions </th>
+      <th class="mat-column-actions" *matHeaderCellDef>Actions</th>
       <td mat-cell class="mat-column-actions" *matCellDef="let course">
-        <mat-icon (click)="detail(course.id)">info_outline</mat-icon>
-        <mat-icon *ngIf="admin">more_vert</mat-icon>
+        <mat-icon
+        *ngIf="!admin; else courseMenu"
+        (click)="detail(course.id)">
+          info_outline
+        </mat-icon>
+        <ng-template #courseMenu>
+          <mat-icon mat-button [matMenuTriggerFor]="menu">more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="detail(course.id)">Detail</button>
+            <button mat-menu-item (click)="edit(course.id)">Edit</button>
+            <button mat-menu-item>Remove</button>
+          </mat-menu>
+        </ng-template>
       </td>
     </ng-container>
 
