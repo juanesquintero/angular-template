@@ -3,21 +3,26 @@
     <span>
       <b>{{ appName }}</b>
     </span>
-    <button mat-raised-button color="accent" (click)="showAppName()">
-      Show App Name
+    <button
+      mat-mini-fab
+      color="accent"
+      (click)="showAppName()"
+      [disabled]="!init"
+    >
+      <mat-icon>visibility</mat-icon>
     </button>
   </main>
 
   <nav class="menu">
     <ul>
       <li>
-        <a class="home__link" [routerLink]="routes.courses">Courses</a>
+        <a mat-button color="link" [routerLink]="routes.courses"> Courses </a>
       </li>
       <li>
-        <a href="#">Users</a>
+        <a mat-button color="link" [routerLink]="'#'">Users</a>
       </li>
       <li>
-        <a href="#">Students</a>
+        <a mat-button color="link" [routerLink]="'#'">Students</a>
       </li>
     </ul>
   </nav>
