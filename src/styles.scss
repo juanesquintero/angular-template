@@ -80,6 +80,35 @@ footer a {
   }
 }
 
+.snackbar {
+  color: $black;
+  text-transform: capitalize;
+
+  &--white {
+    @extend .snackbar;
+    background: $white;
+  }
+
+  &--error {
+    @extend .snackbar;
+    background: $danger;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &--info {
+    @extend .snackbar;
+    background: $white;
+  }
+
+  &--success {
+    @extend .snackbar;
+    background: $green;
+    color: $white;
+  }
+}
+
+
 // AppComponent Styles
 .app {
   &__spacer {
@@ -95,7 +124,7 @@ footer a {
     display: flex;
     align-items: center;
     background-color: $primary;
-    color: $black;
+    color: $white;
     font-weight: 600;
   }
 
