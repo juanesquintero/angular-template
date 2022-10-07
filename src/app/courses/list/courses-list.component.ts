@@ -1,10 +1,12 @@
 import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
-import { ICourseDTO, ICourseRow, ICoursesTable } from '../../shared/models/courses.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { IAction, IModalMode } from '../../shared/models';
+import { ICourseBase, ICourseDTO, ICourseRow, ICoursesTable } from '../../shared/models/courses.model';
 import { CoursesService } from '../courses.service';
-import { MatDialog } from '@angular/material/dialog';
 import { CourseModalComponent } from '../modal/course-modal.component';
-import { IModalMode } from '../../shared/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-list',
@@ -18,14 +20,15 @@ export class CoursesListComponent implements OnInit {
     { id: c.id, title: c.title, price: c.price }
   );
 
-  get admin(): boolean {
+  get isAdmin(): boolean {
     // TODO: ngrx for user/session info
     return true;
   }
 
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -40,38 +43,41 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  openModal(
-    courseId: string,
-    mode: IModalMode,
-    action: any = null,
-    msg: string = ''
-  ) {
+  openModal(courseId: string, mode: IModalMode,) {
     const selectedCourse = _.find(this.courses, { id: courseId });
     const dialogRef = this.dialog.open(CourseModalComponent, {
       width: '18rem',
       data: {
         course: selectedCourse,
-        options: {
-          mode: mode,
-          action: action,
-          message: msg,
-        }
+        mode: mode
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      alert(result + '\n' + msg);
+    this.onCloseModal(dialogRef);
+  }
+
+  onCloseModal(dialogRef: MatDialogRef<CourseModalComponent>): void{
+    dialogRef.afterClosed().subscribe((result: {course: ICourseDTO, action: IAction}) => {
+      const { course, action } = result;
+      if (result) {
+        (this[action](course as any) as Observable<any>).subscribe(
+          (res: ICourseDTO) => {
+            this._snackBar.open(`${result.action}d ${res.id}`, '', { panelClass: ['snackbar--success'] });
+          },
+          err => {
+            this._snackBar.open(`${result.action} Error`, '', { panelClass: ['snackbar--error'] });
+            console.error(err);
+          }
+        );
+      }
     });
   }
 
-  detail(courseId: string): void {
-    this.openModal(courseId, 'detail');
+  update(courseUpdated: ICourseDTO): Observable<ICourseDTO> {
+    const { id, ...course } = courseUpdated;
+    return this.coursesService.putCourse(id, course);
   }
 
-  edit(courseId: string): void {
-    this.openModal(courseId, 'edit', this.coursesService.putCourse, 'Course Updated')
-  }
+  delete(courseUpdated: ICourseDTO): void {}
 
-  // remove(courseId: string): void {
-  //   this.openModal(courseId, 'remove', this.coursesService.deleteCourse, 'Course Deleted');
-  // }
+  create(courseUpdated: ICourseDTO): void {}
 }
