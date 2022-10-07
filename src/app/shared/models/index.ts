@@ -8,9 +8,11 @@ export interface IAppName {
 
 export interface IModalOptions {
   mode: string;
-  action: any;
-  message: string;
+  action?: any;
+  message?: string;
 }
 
 
 export type IModalMode = 'edit' | 'remove' | 'new' | 'detail';
+
+export type IAction = 'update' | 'create' | 'delete';
