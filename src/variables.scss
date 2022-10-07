@@ -6,16 +6,22 @@
 $angular-template-primary: mat.define-palette(mat.$red-palette, 300, 400, 500);
 $angular-template-accent: mat.define-palette(mat.$red-palette, A200, A100, A400);
 
+$angular-template-success: mat.define-palette(mat.$green-palette, 500, A200, A100);
+
 // The warn palette is optional (defaults to red).
-$angular-template-warn: mat.define-palette(mat.$red-palette, A700);
+$angular-template-warn: mat.define-palette(mat.$amber-palette, 700, 800);
+
+$angular-template-danger: mat.define-palette(mat.$red-palette, 700, 800);
 
 
 $primary: map_get($angular-template-primary, 500);
 $secondary: map_get($angular-template-primary, A100);
 $accent: map_get($angular-template-primary, A200);
-$warn: map_get($angular-template-warn, A700);
-$danger: map_get($angular-template-warn, A700);;
+$warn: map_get($angular-template-warn, 700);
+$danger: map_get($angular-template-danger, 700);;
 
 $black: #121212;
 $white: #F5F6FB;
 $gray: #808080;
+
+$green: map_get($angular-template-success, 500);
