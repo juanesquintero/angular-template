@@ -1,10 +1,11 @@
+import { ACTIONS_LABEL } from './../../shared/constants';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IModalOptions } from '../../shared/models';
+import { IModalMode, IModalOptions } from '../../shared/models';
 import { ICourseDTO } from '../../shared/models/courses.model';
 
-type IModalData = { course?: ICourseDTO, options: IModalOptions };
+type IModalData = { course?: ICourseDTO, mode: IModalMode };
 
 @Component({
   selector: 'app-course-modal',
@@ -13,7 +14,6 @@ type IModalData = { course?: ICourseDTO, options: IModalOptions };
 })
 export class CourseModalComponent implements OnInit {
   public form: FormGroup = new FormGroup({});
-  public options: IModalOptions;
 
   get editable(): boolean {
     return this.isNew || this.isEdit;
@@ -25,19 +25,25 @@ export class CourseModalComponent implements OnInit {
   }
 
   get isNew(): boolean {
-    return this.options.mode === 'new' && this.isAdmin;
+    return this.data.mode === 'new' && this.isAdmin;
   }
 
   get isEdit(): boolean {
-    return this.options.mode === 'edit' && this.isAdmin;
+    return this.data.mode === 'edit' && this.isAdmin;
+  }
+
+  get isDetail(): boolean {
+    return this.data.mode === 'detail';
+  }
+
+  get action(): string {
+    return ACTIONS_LABEL[this.data.mode];
   }
 
   constructor(
     public dialogRef: MatDialogRef<CourseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IModalData,
-  ) {
-    this.options = data.options
-  }
+  ) { }
 
   ngOnInit(): void {
     const course = this.isNew ? {} as ICourseDTO : this.data.course;
@@ -62,10 +68,12 @@ export class CourseModalComponent implements OnInit {
     })
   }
 
-  update(): void {
-    const { id, ...course } = this.data.course as ICourseDTO;
-    if (this.isEdit) {
-      this.options.action(id, course)
-    };
+  onSubmit(): void {
+    if (!this.isDetail) {
+      this.dialogRef.close({
+        action: this.action,
+        course: this.data.course
+      });
+    }
   }
 }

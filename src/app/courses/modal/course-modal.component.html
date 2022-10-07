@@ -1,5 +1,5 @@
 <section class="courses-modal">
-  <form [formGroup]="form" class="courses-modal-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="courses-modal-form">
     <mat-form-field class="courses-modal-form__field">
       <h3>
         <input matInput formControlName="title" type="text" />
@@ -37,10 +37,11 @@
       <button
         mat-raised-button
         color="accent"
-        *ngIf="isEdit"
-        (click)="update()"
+        *ngIf="!isDetail"
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
       >
-        Update
+        {{ action | uppercase }}
       </button>
     </footer>
   </form>
