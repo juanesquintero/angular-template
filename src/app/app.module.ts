@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,11 +21,12 @@ export class AppComponent {
     HomeComponent,
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
