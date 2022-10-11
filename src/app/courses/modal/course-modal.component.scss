@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@import '../../../variables.scss';
 
 .courses-modal {
   border: 0.08rem solid;
@@ -20,6 +20,14 @@
       &--small {
         width: 7rem;
       }
+    }
+
+    &__buttons-bar {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: center;
+      margin: 1rem 0;
     }
   }
 }

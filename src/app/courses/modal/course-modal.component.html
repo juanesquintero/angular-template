@@ -1,5 +1,5 @@
 <section class="courses-modal">
-  <form [formGroup]="form" class="courses-modal-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="courses-modal-form">
     <mat-form-field class="courses-modal-form__field">
       <h3>
         <input matInput formControlName="title" type="text" />
@@ -32,5 +32,17 @@
         <input matInput formControlName="hours" type="number" />
       </mat-form-field>
     </span>
+
+    <footer class="courses-modal-form__buttons-bar" *ngIf="isAdmin">
+      <button
+        mat-raised-button
+        color="accent"
+        *ngIf="!isDetail"
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
+      >
+        {{ action | uppercase }}
+      </button>
+    </footer>
   </form>
 </section>
