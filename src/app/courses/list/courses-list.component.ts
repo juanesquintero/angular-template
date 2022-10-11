@@ -44,39 +44,41 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  openModal(courseId: string, mode: IModalMode,) {
+  openModal(mode: IModalMode, courseId?: string) {
     const selectedCourse = _.find(this.courses, { id: courseId });
+    const modalData = { course: selectedCourse, mode: mode };
     const dialogRef = this.dialog.open(CourseModalComponent, {
       width: '18rem',
-      data: {
-        course: selectedCourse,
-        mode: mode
-      },
+      data: modalData
     });
     this.onCloseModal(dialogRef);
   }
 
   onCloseModal(dialogRef: MatDialogRef<CourseModalComponent>): void {
     dialogRef.afterClosed().subscribe((result: IModalResult) => {
-      const { course, action } = result;
       if (result) {
-        (this[action](course as any) as Observable<any>).subscribe(
-          (res: ICourseDTO) => {
-            this.actionMsg(result, res);
-          },
-          err => {
-            this.actionMsg(result, err, true);
-          }
-        );
+        this.actionTrigger(result);
       }
     });
   }
 
-  actionMsg(result: any, res: ICourseDTO | any, err=false) {
+  actionTrigger(result: IModalResult){
+    const { action, course } = result;
+    (this[action](course) as Observable<any>).subscribe(
+      (res: ICourseDTO) => {
+        this.actionMsg(action);
+      },
+      err => {
+        this.actionMsg(action, true);
+      }
+    );
+  }
+
+  actionMsg(action: string, err=false) {
     if (err) {
-      this._snackBar.open(`${result.action} Error`, '', { panelClass: ['snackbar--error'] });
+      this._snackBar.open(`${action} Error`, '', { panelClass: ['snackbar--error'] });
     } else {
-      this._snackBar.open(`${result.action}d ${res.id}`, '', { panelClass: ['snackbar--success'] });
+      this._snackBar.open(`${action}d`, '', { panelClass: ['snackbar--success'] });
     }
   }
 

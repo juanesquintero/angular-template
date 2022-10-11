@@ -1,4 +1,9 @@
 <section>
+  <h2>
+    {{ 'courses' | uppercase}}
+  </h2>
+
+  <button mat-menu-item (click)="openModal('new')">+ Course</button>
   <mat-table
     #tableElement
     [dataSource]="table.rows"
@@ -25,15 +30,15 @@
       <td mat-cell class="mat-column-actions" *matCellDef="let course">
         <mat-icon
         *ngIf="!isAdmin; else courseMenu"
-        (click)="openModal(course.id, 'detail')">
+        (click)="openModal('detail', course.id)">
           info_outline
         </mat-icon>
         <ng-template #courseMenu>
           <mat-icon mat-button [matMenuTriggerFor]="menu">more_vert</mat-icon>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openModal(course.id, 'detail')">Detail</button>
-            <button mat-menu-item (click)="openModal(course.id, 'edit')">Edit</button>
-            <button mat-menu-item>Remove</button>
+            <button mat-menu-item (click)="openModal('detail', course.id)">Detail</button>
+            <button mat-menu-item (click)="openModal('edit', course.id)">Edit</button>
+            <button mat-menu-item (click)="openModal('remove', course.id)">Remove</button>
           </mat-menu>
         </ng-template>
       </td>
