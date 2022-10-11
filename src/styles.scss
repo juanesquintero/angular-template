@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -9,37 +8,33 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$angular-template-primary: mat.define-palette(mat.$indigo-palette);
-$angular-template-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$angular-template-warn: mat.define-palette(mat.$red-palette);
+@import './variables.scss';
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$angular-template-theme: mat.define-light-theme((
-  color: (
-    primary: $angular-template-primary,
-    accent: $angular-template-accent,
-    warn: $angular-template-warn,
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-template-primary,
+      accent: $angular-template-accent,
+      warn: $angular-template-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($angular-template-theme);
+@include mat.all-component-themes($theme);
 
 /* You can add global styles to this file, and also import other style files */
 
+// GLOBAL styles
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.88rem;
-  color: #333;
+  color: $gray;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -56,56 +51,6 @@ h6 {
 
 p {
   margin: 0;
-}
-
-.spacer {
-  flex: 1;
-}
-
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 13rem;
-  height: 3.75rem;
-  display: flex;
-  align-items: center;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
-}
-
-.toolbar img {
-  margin: 0 1rem;
-}
-
-.content {
-  display: flex;
-  margin: 5.125rem auto 2rem;
-  padding: 0 1rem;
-  max-width: 60rem;
-  flex-direction: column;
-  align-items: center;
-
-  & main {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-    line-height: 3.125rem;
-  }
-}
-
-a,
-a:visited,
-a:hover {
-  color: #1976d2;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #125699;
 }
 
 footer {
@@ -135,10 +80,55 @@ footer a {
   }
 }
 
+.snackbar {
+  color: $black;
+  text-transform: capitalize;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  &--white {
+    @extend .snackbar;
+    background: $white;
+  }
 
-main.router-container {
-  margin: 4.5rem .5rem;
+  &--error {
+    @extend .snackbar;
+    background: $danger;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &--info {
+    @extend .snackbar;
+    background: $white;
+  }
+
+  &--success {
+    @extend .snackbar;
+    background: $green;
+    color: $white;
+  }
+}
+
+
+// AppComponent Styles
+.app {
+  &__spacer {
+    flex: 1;
+  }
+
+  &__toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    color: $white;
+    font-weight: 600;
+  }
+
+  &__toolbar img {
+    margin: 0 1rem;
+  }
 }
