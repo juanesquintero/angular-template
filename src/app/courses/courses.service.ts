@@ -19,11 +19,15 @@ export class CoursesService {
     return this.http.get<ICourseDTO[]>(this.apiPath + this.endpoint);
   }
 
+  postCourse(courseData: ICourseBase): Observable<ICourseDTO> {
+    return this.http.post<ICourseDTO>(this.apiPath + this.endpoint, courseData);
+  }
+
   putCourse(courseId: string, courseData: ICourseBase): Observable<ICourseDTO> {
     return this.http.put<ICourseDTO>(this.apiPath + this.endpoint + '/' + courseId, courseData);
   }
 
-  // deleteCourse(courseId: string): Observable<ICourseDTO> {
-  //   return this.http.delete<ICourseDTO>(this.apiPath + this.endpoint + '/' + courseId);
-  // }
+  deleteCourse(courseId: string): Observable<ICourseDTO> {
+    return this.http.delete<ICourseDTO>(this.apiPath + this.endpoint + '/' + courseId);
+  }
 }
