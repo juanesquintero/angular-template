@@ -1,5 +1,15 @@
-.courses-table {
-  width: 100%;
+.courses-list {
+  &__table {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  &__header {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem
+  }
 }
 
 // .mat-column-position {
@@ -16,6 +26,8 @@
 
 .mat-column-actions {
   padding-left: 4rem;
+  text-align: right;
+  justify-content: flex-end;
 }
 
 .mat-column-price {
