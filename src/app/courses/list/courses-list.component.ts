@@ -7,6 +7,8 @@ import { IAction, IModalMode } from '../../shared/models';
 import { ICourseBase, ICourseDTO, ICourseRow, ICoursesTable } from '../../shared/models/courses.model';
 import { CoursesService } from '../courses.service';
 import { CourseModalComponent } from '../modal/course-modal.component';
+import { APP_ROUTES } from '../../shared/constants';
+
 
 type IModalResult = { course: ICourseDTO, action: IAction };
 @Component({
@@ -15,6 +17,7 @@ type IModalResult = { course: ICourseDTO, action: IAction };
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
+  public  title: string = APP_ROUTES.courses;
   public courses: ICourseDTO[] = [];
   public table: ICoursesTable = { rows: [], columns: [] };
   private rowsFn = (c: ICourseDTO): ICourseRow => (

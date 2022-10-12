@@ -1,13 +1,13 @@
 <section>
-  <h2>
-    {{ 'courses' | uppercase}}
-  </h2>
+  <header class="courses-list__header">
+    <h2>{{ title | uppercase}}</h2>
+    <button mat-raised-button (click)="openModal('new')">+ Course</button>
+  </header>
 
-  <button mat-menu-item (click)="openModal('new')">+ Course</button>
   <mat-table
     #tableElement
     [dataSource]="table.rows"
-    class="mat-elevation-z8 courses-table"
+    class="mat-elevation-z8 courses-list__table"
     matSort
   >
     <ng-container matColumnDef="id">
