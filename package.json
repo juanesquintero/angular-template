@@ -25,6 +25,8 @@
     "@angular/router": "^14.0.0",
     "lodash": "^4.17.21",
     "rxjs": "~7.5.0",
+    "ts-loader": "^9.4.1",
+    "ts-transformer-keys": "^0.4.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
