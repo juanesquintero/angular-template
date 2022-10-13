@@ -119,7 +119,7 @@ footer a {
     flex: 1;
   }
 
-  &__toolbar {
+  &-toolbar {
     position: absolute;
     top: 0;
     left: 0;
@@ -127,12 +127,27 @@ footer a {
     height: 3.75rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: $primary;
     color: $white;
     font-weight: 600;
-  }
 
-  &__toolbar img {
-    margin: 0 1rem;
+    & img {
+      margin: 0 1rem;
+    }
+
+    &__button {
+      background-color: $white;
+      color: $primary;
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+    }
+
+    &__title {
+      margin-bottom: 0 !important;
+    }
   }
 }
