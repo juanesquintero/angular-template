@@ -1,8 +1,13 @@
 <section>
+  <header class="courses-list__header">
+    <h2>{{ title | uppercase}}</h2>
+    <button mat-raised-button (click)="openModal('new')">+ Course</button>
+  </header>
+
   <mat-table
     #tableElement
     [dataSource]="table.rows"
-    class="mat-elevation-z8 courses-table"
+    class="mat-elevation-z8 courses-list__table"
     matSort
   >
     <ng-container matColumnDef="id">
@@ -21,10 +26,21 @@
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th class="mat-column-actions" *matHeaderCellDef> Actions </th>
+      <th class="mat-column-actions" *matHeaderCellDef>Actions</th>
       <td mat-cell class="mat-column-actions" *matCellDef="let course">
-        <mat-icon (click)="openModal(course.id)">info_outline</mat-icon>
-        <mat-icon *ngIf="admin">more_vert</mat-icon>
+        <mat-icon
+        *ngIf="!isAdmin; else courseMenu"
+        (click)="openModal('detail', course.id)">
+          info_outline
+        </mat-icon>
+        <ng-template #courseMenu>
+          <mat-icon mat-button [matMenuTriggerFor]="menu">more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openModal('detail', course.id)">Detail</button>
+            <button mat-menu-item (click)="openModal('edit', course.id)">Edit</button>
+            <button mat-menu-item (click)="openModal('remove', course.id)">Remove</button>
+          </mat-menu>
+        </ng-template>
       </td>
     </ng-container>
 

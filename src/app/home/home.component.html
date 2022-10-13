@@ -1,21 +1,28 @@
-<section class="content">
+<section class="home__content">
   <main role="main">
     <span>
       <b>{{ appName }}</b>
     </span>
-    <button (click)="showAppName()">Show App Name</button>
+    <button
+      mat-mini-fab
+      color="accent"
+      (click)="showAppName()"
+      [disabled]="!init"
+    >
+      <mat-icon>visibility</mat-icon>
+    </button>
   </main>
 
   <nav class="menu">
     <ul>
       <li>
-        <a class="home__link" [routerLink]="routes.courses">Courses</a>
+        <a mat-button color="link" [routerLink]="routes.courses"> Courses </a>
       </li>
       <li>
-        <a href="#">Users</a>
+        <a mat-button color="link" [routerLink]="'#'">Users</a>
       </li>
       <li>
-        <a href="#">Students</a>
+        <a mat-button color="link" [routerLink]="'#'">Students</a>
       </li>
     </ul>
   </nav>
