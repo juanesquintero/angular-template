@@ -1,14 +1,14 @@
 <section>
   <header class="app-toolbar" role="banner">
-    <span class="app-toolbar__logo" >
+    <span class="app-toolbar__logo">
       <a routerLink="">
         <img
-        width="40"
-        alt="Angular Logo"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+          width="40"
+          alt="Angular Logo"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
         />
       </a>
-      <h3 class="app-toolbar__title">Welcome to {{ title }} </h3>
+      <h3 class="app-toolbar__title">Welcome to {{ title }}</h3>
     </span>
     <button mat-stroked-button color="link" class="app-toolbar__button">
       Login
@@ -16,6 +16,33 @@
     </button>
   </header>
   <main class="router-container">
-    <router-outlet></router-outlet>
+    <mat-drawer-container class="example-container" autosize>
+      <mat-drawer #drawer class="example-sidenav" mode="side">
+        <nav>
+          <ul>
+            <li>
+              <a mat-button color="link" [routerLink]="routes.courses">
+              Courses
+            </a>
+          </li>
+          <li>
+            <a mat-button color="link" [routerLink]="'#'">Users</a>
+          </li>
+          <li>
+            <a mat-button color="link" [routerLink]="'#'">Students</a>
+          </li>
+        </ul>
+      </nav>
+      </mat-drawer>
+
+      <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+        <button type="button" color="accent" mat-stroked-button (click)="drawer.toggle()">
+          <mat-icon class="material-symbols-outlined">
+            {{ drawer.opened ? 'keyboard_double_arrow_left': 'keyboard_double_arrow_right'}}
+            </mat-icon>
+        </button>
+      </div>
+    </mat-drawer-container>
   </main>
 </section>

@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
 import { MaterialModule } from './shared/material.module';
+import { APP_ROUTES } from './shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,7 @@ import { MaterialModule } from './shared/material.module';
 })
 export class AppComponent {
   public title: string = 'angular-template';
+  public routes = APP_ROUTES;
 }
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ export class AppComponent {
     HomeComponent,
   ],
   imports: [
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
