@@ -137,8 +137,9 @@ footer a {
     }
 
     &__button {
-      background-color: $white;
+      background-color: white;
       color: $primary;
+      margin: 1rem !important;
     }
 
     &__logo {
