@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
-import { APP_ROUTES } from '../shared/constants';
 import { IAppName } from '../shared/models';
 
 const initialAppName = 'Angular Template';
@@ -12,7 +11,6 @@ const initialAppName = 'Angular Template';
 })
 export class HomeComponent implements OnInit {
   public appName: string = initialAppName;
-  public routes = APP_ROUTES;
 
   public get init() : boolean {
     return this.appName === initialAppName

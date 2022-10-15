@@ -119,6 +119,26 @@ footer a {
     flex: 1;
   }
 
+  &-sidenav {
+    &__options {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      min-width: 8rem;;
+    }
+
+    &__content {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__toogle-btn {
+      width: 1rem;
+      margin-top: auto !important;
+    }
+  }
+
   &-toolbar {
     position: absolute;
     top: 0;
@@ -137,8 +157,9 @@ footer a {
     }
 
     &__button {
-      background-color: $white;
+      background-color: white;
       color: $primary;
+      margin: 1rem !important;
     }
 
     &__logo {
