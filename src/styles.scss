@@ -131,11 +131,11 @@ footer a {
       min-height: 90vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
 
     &__toogle-btn {
       width: 1rem;
+      margin-top: auto !important;
     }
   }
 
