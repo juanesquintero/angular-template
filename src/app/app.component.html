@@ -16,31 +16,33 @@
     </button>
   </header>
   <main class="router-container">
-    <mat-drawer-container class="example-container" autosize>
-      <mat-drawer #drawer class="example-sidenav" mode="side">
-        <nav>
-          <ul>
-            <li>
-              <a mat-button color="link" [routerLink]="routes.courses">
-              Courses
-            </a>
-          </li>
-          <li>
-            <a mat-button color="link" [routerLink]="'#'">Users</a>
-          </li>
-          <li>
-            <a mat-button color="link" [routerLink]="'#'">Students</a>
-          </li>
-        </ul>
-      </nav>
+    <mat-drawer-container  autosize>
+      <mat-drawer #drawer mode="side">
+        <nav class="app-sidenav__options">
+          <a mat-button color="link" [routerLink]="routes.courses"> Courses </a>
+
+          <a mat-button color="link" [routerLink]="'#'">Users</a>
+
+          <a mat-button color="link" [routerLink]="'#'">Students</a>
+        </nav>
       </mat-drawer>
 
-      <div class="example-sidenav-content">
+      <div class="app-sidenav__content">
         <router-outlet></router-outlet>
-        <button type="button" color="accent" mat-stroked-button (click)="drawer.toggle()">
+        <button
+          class="app-sidenav__toogle-btn"
+          type="button"
+          color="accent"
+          mat-stroked-button
+          (click)="drawer.toggle()"
+        >
           <mat-icon class="material-symbols-outlined">
-            {{ drawer.opened ? 'keyboard_double_arrow_left': 'keyboard_double_arrow_right'}}
-            </mat-icon>
+            {{
+              drawer.opened
+                ? "keyboard_double_arrow_left"
+                : "keyboard_double_arrow_right"
+            }}
+          </mat-icon>
         </button>
       </div>
     </mat-drawer-container>
