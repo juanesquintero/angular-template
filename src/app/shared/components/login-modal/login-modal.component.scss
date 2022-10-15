@@ -1,0 +1,24 @@
+@import '../../../../variables.scss';
+
+.login-modal {
+  min-width: 12rem;
+  min-height: 10rem;
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+
+  &__field {
+    width: 100%;
+    margin: 0.5rem 0 0;
+  }
+
+  &__button{
+    width: 100%;
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+  }
+}

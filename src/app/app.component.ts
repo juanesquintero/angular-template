@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { APP_ROUTES } from './shared/constants';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginModalComponent } from './shared/components/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,9 @@ export class AppComponent {
   constructor(public dialog: MatDialog) {}
 
   openLoginModal(): void {
-    // const dialogRef = this.dialog.open(LoginModalComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(result);
-    // });
+    const dialogRef = this.dialog.open(LoginModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
