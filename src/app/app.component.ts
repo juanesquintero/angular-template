@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { APP_ROUTES } from './shared/constants';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginModalComponent } from './shared/components/login-modal/login-modal.component';
+import { LoginModalComponent } from './auth/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-root',
