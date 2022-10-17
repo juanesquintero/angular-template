@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
 import { MaterialModule } from './shared/material.module';
 import { AppComponent } from './app.component';
-import { LoginModalComponent } from './shared/components/login-modal/login-modal.component';
+import { LoginModalComponent } from './auth/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
