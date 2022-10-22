@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,22 +8,23 @@ import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
 import { MaterialModule } from './shared/material.module';
 import { AppComponent } from './app.component';
-import { LoginModalComponent } from './auth/login-modal/login-modal.component';
+import { AppFormsModule } from './shared/forms.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginModalComponent,
   ],
   imports: [
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    AppFormsModule,
+    AuthModule,
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
