@@ -18,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {duration: 2500, panelClass: ['snackbar--info']}
+      useValue: {duration: 7000, panelClass: ['snackbar--info']}
     }
   ],
   exports: [
