@@ -10,6 +10,7 @@ import { MaterialModule } from './shared/material.module';
 import { AppComponent } from './app.component';
 import { AppFormsModule } from './shared/forms.module';
 import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     MaterialModule,
     AppFormsModule,
     AuthModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
