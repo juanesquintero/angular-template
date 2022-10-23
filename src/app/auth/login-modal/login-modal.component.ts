@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginModalComponent implements OnInit {
     public dialogRef: MatDialogRef<LoginModalComponent>,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-
+    private _snackBar: MatSnackBar,
   ) { }
 
 
@@ -32,11 +33,16 @@ export class LoginModalComponent implements OnInit {
   }
 
   submit(): void {
-    this.authService.login();
-    console.log(this.form);
+    this.authService.login(this.form.value).subscribe({
+      next: data => {
+        // TODO login logic NGRX
+        this.dialogRef.close();
+      },
+      error: err => {
+        const errMsg = err.error?.message || err.message
+        this._snackBar.open(errMsg, '', { panelClass: ['snackbar--error'] });
+      }
+    })
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }

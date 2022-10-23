@@ -1,9 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IAppName } from '../shared/models';
 import { environment } from '../../environments/environment';
-import { APP_ROUTES } from '../shared/constants';
 
 
 @Injectable()
@@ -12,11 +10,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(): Observable<any> {
-    return this.http.post<any>(this.endpoint + '/login' , {});
+  login(credentials: { email: string, password: string }): Observable<any> {
+    return this.http.post<any>(this.endpoint + '/login', credentials);
   }
 
-  register(userData: any): Observable<any> {
-    return this.http.post<any>(this.endpoint + '/register' , userData);
+  singup(userData: any): Observable<any> {
+    return this.http.post<any>(this.endpoint + '/singup', userData);
   }
 }
