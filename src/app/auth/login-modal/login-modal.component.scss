@@ -1,8 +1,11 @@
 @import '../../../variables.scss';
 
 .login-modal {
-  min-width: 12rem;
-  min-height: 10rem;
+  max-width: 20rem;
+  max-height: 20rem;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
 
   &__title {
     display: flex;
@@ -22,3 +25,7 @@
     justify-content: center;
   }
 }
+
+// .mat-card {
+//   boder
+// }
