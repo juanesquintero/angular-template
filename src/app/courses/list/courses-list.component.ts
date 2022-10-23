@@ -17,7 +17,7 @@ type IModalResult = { course: ICourseDTO, action: IAction };
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-  public  title: string = APP_ROUTES.courses;
+  public title: string = APP_ROUTES.courses;
   public courses: ICourseDTO[] = [];
   public table: ICoursesTable = { rows: [], columns: [] };
   private rowsFn = (c: ICourseDTO): ICourseRow => (
@@ -65,19 +65,19 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  actionTrigger(result: IModalResult){
+  actionTrigger(result: IModalResult) {
     const { action, course } = result;
-    (this[action](course) as Observable<any>).subscribe(
-      (res: ICourseDTO) => {
+    (this[action](course) as Observable<any>).subscribe({
+      next: (res: ICourseDTO) => {
         this.actionMsg(action);
       },
-      err => {
+      error: (err) => {
         this.actionMsg(action, true);
       }
-    );
+    });
   }
 
-  actionMsg(action: string, err=false) {
+  actionMsg(action: string, err = false) {
     if (err) {
       this._snackBar.open(`${action} Error`, '', { panelClass: ['snackbar--error'] });
     } else {
