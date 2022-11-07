@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../auth.service';
-
+import * as AuthActions from '../../store/actions/auth.action';
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
@@ -16,8 +17,8 @@ export class LoginModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LoginModalComponent>,
     private formBuilder: FormBuilder,
-    private authService: AuthService,
     private _snackBar: MatSnackBar,
+    private store: Store,
   ) { }
 
 
@@ -33,16 +34,18 @@ export class LoginModalComponent implements OnInit {
   }
 
   submit(): void {
-    this.authService.login(this.form.value).subscribe({
-      next: data => {
-        // TODO login logic NGRX
-        this.dialogRef.close();
-      },
-      error: err => {
-        const errMsg = err.error?.message || err.message
-        this._snackBar.open(errMsg, '', { panelClass: ['snackbar--error'] });
-      }
-    })
+    console.log(this.store.dispatch(AuthActions.loginRequest(this.form.value)));
+    this.store.dispatch(AuthActions.loginRequest(this.form.value))
+    // this.authService.login(this.form.value).subscribe({
+    //   next: data => {
+    //     // TODO login logic NGRX
+    //     this.dialogRef.close();
+    //   },
+    //   error: err => {
+    //     const errMsg = err.error?.message || err.message
+    //     this._snackBar.open(errMsg, '', { panelClass: ['snackbar--error'] });
+    //   }
+    // })
   }
 
 }
