@@ -34,7 +34,7 @@ export class LoginModalComponent implements OnInit {
   }
 
   submit(): void {
-    this.store.dispatch(AuthActions.loginRequest(this.form.value))
+    this.store.dispatch(AuthActions.loginRequest(this.form.value));
     // this.authService.login(this.form.value).subscribe({
     //   next: data => {
     //     // TODO login logic NGRX
