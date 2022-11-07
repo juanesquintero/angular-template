@@ -13,7 +13,7 @@ export class AuthEffects {
       ofType(AuthActions.loginRequest),
       exhaustMap((action: any) =>
         this.authService
-          .login(action.credentials)
+          .login({ email: action.email, password: action.password })
           .pipe(
             map((loginSuccessResponse: ILoginSuccessResponse) =>
               AuthActions.loginSuccess({ loginSuccessResponse })

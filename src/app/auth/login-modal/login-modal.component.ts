@@ -34,7 +34,6 @@ export class LoginModalComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.store.dispatch(AuthActions.loginRequest(this.form.value)));
     this.store.dispatch(AuthActions.loginRequest(this.form.value))
     // this.authService.login(this.form.value).subscribe({
     //   next: data => {
