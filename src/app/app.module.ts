@@ -11,6 +11,9 @@ import { AppComponent } from './app.component';
 import { AppFormsModule } from './shared/forms.module';
 import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { _authReducer } from './store/reducers/auth.reducer';
+import { AuthEffects } from './store/effects/auth.effect';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { StoreModule } from '@ngrx/store';
     MaterialModule,
     AppFormsModule,
     AuthModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ auth: _authReducer }),
+    EffectsModule.forRoot([ AuthEffects ]),
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
