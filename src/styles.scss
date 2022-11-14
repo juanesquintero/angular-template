@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* import the necessary Bootstrap files */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "./variables.scss";
+
+/* finally, import Bootstrap */
+@import "bootstrap";
+
+@import "@fontsource/source-sans-pro";
+
+.btn {
+  border-radius: 0.1rem;
+}
+
+.btn-primary {
+  @extend .text-white;
+}
+
+.btn-success {
+  @extend .text-white;
+}
+
+html,
+body,
+app-root {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Source Sans Pro";
+}

@@ -1,0 +1,10 @@
+@import '../../../../variables.scss';
+
+.breadcrumbs {
+  width: 100%;
+  padding: 1rem;
+  background: $white;
+  color: $dark-blue;
+  font-size: 18px;
+  text-align: left;
+}
