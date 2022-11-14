@@ -1,5 +1,7 @@
+@import '../../../variables.scss';
+
 .course-item {
-  background-color: #fff;
+  background-color: $white;
   padding: 1rem 1.5rem;
   border-radius: 1rem;
 
@@ -19,7 +21,7 @@
 
   &__details {
     display: flex;
-    color: #858997;
+    color: $gray-2;
     font-size: 14px;
 
     & p {
