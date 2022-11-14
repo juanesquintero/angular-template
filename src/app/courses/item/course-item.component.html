@@ -1,0 +1,23 @@
+<section class="course-item" >
+
+  <div>
+    <h2 class="course-item-title" >{{course.title}}</h2>
+    <p>
+      {{course.description}}
+    </p>
+  </div>
+
+  <div class="course-item__column">
+    <span class="course-item__details">
+      <span>{{course.duration}} h</span>
+      <p>{{course.creationDate | date:'MM/d/YYYY' }}</p>
+    </span>
+
+    <span class="course-item__actions">
+      <button class="btn btn-sm btn-primary">Edit</button>
+      <button class="btn btn-sm btn-primary">Delete</button>
+    </span>
+  </div>
+
+</section>
+

@@ -1,0 +1,35 @@
+.course-item {
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+
+  display: grid;
+  grid-template-columns: 85% 15%;
+  grid-gap: 1rem;
+  width: 100%;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1rem;
+    height: 70%;
+  }
+
+  &__details {
+    display: flex;
+    color: #858997;
+    font-size: 14px;
+
+    & p {
+      margin: 0 0.3rem;
+    }
+  }
+
+  &__actions {
+    & button {
+      margin: 0 0.3rem;
+    }
+  }
+}

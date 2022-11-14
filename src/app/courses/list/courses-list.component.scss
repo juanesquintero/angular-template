@@ -1,0 +1,27 @@
+.courses-list {
+  &__item {
+    margin: 1rem;
+  }
+
+  &__load-more {
+    @extend .courses-list__item;
+
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 100%;
+
+    background-color: #fff;
+    border-radius: 1rem;
+
+    & button {
+      all: unset;
+      text-decoration: underline;
+      color: blue;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

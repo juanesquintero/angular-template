@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__content {
+    flex: 1 0 auto;
+    background-color: #e8eaf4;
+  }
+  &__footer{
+    flex-shrink: 0;
+  }
+}

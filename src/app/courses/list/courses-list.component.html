@@ -1,1 +1,10 @@
-<p>courses-list works!</p>
+<section class="courses-list">
+  <ul>
+    <div class="courses-list__item" *ngFor="let course of courses">
+      <ws-course-item [course]="course"></ws-course-item>
+    </div>
+    <div class="courses-list__load-more">
+      <button class="btn">Load More</button>
+    </div>
+  </ul>
+</section>

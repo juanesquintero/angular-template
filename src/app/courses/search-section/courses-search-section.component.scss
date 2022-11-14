@@ -1,0 +1,10 @@
+.courses-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: .5em;
+
+  button {
+    margin: 0 .5rem;
+  }
+}
