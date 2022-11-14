@@ -1,8 +1,21 @@
 $white: #ffffff;
-$dark-blue: #303240;
-$gray: #6c6f80;
 
-$primary: #36c2ec;
-$success: #67A300;
+$blue: blue;
+$blue-2: #0079ad;
+$blue-dark: #303240;
+$blue-light: #36c2ec;
+
+$gray: #6c6f80;
+$gray-2: #858997;
+$gray-light: #e8eaf4;
+
+$green-2: #b4d084;
+$green-light: #b4d084;
+
+
+$primary: $blue-light;
+$success: $green-2;
 $body-bg: $white;
-$secondary: $dark-blue;
+$secondary: $blue-dark;
+
+

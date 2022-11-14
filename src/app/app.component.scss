@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .app {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,13 @@
 
   &__content {
     flex: 1 0 auto;
-    background-color: #e8eaf4;
+    display: flex;
+    justify-content: center;
+    background-color: $gray-light;
+
+    &-section{
+      width: 80%;
+    }
   }
   &__footer{
     flex-shrink: 0;
