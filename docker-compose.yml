@@ -3,10 +3,9 @@ version: "3.8"
 services:
   dev:
     container_name: angular_dev
-    image: angular_dev:1.0.0
+    image: angular-template:1.0.0
     build:
       context: .
-      target: development
       dockerfile: ./Dockerfile
     env_file:
       - ./.env
@@ -16,18 +15,15 @@ services:
     volumes:
       - .:/usr/code
       - /usr/code/node_modules
-    networks:
-      - nestjs-template_dev-net
     command: npm run start:dev
 
   prod:
     container_name: angular_prod
-    image: angular_prod:1.0.0
-    restart: always
-    build:
-      context: .
-      target: production
-      dockerfile: ./Dockerfile
+    image: angular-template:1.0.0
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/code
     command: npm run build:nginx
 
   nginx:
@@ -36,13 +32,11 @@ services:
     restart: always
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/snippets/proxy_params:/etc/nginx/proxy_params
+      - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/logs:/var/log/nginx
       - ./nginx/www:/var/www
     ports:
       - 80:80
     depends_on:
       - prod
-
-networks:
-  nestjs-template_dev-net:
-    external: true

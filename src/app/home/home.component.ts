@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
     return this.appName === initialAppName
   }
 
-
   constructor(private homeService: HomeService) { }
 
   ngOnInit(): void { }

@@ -10,16 +10,21 @@
       </a>
       <h3 class="app-toolbar__title">Welcome to {{ title }}</h3>
     </span>
-    <button mat-stroked-button color="link" class="app-toolbar__button">
+    <button
+      (click)="openLoginModal()"
+      mat-stroked-button
+      color="link"
+      class="app-toolbar__button"
+    >
       Login
       <mat-icon>login</mat-icon>
     </button>
   </header>
   <main class="router-container">
-    <mat-drawer-container  autosize>
+    <mat-drawer-container autosize>
       <mat-drawer #drawer mode="side">
         <nav class="app-sidenav__options">
-          <a mat-button color="link" [routerLink]="routes.courses"> Courses </a>
+          <a mat-button color="link" [routerLink]="routes.courses" routerLinkActive="is-active">Courses</a>
 
           <a mat-button color="link" [routerLink]="'#'">Users</a>
 
@@ -32,7 +37,7 @@
         <button
           class="app-sidenav__toogle-btn"
           type="button"
-          color="accent"
+          color="primary"
           mat-stroked-button
           (click)="drawer.toggle()"
         >

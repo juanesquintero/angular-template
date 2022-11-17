@@ -11,13 +11,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {duration: 2500, panelClass: ['snackbar--info']}
+      useValue: {duration: 7000, panelClass: ['snackbar--info']}
     }
   ],
   exports: [
@@ -33,6 +34,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     MatSnackBarModule,
     MatSidenavModule,
+    MatCardModule,
   ]
 })
 export class MaterialModule { }
