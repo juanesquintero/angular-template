@@ -10,10 +10,10 @@ const initialAppName = 'Angular Template';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  public appName: string = initialAppName;
+  public title: string = initialAppName;
 
   public get init() : boolean {
-    return this.appName === initialAppName
+    return this.title === initialAppName
   }
 
   constructor(private homeService: HomeService) { }
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   showAppName(): void {
     if (this.init) {
       this.homeService.getAppName().subscribe((res: IAppName) => {
-        this.appName = res.api.toUpperCase();
+        this.title = res.api.toUpperCase();
       });
     }
   }
