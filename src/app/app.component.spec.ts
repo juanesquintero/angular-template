@@ -1,8 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  const title = 'Video Course';
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let compiled: HTMLElement;
+  let appHTML: string | undefined;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -12,24 +18,25 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
 
-  it(`should have as title 'web-school'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('web-school');
-  });
+    compiled = fixture.nativeElement as HTMLElement;
+    appHTML = compiled.querySelector('.app')?.innerHTML;
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('web-school app is running!');
+  });
+
+  it(`should have as title '${title}'`, () => {
+    expect(app.title).toEqual(title);
+  });
+
+  it('should render header', () => {
+    expect(appHTML).toContain('<ws-header');
+  });
+
+  it('should render breadcrumbs', () => {
+    expect(appHTML).toContain('<ws-breadcrumbs');
   });
 });

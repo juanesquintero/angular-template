@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent implements OnInit {
-
-  public title = 'Video Course';
   constructor() { }
 
   ngOnInit(): void {

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses-search-section.component.scss']
 })
 export class CoursesSectionComponent implements OnInit {
-  public searchedText: any;
+  public searchedText: string = '';
 
   constructor() { }
 
