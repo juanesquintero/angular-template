@@ -10,6 +10,12 @@
   grid-gap: 1rem;
   width: 100%;
 
+  &__content {
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+
   &__column {
     display: flex;
     flex-direction: column;

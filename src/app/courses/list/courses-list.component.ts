@@ -14,5 +14,4 @@ export class CoursesListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

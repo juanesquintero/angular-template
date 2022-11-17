@@ -17,7 +17,36 @@ describe('CoursesSectionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+  it(`should contain 'ngOnInit'`, () => {
+    expect(component.ngOnInit).toBeTruthy();
   });
+
+  it(`should contain 'searchedText' property`, () => {
+    expect(component.searchedText).toBe('');
+  });
+
+  describe('onSearch()', () => {
+    it(`should be defined`, () => {
+      expect(component.onSearch).toBeTruthy();
+    });
+
+    it(`should call console.log`, () => {
+      const consoleLogSpy = spyOn(console, 'log');
+      component.onSearch();
+      expect(consoleLogSpy).toHaveBeenCalledOnceWith(component.searchedText);
+    });
+  })
+
+  describe('addCours()', () => {
+    it(`should be defined`, () => {
+      expect(component.addCourse).toBeTruthy();
+    });
+
+    it(`should call console.log`, () => {
+      const consoleLogSpy = spyOn(console, 'log');
+      component.addCourse();
+      expect(consoleLogSpy).toHaveBeenCalledOnceWith('Add New Course');
+    });
+  })
 });
