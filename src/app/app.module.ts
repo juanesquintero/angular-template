@@ -1,6 +1,5 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,16 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
 import { MaterialModule } from './shared/material.module';
-import { APP_ROUTES } from './shared/constants';
+import { AppComponent } from './app.component';
+import { AppFormsModule } from './shared/forms.module';
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { _authReducer } from './store/reducers/auth.reducer';
+import { AuthEffects } from './store/effects/auth.effect';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-})
-export class AppComponent {
-  public title: string = 'angular-template';
-  public routes = APP_ROUTES;
-}
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,10 +24,13 @@ export class AppComponent {
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    AppFormsModule,
+    AuthModule,
+    StoreModule.forRoot({ auth: _authReducer }),
+    EffectsModule.forRoot([ AuthEffects ]),
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
