@@ -8,7 +8,9 @@ import { APP_NAME } from './shared/constants';
 let dialog: jasmine.SpyObj<MatDialog>;
 dialog = jasmine.createSpyObj('MatDialog', {
   open: {
-    afterClosed: () => ({ subscribe: () => ({}) })
+    afterClosed: () => ({
+      subscribe: (fn: any) => { }
+    })
   }
 });
 
