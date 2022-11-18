@@ -55,7 +55,6 @@ describe('HomeComponent', () => {
 
   describe('showAppName()', () => {
     it('should call homeService getAppName() if init', () => {
-      console.log(service.getAppName().subscribe());
       component.showAppName();
       expect(service.getAppName).toHaveBeenCalled();
     });
