@@ -12,7 +12,7 @@ service = jasmine.createSpyObj('HomeService', {
 
 const title = APP_NAME;
 
-fdescribe('HomeComponent', () => {
+describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let compiled: HTMLElement;
