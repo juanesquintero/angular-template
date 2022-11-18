@@ -1,8 +1,11 @@
 @import '../../../variables.scss';
 
 .courses-list {
+  margin: 0;
+  padding: 0;
+
   &__item {
-    margin: 1rem;
+    margin: 1rem 0rem;
   }
 
   &__load-more {
