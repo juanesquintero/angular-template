@@ -9,3 +9,5 @@ export const ACTIONS_LABEL: Record<string, IAction> = {
   new: 'create',
   remove: 'delete',
 }
+
+export const APP_NAME = 'angular-template';

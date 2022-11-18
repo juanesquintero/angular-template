@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
 import { IAppName } from '../shared/models';
+import { APP_NAME } from '../shared/constants';
 
-const initialAppName = 'Angular Template';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,10 +10,10 @@ const initialAppName = 'Angular Template';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  public appName: string = initialAppName;
+  public title: string = APP_NAME;
 
   public get init() : boolean {
-    return this.appName === initialAppName
+    return this.title === APP_NAME
   }
 
   constructor(private homeService: HomeService) { }
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   showAppName(): void {
     if (this.init) {
       this.homeService.getAppName().subscribe((res: IAppName) => {
-        this.appName = res.api.toUpperCase();
+        this.title = res.api.toUpperCase();
       });
     }
   }

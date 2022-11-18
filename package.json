@@ -9,7 +9,8 @@
     "build": "ng build",
     "build:nginx": "ng build --output-path=nginx/www/site",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:cov": "ng test --no-watch --code-coverage"
   },
   "private": true,
   "dependencies": {
