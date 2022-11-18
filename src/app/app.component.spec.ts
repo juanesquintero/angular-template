@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { LoginModalComponent } from './auth/login-modal/login-modal.component';
+import { APP_NAME } from './shared/constants';
 
 let dialog: jasmine.SpyObj<MatDialog>;
 dialog = jasmine.createSpyObj('MatDialog', {
@@ -11,8 +12,8 @@ dialog = jasmine.createSpyObj('MatDialog', {
   }
 });
 
-fdescribe('AppComponent', () => {
-  const title = 'angular-template';
+describe('AppComponent', () => {
+  const title = APP_NAME;
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let compiled: HTMLElement;
