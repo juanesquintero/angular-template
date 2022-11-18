@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { APP_ROUTES } from './shared/constants';
+import { APP_NAME, APP_ROUTES } from './shared/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalComponent } from './auth/login-modal/login-modal.component';
 
@@ -8,7 +8,7 @@ import { LoginModalComponent } from './auth/login-modal/login-modal.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public title: string = 'angular-template';
+  public title: string = APP_NAME;
   public routes = APP_ROUTES;
 
   constructor(public dialog: MatDialog) {}

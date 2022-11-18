@@ -1,8 +1,22 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { APP_NAME } from '../shared/constants';
 import { HomeComponent } from './home.component';
+import { HomeService } from './home.service';
+
+let service: jasmine.SpyObj<HomeService>;
+service = jasmine.createSpyObj('HomeService', {
+  getAppName: of({ api: 'name' })
+});
+
+const title = APP_NAME;
 
 describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+  let compiled: HTMLElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -11,25 +25,38 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent
       ],
+      providers: [
+        {
+          provide: HomeService,
+          useValue: service,
+        },
+      ]
     }).compileComponents();
+
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(HomeComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'angular-template'`, () => {
-    const fixture = TestBed.createComponent(HomeComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-template');
+  it(`should have as title '${title}'`, () => {
+    expect(component.title).toEqual(title);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(HomeComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-template app is running!');
+  it(`should have 'ngOnInit' method`, () => {
+    expect(component.ngOnInit).toBeTruthy();
   });
+
+  it(`should have getter: init`, () => {
+    expect(component.init).toBeTruthy();
+  });
+
+  describe('showAppName()', () => {
+    it('should call homeService getAppName() if init', () => {
+      component.showAppName();
+      expect(service.getAppName).toHaveBeenCalled();
+    });
+  })
 });
