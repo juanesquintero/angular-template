@@ -7,7 +7,7 @@ httpClientSpy = jasmine.createSpyObj('HttpClient', {
   get: { api: 'name' }
 });
 
-fdescribe('HomeService', () => {
+describe('HomeService', () => {
   let service: HomeService;
 
   beforeEach(async () => {
