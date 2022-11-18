@@ -6,7 +6,7 @@
   border-radius: 1rem;
 
   display: grid;
-  grid-template-columns: 85% 15%;
+  grid-template-columns: 80% 20%;
   grid-gap: 1rem;
   width: 100%;
 
@@ -27,8 +27,11 @@
 
   &__details {
     display: flex;
+    justify-content: space-between;
     color: $gray-2;
-    font-size: 14px;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 9rem;
 
     & p {
       margin: 0 0.3rem;
@@ -37,7 +40,7 @@
 
   &__actions {
     & button {
-      margin: 0 0.3rem;
+      margin: 1rem 0.4rem;
     }
   }
 }

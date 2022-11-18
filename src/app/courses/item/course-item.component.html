@@ -1,15 +1,21 @@
-<section class="course-item" >
+<section class="course-item">
   <div class="course-item__content">
-    <h2>{{course.title}}</h2>
+    <h2>{{ course.title }}</h2>
     <p>
-      {{course.description}}
+      {{ course.description }}
     </p>
   </div>
 
   <div class="course-item__column">
     <span class="course-item__details">
-      <span>{{course.duration}} h</span>
-      <p>{{course.creationDate | date:'MM/d/YYYY' }}</p>
+      <span class="d-flex">
+        <i class="bi bi-clock"></i>
+        <p>{{ course.duration }} h</p>
+      </span>
+      <span class="d-flex">
+        <i class="bi bi-calendar"></i>
+        <p>{{ course.creationDate | date: "MM/d/YYYY" }}</p>
+      </span>
     </span>
 
     <span class="course-item__actions">
