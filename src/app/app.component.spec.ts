@@ -1,37 +1,58 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { LoginModalComponent } from './auth/login-modal/login-modal.component';
 
-describe('AppComponent', () => {
-  const title = 'Video Course';
+let dialog: jasmine.SpyObj<MatDialog>;
+dialog = jasmine.createSpyObj('MatDialog', {
+  open: {
+    afterClosed: () => ({ subscribe: () => ({}) })
+  }
+});
+
+fdescribe('AppComponent', () => {
+  const title = 'angular-template';
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        {
+          provide: MatDialog,
+          useValue: dialog,
+        },
+      ]
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    compiled = fixture.nativeElement as HTMLElement;
+
+    fixture.detectChanges();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'web-school'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+  it(`should have as title '${title}'`, () => {
     expect(app.title).toEqual(title);
   });
 
   it('should render header title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('ws-header')?.textContent).toContain(title);
+    const titleContainerHTML = compiled.querySelector('.app-toolbar__title')?.textContent;
+    expect(titleContainerHTML).toContain(`Welcome to ${title}`);
   });
+
+  describe('openLoginModal()', () => {
+    it('should call dialog open', () => {
+      app.openLoginModal();
+      expect(dialog.open).toHaveBeenCalledWith(LoginModalComponent);
+    });
+  })
 });
