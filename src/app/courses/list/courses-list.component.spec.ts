@@ -20,4 +20,8 @@ describe('CoursesListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain isAdmin', () => {
+    expect(component.isAdmin).toBeTruthy();
+  });
 });
