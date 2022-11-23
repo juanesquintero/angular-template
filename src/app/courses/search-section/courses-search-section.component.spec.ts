@@ -31,10 +31,10 @@ describe('CoursesSectionComponent', () => {
       expect(component.onSearch).toBeTruthy();
     });
 
-    it(`should call console.log`, () => {
-      const consoleLogSpy = spyOn(console, 'log');
+    it(`should call searchedCourse emit`, () => {
+      const spy = spyOn(component.searchedCourse, 'emit');
       component.onSearch();
-      expect(consoleLogSpy).toHaveBeenCalledOnceWith(component.searchedText);
+      expect(spy).toHaveBeenCalledOnceWith(component.searchedText);
     });
   })
 

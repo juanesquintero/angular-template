@@ -1,6 +1,8 @@
+import { DurationPipe } from './../../core/pipes/duration/duration.pipe';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
+import { ICourse } from '../../shared/models/course.model';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -9,12 +11,13 @@ describe('CourseItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CourseItemComponent]
+      declarations: [CourseItemComponent, DurationPipe]
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
+    component.course = {} as ICourse;
     compiled = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
@@ -26,8 +29,8 @@ describe('CourseItemComponent', () => {
 
   it(`should render course 'title' & 'description'`, () => {
     const courseItemHTML = compiled.querySelector('.course-item__content')?.innerHTML;
-    console.log(courseItemHTML);
-    expect(courseItemHTML).toContain('<h2');
+
+    expect(courseItemHTML).toContain('<h3');
     expect(courseItemHTML).toContain('<p');
   });
 

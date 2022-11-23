@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
+import { OrderByPipe } from '../../core/pipes/order-by/order-by.pipe';
+import { FilterPipeBy } from './../../core/pipes/filter-by/filter-by.pipe';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -8,7 +10,8 @@ describe('CoursesListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CoursesListComponent]
+      declarations: [CoursesListComponent,  OrderByPipe, FilterPipeBy],
+      providers: [ FilterPipeBy ]
     })
       .compileComponents();
 

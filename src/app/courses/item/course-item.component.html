@@ -1,6 +1,15 @@
-<section class="course-item">
+<section *ngIf="course" class="course-item" [wsDateHihglight]="course">
   <div class="course-item__content">
-    <h2>{{ course.title }}</h2>
+    <span class="d-flex">
+      <h3>
+        {{ course.title | uppercase }}
+      </h3>
+      <i
+        class="text-warning m-1 mx-3 bi"
+        [ngClass]="course.topRated ? 'bi-star-fill' : 'bi-star'"
+      >
+      </i>
+    </span>
     <p>
       {{ course.description }}
     </p>
@@ -10,11 +19,11 @@
     <span class="course-item__details">
       <span class="d-flex">
         <i class="bi bi-clock"></i>
-        <p>{{ course.duration }} h</p>
+        <p>{{ course.duration | duration }}</p>
       </span>
       <span class="d-flex">
         <i class="bi bi-calendar"></i>
-        <p>{{ course.creationDate | date: "MM/d/YYYY" }}</p>
+        <p>{{ course.creationDate | date: "MMM d, YYYY" }}</p>
       </span>
     </span>
 
