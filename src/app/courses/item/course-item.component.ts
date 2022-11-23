@@ -8,11 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CourseItemComponent implements OnInit {
 
-  @Input() course: ICourse;
+  @Input() course?: ICourse;
 
-  constructor() {
-    this.course = {} as ICourse;
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

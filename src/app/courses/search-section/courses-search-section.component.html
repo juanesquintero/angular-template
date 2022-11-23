@@ -1,7 +1,10 @@
 <section class="courses-search-section">
   <span>
-    <input type="text" [(ngModel)]="searchedText" name="search" />
-    <button class="btn btn-success">Search</button>
+    <input type="text" [(ngModel)]="searchedText" name="search" (ngModelChange)="onChange()" />
+    <button
+      class="btn btn-success"
+      (click)="onSearch()"
+      >Search</button>
   </span>
   <br />
   <button class="btn btn-primary" (click)="addCourse()">

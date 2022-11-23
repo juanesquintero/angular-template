@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'ws-courses-search-section',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses-search-section.component.scss']
 })
 export class CoursesSectionComponent implements OnInit {
+
+  @Output('onSearch') searchedCourse: EventEmitter<any> = new EventEmitter();
   public searchedText: string = '';
 
   constructor() { }
@@ -13,8 +15,14 @@ export class CoursesSectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChange(): void {
+    if (!this.searchedText.trim()) {
+      this.onSearch();
+    }
+  }
+
   onSearch(): void {
-    console.log(this.searchedText);
+    this.searchedCourse.emit(this.searchedText);
   }
 
   addCourse(): void {
