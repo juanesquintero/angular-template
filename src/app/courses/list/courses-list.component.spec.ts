@@ -21,6 +21,10 @@ const snackbar: jasmine.SpyObj<MatSnackBar> = jasmine.createSpyObj('MatSnackBar'
   }
 });
 
+const service: jasmine.SpyObj<CoursesService> = jasmine.createSpyObj('CoursesService', {
+  getCourses: of([])
+});
+
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
@@ -31,7 +35,7 @@ describe('CoursesListComponent', () => {
       providers: [
         {
           provide: CoursesService,
-          useValue: { getCourses: () => of([]) },
+          useValue: service,
         },
         {
           provide: MatDialog,
@@ -50,11 +54,12 @@ describe('CoursesListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain isAdmin', () => {
     expect(component.isAdmin).toBeTruthy();
+  });
+
+  it('should contain ngOnInit method', () => {
+    component.ngOnInit();
+    expect(service.getCourses).toHaveBeenCalled();
   });
 });
