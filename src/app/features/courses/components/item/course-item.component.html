@@ -28,8 +28,15 @@
     </span>
 
     <span class="course-item__actions">
-      <button class="btn btn-sm btn-primary">Edit</button>
-      <button class="btn btn-sm btn-primary">Delete</button>
+      <button>
+        <i class="bi bi-pencil-fill"></i>
+        Edit
+      </button>
+
+      <button (click)="onRemove()">
+        <i class="bi bi-trash-fill"></i>
+        Delete
+      </button>
     </span>
   </div>
 </section>

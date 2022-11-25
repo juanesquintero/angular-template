@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -8,6 +9,7 @@ import { DurationPipe } from './pipes/duration/duration.pipe';
 import { DateHihglightDirective } from './directives/date-hihglight/date-hihglight.directive';
 import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 import { FilterPipeBy } from './pipes/filter-by/filter-by.pipe';
+import { IfAuthenticatedDirective } from './directives/if-authenticated/if-authenticated.directive';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { FilterPipeBy } from './pipes/filter-by/filter-by.pipe';
     DurationPipe,
     OrderByPipe,
     FilterPipeBy,
+    IfAuthenticatedDirective,
   ],
   exports: [
     HeaderComponent,
@@ -29,9 +32,11 @@ import { FilterPipeBy } from './pipes/filter-by/filter-by.pipe';
     DurationPipe,
     OrderByPipe,
     FilterPipeBy,
+    IfAuthenticatedDirective,
   ],
   providers: [
     FilterPipeBy,
+    AuthService
   ],
   imports: [
     CommonModule
