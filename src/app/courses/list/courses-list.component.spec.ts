@@ -1,9 +1,11 @@
+import { of } from 'rxjs';
+import * as _ from 'lodash';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
 import { CoursesService } from '../courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { of } from 'rxjs';
+import { ICourseDTO } from './../../shared/models/courses.model';
 
 const dialog: jasmine.SpyObj<MatDialog> = jasmine.createSpyObj('MatDialog', {
   open: {
@@ -12,7 +14,6 @@ const dialog: jasmine.SpyObj<MatDialog> = jasmine.createSpyObj('MatDialog', {
     })
   }
 });
-
 const snackbar: jasmine.SpyObj<MatSnackBar> = jasmine.createSpyObj('MatSnackBar', {
   open: {
     afterClosed: () => ({
@@ -20,9 +21,15 @@ const snackbar: jasmine.SpyObj<MatSnackBar> = jasmine.createSpyObj('MatSnackBar'
     })
   }
 });
-
+const courseMock: ICourseDTO = {
+  id: '123',
+  title: 'Course Title',
+  description: '',
+  hours: 10,
+  price: 3023,
+}
 const service: jasmine.SpyObj<CoursesService> = jasmine.createSpyObj('CoursesService', {
-  getCourses: of([])
+  getCourses: of([courseMock])
 });
 
 describe('CoursesListComponent', () => {
@@ -54,12 +61,41 @@ describe('CoursesListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should contain isAdmin', () => {
+  it('getter: isAdmin()', () => {
     expect(component.isAdmin).toBeTruthy();
   });
 
-  it('should contain ngOnInit method', () => {
-    component.ngOnInit();
-    expect(service.getCourses).toHaveBeenCalled();
-  });
+  describe('ngOnInit()', () => {
+    it('should call fetchCourses() service', () => {
+      const spy = spyOn(component, 'fetchCourses');
+      component.ngOnInit();
+      expect(spy).toHaveBeenCalled();
+    });
+  })
+
+  describe('fetchCourses()', () => {
+    it('should call getCourses() service', () => {
+      component.fetchCourses();
+      expect(service.getCourses).toHaveBeenCalled();
+    });
+  })
+
+  describe('openModal()', () => {
+    it(`should find the course selected`, () => {
+      const spy = spyOn(_, 'find');
+      component.openModal('detail', courseMock.id);
+      expect(spy).toHaveBeenCalledWith(component.courses, { id: courseMock.id });
+    });
+
+    it(`should open dialog modal`, () => {
+      component.openModal('detail');
+      expect(dialog.open).toHaveBeenCalled();
+    });
+
+    it(`should call 'onCloseModal' method`, () => {
+      const spy = spyOn(component, 'onCloseModal');
+      component.openModal('detail');
+      expect(spy).toHaveBeenCalled();
+    });
+  })
 });
