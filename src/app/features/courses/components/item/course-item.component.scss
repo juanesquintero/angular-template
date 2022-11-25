@@ -1,4 +1,4 @@
-@import '../../../variables.scss';
+@import 'styles.scss';
 
 .course-item {
   background-color: $white;
@@ -39,8 +39,22 @@
   }
 
   &__actions {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     & button {
-      margin: 1rem 0.4rem;
+      @extend .btn;
+      @extend .btn-sm;
+      @extend .btn-primary;
+      @extend .course-item__actions;
+
+      margin: 1rem 0.5rem;
+
+      & i {
+        margin-right: 0.5rem;
+      }
     }
   }
 }

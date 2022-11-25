@@ -1,12 +1,12 @@
-<section>
+<section *wsIsAuthenticated>
   <ws-courses-search-section (onSearch)="onFilter($event)"></ws-courses-search-section>
 
   <ul class="courses-list" *ngIf="isCoursesExist; else emptyState">
     <li
       class="courses-list__item"
-      *ngFor="let course of coursesFiltered | orderBy: 'creationDate'"
+      *ngFor="let course of coursesFiltered || [] | orderBy: 'creationDate'"
     >
-      <ws-course-item [course]="course"></ws-course-item>
+      <ws-course-item (change)="getCourses()" [course]="course"></ws-course-item>
     </li>
     <span class="courses-list__load-more">
       <button class="btn">Load More</button>

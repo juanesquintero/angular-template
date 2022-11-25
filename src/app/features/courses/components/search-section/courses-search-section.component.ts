@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } fro
 })
 export class CoursesSectionComponent implements OnInit {
 
-  @Output('onSearch') searchedCourse: EventEmitter<any> = new EventEmitter();
+  @Output('onSearch') searchedCourse: EventEmitter<string> = new EventEmitter();
   public searchedText: string = '';
 
   constructor() { }

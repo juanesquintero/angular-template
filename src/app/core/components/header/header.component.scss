@@ -1,8 +1,9 @@
-@import '../../../../variables.scss';
+@import 'variables.scss';
 
 .header {
   background: $blue-dark;
   padding: .5rem;
+  padding-right: 2.5rem;
   color: $white;
   font-size: 14px;
   text-align: left;

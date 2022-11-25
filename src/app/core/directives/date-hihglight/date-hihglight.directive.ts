@@ -1,4 +1,4 @@
-import { ICourse } from './../../../shared/models/course.model';
+import { ICourse } from '@shared/models/course.model';
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 

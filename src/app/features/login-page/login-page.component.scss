@@ -1,0 +1,32 @@
+@import 'styles.scss';
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  &-card {
+    @extend .card;
+
+    width: 26rem;
+    height: auto;
+    max-height: 24rem;
+    margin: 3rem;
+    padding: .7rem .4rem;
+  }
+
+  &-form {
+    margin-top: 2.5rem;
+
+    .form-group {
+      margin: 1.5rem 0;
+    }
+
+    &-actions {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

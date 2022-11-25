@@ -1,14 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* import the necessary Bootstrap files */
-@import "bootstrap-icons/font/bootstrap-icons.css";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 
-@import "./variables.scss";
+@import 'variables.scss';
 
 /* finally, import Bootstrap */
-@import "bootstrap";
+@import 'bootstrap';
 
-@import "@fontsource/source-sans-pro";
+@import '@fontsource/source-sans-pro';
 
 .btn {
   border-radius: 0.1rem;
@@ -30,5 +30,5 @@ app-root {
 body {
   display: flex;
   flex-direction: column;
-  font-family: "Source Sans Pro";
+  font-family: 'Source Sans Pro';
 }

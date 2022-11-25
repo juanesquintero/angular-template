@@ -1,7 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
-import { OrderByPipe } from '../../core/pipes/order-by/order-by.pipe';
-import { FilterPipeBy } from './../../core/pipes/filter-by/filter-by.pipe';
+import { OrderByPipe } from '@core/pipes/order-by/order-by.pipe';
+import { FilterPipeBy } from '@core/pipes/filter-by/filter-by.pipe';
+import { CoursesService } from '@features/courses/services/courses.service';
+import { AuthService } from '@src/app/core/services/auth/auth.service';
+import { IfAuthenticatedDirective } from '@src/app/core/directives/if-authenticated/if-authenticated.directive';
+
+const authService: AuthService= jasmine.createSpyObj('AuthService', {
+  isAuthenticated: true
+});
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -10,8 +17,17 @@ describe('CoursesListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CoursesListComponent,  OrderByPipe, FilterPipeBy],
-      providers: [ FilterPipeBy ]
+      declarations: [
+        CoursesListComponent,
+        OrderByPipe,
+        FilterPipeBy,
+        IfAuthenticatedDirective
+      ],
+      providers: [
+        FilterPipeBy,
+        CoursesService,
+        { provide: AuthService, use: authService }
+      ]
     })
       .compileComponents();
 
@@ -36,10 +52,5 @@ describe('CoursesListComponent', () => {
       const properties = Object.keys(component.courses[0]).sort();
       expect(properties).toEqual(['id', 'title', 'creationDate', 'duration', 'description'].sort());
     }
-  });
-
-  it(`should render 'load more' button`, () => {
-    const loadMoreHTML = compiled.querySelector('.courses-list__load-more')?.textContent;
-    expect(loadMoreHTML).toContain('Load More');
   });
 });
