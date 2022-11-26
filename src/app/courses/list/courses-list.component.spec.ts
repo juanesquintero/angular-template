@@ -6,20 +6,17 @@ import { CoursesService } from '../courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICourseDTO } from './../../shared/models/courses.model';
+import { CourseModalComponent } from '../modal/course-modal.component';
 
 const dialog: jasmine.SpyObj<MatDialog> = jasmine.createSpyObj('MatDialog', {
-  open: {
-    afterClosed: () => ({
-      subscribe: (fn: any) => { }
+  open: jasmine.createSpyObj('MatDialogRef', {
+    afterClosed: of({
+      course: {}, action: ''
     })
-  }
+  })
 });
 const snackbar: jasmine.SpyObj<MatSnackBar> = jasmine.createSpyObj('MatSnackBar', {
-  open: {
-    afterClosed: () => ({
-      subscribe: (fn: any) => { }
-    })
-  }
+  open: {}
 });
 const courseMock: ICourseDTO = {
   id: '123',
@@ -81,6 +78,10 @@ describe('CoursesListComponent', () => {
   })
 
   describe('openModal()', () => {
+    beforeEach(() => {
+      spyOn(component, 'actionTrigger');
+    });
+
     it(`should find the course selected`, () => {
       const spy = spyOn(_, 'find');
       component.openModal('detail', courseMock.id);
@@ -98,4 +99,22 @@ describe('CoursesListComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
   })
+
+  describe('onCloseModal()', () => {
+    let dialogRef: any;
+    beforeEach(() => {
+      dialogRef = dialog.open(CourseModalComponent, {});
+      spyOn(component, 'actionTrigger');
+    })
+
+    it(`should call 'afterClosed'`, () => {
+      component.onCloseModal(dialogRef);
+      expect(dialogRef.afterClosed).toHaveBeenCalled();
+    });
+
+    it(`should call 'actionTrigger'`, () => {
+      component.onCloseModal(dialogRef);
+      expect(component.actionTrigger).toHaveBeenCalled();
+    });
+  });
 });
