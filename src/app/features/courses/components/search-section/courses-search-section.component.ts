@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ws-courses-search-section',
@@ -10,7 +11,7 @@ export class CoursesSectionComponent implements OnInit {
   @Output('onSearch') searchedCourse: EventEmitter<string> = new EventEmitter();
   public searchedText: string = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,5 +28,6 @@ export class CoursesSectionComponent implements OnInit {
 
   addCourse(): void {
     console.log('Add New Course');
+    this.router.navigate(['courses', 'new'])
   }
 }

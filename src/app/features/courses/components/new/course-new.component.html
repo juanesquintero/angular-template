@@ -1,0 +1,48 @@
+<section class="course-new">
+  <form class="course-new-form">
+    <h3 class="mb-5">New Course</h3>
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Video Course 1"
+          required
+        />
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="6"
+          placeholder="Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester."
+          required
+        ></textarea>
+      </div>
+      <div class="col-md-4 mb-3">
+        <ws-duration-input></ws-duration-input>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <ws-date-input></ws-date-input>
+      </div>
+      <div class="col-md-6 mb-3">
+        <ws-tags-input label="Authors">
+        </ws-tags-input>
+      </div>
+    </div>
+    <span class="d-flex justify-content-end">
+      <button class="btn text-muted mx-3 border" type="submit">
+        Cancel
+      </button>
+      <button class="btn btn-success" type="submit">
+        Save
+      </button>
+    </span>
+  </form>
+</section>

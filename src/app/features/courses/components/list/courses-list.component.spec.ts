@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
 import { OrderByPipe } from '@core/pipes/order-by/order-by.pipe';
 import { FilterPipeBy } from '@core/pipes/filter-by/filter-by.pipe';
-import { CoursesService } from '@features/courses/services/courses.service';
+import { CoursesService } from '@courses/services/courses.service';
 import { AuthService } from '@src/app/core/services/auth/auth.service';
 import { IfAuthenticatedDirective } from '@src/app/core/directives/if-authenticated/if-authenticated.directive';
 

@@ -1,31 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICourse } from '@shared/models/course.model';
-import { CoursesService } from '@features/courses/services/courses.service';
+import { CoursesService } from '@courses/services/courses.service';
 
 @Component({
   selector: 'ws-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.scss']
+  styleUrls: ['./course-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
   @Input() course?: ICourse;
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() remove: EventEmitter<string> = new EventEmitter();
 
-  constructor(private coursesService: CoursesService) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
   onRemove() {
     const confirmirmation = confirm('Do you really want to delete this course? Yes/No');
     if (this.course?.id && confirmirmation) {
-      this.coursesService.delete(this.course.id)
-        .subscribe(res => {
-          this.change.emit(true);
-          alert(res);
-        })
-    } else {
-      alert('Error removing course');
+      this.remove.emit(this.course.id);
     }
-
   }
 }

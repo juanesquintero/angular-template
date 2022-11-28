@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CoursesListComponent } from '@features/courses/components/list/courses-list.component';
-import { CoursesSectionComponent } from '@features/courses/components/search-section/courses-search-section.component';
-import { CourseItemComponent } from './components/item/course-item.component';
-import { CoursesService } from '@features/courses/services/courses.service';
+import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/core.module';
+import { CoursesService } from '@courses/services/courses.service';
+import { CourseItemComponent } from '@courses/components/item/course-item.component';
+import { CoursesListComponent } from '@courses/components/list/courses-list.component';
+import { CourseNewComponent } from '@src/app/features/courses/components/new/course-new.component';
+import { CoursesSectionComponent } from '@courses/components/search-section/courses-search-section.component';
+import { SharedModule } from '@src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,6 +15,7 @@ import { CoreModule } from '@core/core.module';
     CoursesListComponent,
     CoursesSectionComponent,
     CourseItemComponent,
+    CourseNewComponent,
   ],
   exports: [
     CoursesListComponent,
@@ -22,6 +25,7 @@ import { CoreModule } from '@core/core.module';
     CommonModule,
     FormsModule,
     CoreModule,
+    SharedModule,
   ],
   providers: [
     CoursesService
