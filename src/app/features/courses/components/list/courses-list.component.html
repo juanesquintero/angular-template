@@ -6,7 +6,7 @@
       class="courses-list__item"
       *ngFor="let course of coursesFiltered || [] | orderBy: 'creationDate'"
     >
-      <ws-course-item (change)="getCourses()" [course]="course"></ws-course-item>
+      <ws-course-item (remove)="onRemove($event)" [course]="course"></ws-course-item>
     </li>
     <span class="courses-list__load-more">
       <button class="btn">Load More</button>

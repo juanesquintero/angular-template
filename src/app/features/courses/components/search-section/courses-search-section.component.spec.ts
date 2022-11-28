@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Router } from '@angular/router';
 import { CoursesSectionComponent } from './courses-search-section.component';
+
+const router = {
+  navigate: jasmine.createSpy('navigate'),
+}
 
 describe('CoursesSectionComponent', () => {
   let component: CoursesSectionComponent;
@@ -8,7 +12,8 @@ describe('CoursesSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursesSectionComponent ]
+      declarations: [ CoursesSectionComponent, ],
+      providers: [ {provide: Router, useValue: router} ],
     })
     .compileComponents();
 
@@ -38,15 +43,21 @@ describe('CoursesSectionComponent', () => {
     });
   })
 
-  describe('addCours()', () => {
+  describe('addCourse()', () => {
     it(`should be defined`, () => {
       expect(component.addCourse).toBeTruthy();
     });
 
     it(`should call console.log`, () => {
-      const consoleLogSpy = spyOn(console, 'log');
+      const spy = spyOn(console, 'log');
       component.addCourse();
-      expect(consoleLogSpy).toHaveBeenCalledOnceWith('Add New Course');
+      expect(spy).toHaveBeenCalledOnceWith('Add New Course');
+    });
+
+    it(`should navigate to 'new course' page`, () => {
+      router.navigate.calls.reset();
+      component.addCourse();
+      expect(router.navigate).toHaveBeenCalledOnceWith(['courses', 'new']);
     });
   })
 });

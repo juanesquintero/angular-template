@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'ws-breadcrumbs',
@@ -6,11 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
-  public route = 'courses';
+  constructor(public router: Router) { }
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  get path(): string {
+    return (this.activeRoute?.title || this.activeRoute?.path ) as string;
+  }
+
+  get activeRoute(): Route {
+    return this.router.config.filter(route => route.path==this.currentPath)[0];
+  }
+
+  get currentPath(): any {
+    return this.router.parseUrl(this.router.url).toString().replace('/', '');
   }
 
 }

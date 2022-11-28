@@ -10,6 +10,7 @@
       "@environments/*": ["./src/environments/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@features/*": ["./src/app/features/*"],
+      "@courses/*": ["./src/app/features/courses/*"],
   },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

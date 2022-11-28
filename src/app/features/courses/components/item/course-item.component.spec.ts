@@ -1,9 +1,7 @@
-import { DurationPipe } from '@core/pipes/duration/duration.pipe';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CourseItemComponent } from './course-item.component';
 import { ICourse } from '@shared/models/course.model';
-import { CoursesService } from '@features/courses/services/courses.service';
+import { DurationPipe } from '@core/pipes/duration/duration.pipe';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -13,7 +11,6 @@ describe('CourseItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CourseItemComponent, DurationPipe],
-      providers: [ CoursesService ]
     })
       .compileComponents();
 

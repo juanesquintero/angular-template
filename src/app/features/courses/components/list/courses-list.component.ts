@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from '@shared/models/course.model';
 import { FilterPipeBy } from '@core/pipes/filter-by/filter-by.pipe';
-import { CoursesService } from '@features/courses/services/courses.service';
+import { CoursesService } from '@courses/services/courses.service';
 
 @Component({
   selector: 'ws-courses-list',
@@ -38,6 +38,18 @@ export class CoursesListComponent implements OnInit {
       this.coursesFiltered = this.filterBy.transform(this.courses || [], 'LIKE', text, 'title');
     } else {
       this.coursesFiltered = this.courses;
+    }
+  }
+
+  onRemove(id: string) {
+    if (id) {
+      this.coursesService.delete(id)
+      .subscribe(res => {
+        alert(res);
+        this.getCourses();
+      })
+    } else {
+      alert('Error removing course');
     }
   }
 }
