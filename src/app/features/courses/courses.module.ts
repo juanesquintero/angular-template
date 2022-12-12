@@ -1,19 +1,18 @@
 import { CoursesRoutingModule } from './courses-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoursesListComponent } from './components/list/courses-list.component';
-import { CoursesService } from './services/courses.service';
-import { CourseModalComponent } from './components/modal/course-modal.component';
-import { MaterialModule } from '@shared/material.module';
-import { AppFormsModule } from '@shared/forms.module';
-import { CourseItemComponent } from './components/item/course-item.component';
+import { CoursesListComponent } from './list/courses-list.component';
+import { CoursesService } from './courses.service';
+import { MaterialModule } from '../shared/material.module';
+import { CourseModalComponent } from './modal/course-modal.component';
+import { AppFormsModule } from '../shared/forms.module';
+
 
 
 @NgModule({
   declarations: [
     CoursesListComponent,
-    CourseModalComponent,
-    CourseItemComponent
+    CourseModalComponent
   ],
   imports: [
     CommonModule,

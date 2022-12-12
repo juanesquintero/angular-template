@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, of, exhaustMap, map, tap } from 'rxjs';
 import { ILoginFailureResponse, ILoginSuccessResponse } from '../../models/auth.model';
-import { AuthService } from '@core/services/auth/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import * as AuthActions from '../actions/auth.action';
 
 @Injectable()
