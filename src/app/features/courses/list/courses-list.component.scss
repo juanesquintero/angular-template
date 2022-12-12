@@ -1,0 +1,35 @@
+.courses-list {
+  &__table {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  &__header {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem
+  }
+}
+
+// .mat-column-position {
+//   width: 2rem;
+//   border-right: 1px solid currentColor;
+//   padding-right: 24px;
+//   text-align: center;
+// }
+
+.mat-column-title {
+  padding: 0rem 2rem;
+  font-size: 1.1rem;
+}
+
+.mat-column-actions {
+  padding-left: 4rem;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.mat-column-price {
+  font-style: italic;
+}
