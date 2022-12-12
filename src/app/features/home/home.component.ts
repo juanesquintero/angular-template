@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
-import { IAppName } from '../shared/models';
-import { APP_NAME } from '../shared/constants';
+import { IAppName } from '@shared/models';
+import { APP_NAME } from '@shared/constants';
 
 @Component({
   selector: 'app-home',

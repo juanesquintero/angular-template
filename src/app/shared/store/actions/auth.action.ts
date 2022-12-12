@@ -1,4 +1,4 @@
-import { ILoginFailureResponse, ILoginSuccessResponse } from './../../shared/models/auth.model';
+import { ILoginFailureResponse, ILoginSuccessResponse } from '../../models/auth.model';
 import { createAction, props } from "@ngrx/store";
 
 

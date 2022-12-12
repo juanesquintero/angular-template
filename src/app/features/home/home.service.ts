@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IAppName } from '../shared/models';
-import { environment } from './../../environments/environment';
+import { IAppName } from '@shared/models';
+import { environment } from '@environments/environment';
 
 
 @Injectable()

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { AuthService } from '../auth.service';
-import * as AuthActions from '../../store/actions/auth.action';
+import { AuthService } from '@core/services/auth.service';
+import * as AuthActions from '@shared/store/actions/auth.action';
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',

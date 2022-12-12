@@ -5,7 +5,7 @@ import { CoursesListComponent } from './courses-list.component';
 import { CoursesService } from '../courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ICourseDTO } from './../../shared/models/courses.model';
+import { ICourseDTO } from '@shared/models/courses.model';
 import { CourseModalComponent } from '../modal/course-modal.component';
 
 const dialog: jasmine.SpyObj<MatDialog> = jasmine.createSpyObj('MatDialog', {

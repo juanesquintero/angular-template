@@ -1,5 +1,5 @@
 import { loginFailure } from '../actions/auth.action';
-import { IUser } from '../../shared/models/auth.model';
+import { IUser } from '../../models/auth.model';
 import { createReducer, on } from '@ngrx/store';
 import { loginSuccess } from '../actions/auth.action';
 import { JwtHelperService } from '@auth0/angular-jwt';

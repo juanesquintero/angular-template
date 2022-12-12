@@ -1,9 +1,9 @@
-import { AuthService } from './../../auth/auth.service';
 import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, of, exhaustMap, map, tap } from 'rxjs';
-import { ILoginFailureResponse, ILoginSuccessResponse } from '../../shared/models/auth.model';
+import { ILoginFailureResponse, ILoginSuccessResponse } from '../../models/auth.model';
+import { AuthService } from '@core/services/auth.service';
 import * as AuthActions from '../actions/auth.action';
 
 @Injectable()

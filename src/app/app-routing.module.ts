@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '@features/home/home.component';
 import { APP_ROUTES } from './shared/constants';
 
 
@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'courses',
     runGuardsAndResolvers: 'always',
     pathMatch: 'full',
-    loadChildren: () => import('./courses/courses.module').then(x => x.CoursesModule)
+    loadChildren: () => import('@courses/courses.module').then(x => x.CoursesModule)
   },
   {
     path: '**',
