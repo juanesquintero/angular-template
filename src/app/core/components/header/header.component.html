@@ -18,5 +18,15 @@
         Log out
       </button>
     </span>
+
+    <span *wsIsAuthenticated="false">
+      <a
+        routerLink="/login"
+        class="btn btn-sm btn-outline-light border-0"
+        (click)="onLogout()">
+        <i class="bi bi-box-arrow-in-right mr-1"></i>
+        Log In
+      </a>
+    </span>
   </div>
 </header>

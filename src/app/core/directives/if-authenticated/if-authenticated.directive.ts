@@ -1,10 +1,12 @@
-import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from '@core/services/auth/auth.service';
 
 @Directive({
   selector: '[wsIsAuthenticated]'
 })
 export class IfAuthenticatedDirective implements OnInit {
+  @Input('wsIsAuthenticated') authenticatedRequired?: boolean | '' = true;
+
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
@@ -17,10 +19,19 @@ export class IfAuthenticatedDirective implements OnInit {
     })
   }
 
+  private showView(): void {
+    this.viewContainer.createEmbeddedView(this.templateRef);
+  }
   private toggleView(status: boolean): void {
     this.viewContainer.clear();
-    if (status) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
+    if(this.authenticatedRequired) {
+      if (status) {
+        this.showView();
+      }
+    } else {
+      if (!status) {
+        this.showView();
+      }
     }
   }
 }
