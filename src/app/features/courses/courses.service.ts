@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
-import { APP_ROUTES } from '../shared/constants';
-import { ICourseBase, ICourseDTO } from '../shared/models/courses.model';
+import { environment } from '@environments/environment';
+import { APP_ROUTES } from '@shared/constants';
+import { ICourseBase, ICourseDTO } from '@shared/models/courses.model';
 
 
 @Injectable()

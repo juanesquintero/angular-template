@@ -30,10 +30,15 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src"
+              ]
+            },
             "scripts": [],
             "allowedCommonJsDependencies": [
               "lodash"
-           ]
+            ]
           },
           "configurations": {
             "production": {
@@ -101,6 +106,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src"
+              ]
+            },
             "scripts": []
           }
         }

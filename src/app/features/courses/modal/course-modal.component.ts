@@ -1,9 +1,9 @@
-import { ACTIONS_LABEL } from './../../shared/constants';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IModalMode } from '../../shared/models';
-import { ICourseDTO } from '../../shared/models/courses.model';
+import { ACTIONS_LABEL } from '@shared/constants';
+import { IModalMode } from '@shared/models';
+import { ICourseDTO } from '@shared/models/courses.model';
 
 type IModalData = { course?: ICourseDTO, mode: IModalMode };
 
