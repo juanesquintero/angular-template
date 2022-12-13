@@ -14,7 +14,9 @@ export class CoursesService {
     return of(this.courses);
   }
 
-  getOne(id: string) { }
+  getOne(id: string): Observable<ICourse> {
+    return of(this.courses.find(c => c.id == id) as ICourse);
+  }
 
   create(newCourse: ICourse) { }
 

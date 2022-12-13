@@ -10,6 +10,7 @@ export class TagsInputComponent implements AfterViewInit {
 
   @ViewChild('tagsInput') element?: ElementRef;
   @Input() label?: string;
+  @Input() value?: any[];
 
   constructor() { }
 

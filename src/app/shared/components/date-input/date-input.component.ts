@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ws-date-input',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-input.component.scss']
 })
 export class DateInputComponent implements OnInit {
+
+  @Input() value?: Date;
 
   constructor() { }
 

@@ -28,10 +28,10 @@
     </span>
 
     <span class="course-item__actions">
-      <button>
+      <a [routerLink]="'/courses/'+course.id" class="btn btn-sm btn-primary">
         <i class="bi bi-pencil-fill"></i>
         Edit
-      </button>
+      </a>
 
       <button (click)="onRemove()">
         <i class="bi bi-trash-fill"></i>

@@ -1,16 +1,16 @@
 @import "styles.scss";
 
-.course-new {
+.course-add-edit {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 
-  &-form {
+  &-card {
     @extend .card;
 
     margin: 1.5rem;
-    padding: 3rem 2rem;
+    padding: 2.5rem;
 
     width: 45rem;
     min-width: 25rem;
