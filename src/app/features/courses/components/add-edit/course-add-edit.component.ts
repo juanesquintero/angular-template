@@ -1,12 +1,9 @@
-import { CoursesService } from '@courses/services/courses.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { ICourse } from '@shared/models/course.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ACTIONS, COURSE_ACTIONS } from '@src/app/shared/constants';
+import { ICourse, ICourseAction } from '@shared/models/course.model';
+import { CoursesService } from '@courses/services/courses.service';
 
-enum ACTIONS {
-  edit = 'edit',
-  add = 'add',
-}
 
 @Component({
   selector: 'ws-course-add-edit',
@@ -14,13 +11,7 @@ enum ACTIONS {
   styleUrls: ['./course-add-edit.component.scss']
 })
 export class CourseAddEditComponent implements OnInit {
-  @Input() title?: string;
-  @Input() action?: {
-    submit: string;
-    title: string;
-    value: string;
-  };
-
+  public action?: ICourseAction;
   public course?: ICourse;
   public courseId?: string;
 
@@ -47,17 +38,9 @@ export class CourseAddEditComponent implements OnInit {
 
   defineAction() {
     if(this.route.snapshot.paramMap.get('id')) {
-      this.action = {
-        submit: 'Update',
-        title: 'Edit Course',
-        value: 'edit',
-      }
+      this.action = COURSE_ACTIONS.edit;
     } else {
-      this.action = {
-        submit: 'Save',
-        title: 'New Course',
-        value: 'add',
-      }
+      this.action = COURSE_ACTIONS.add;
     }
   }
 
@@ -84,5 +67,4 @@ export class CourseAddEditComponent implements OnInit {
     }
     this.router.navigate(['courses'])
   }
-
 }

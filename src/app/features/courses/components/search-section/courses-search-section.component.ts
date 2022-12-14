@@ -27,7 +27,6 @@ export class CoursesSectionComponent implements OnInit {
   }
 
   addCourse(): void {
-    console.log('Add New Course');
     this.router.navigate(['courses', 'new'])
   }
 }
