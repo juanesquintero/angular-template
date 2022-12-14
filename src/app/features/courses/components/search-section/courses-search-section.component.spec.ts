@@ -48,12 +48,6 @@ describe('CoursesSectionComponent', () => {
       expect(component.addCourse).toBeTruthy();
     });
 
-    it(`should call console.log`, () => {
-      const spy = spyOn(console, 'log');
-      component.addCourse();
-      expect(spy).toHaveBeenCalledOnceWith('Add New Course');
-    });
-
     it(`should navigate to 'new course' page`, () => {
       router.navigate.calls.reset();
       component.addCourse();
