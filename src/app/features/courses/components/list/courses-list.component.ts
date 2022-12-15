@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IAction, IModalMode } from '@shared/models';
 import { ICourseBase, ICourseDTO, ICourseRow, ICoursesTable } from '@shared/models/courses.model';
-import { CoursesService } from '@courses/services/courses.service';
+import { CoursesService } from '../../courses.service';
 import { CourseModalComponent } from '../modal/course-modal.component';
 import { APP_ROUTES } from '@shared/constants';
 
