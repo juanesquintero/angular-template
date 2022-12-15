@@ -2,7 +2,7 @@ import { of } from 'rxjs';
 import * as _ from 'lodash';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
-import { CoursesService } from '../courses.service';
+import { CoursesService } from '../../courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICourseDTO } from '@shared/models/courses.model';
