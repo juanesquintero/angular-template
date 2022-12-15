@@ -5,7 +5,15 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IAction, IModalMode } from '@shared/models';
 import { ICourseBase, ICourseDTO, ICourseRow, ICoursesTable } from '@shared/models/courses.model';
+<<<<<<< HEAD
 import { CoursesService } from '@courses/services/courses.service';
+=======
+<<<<<<<< HEAD:src/app/features/courses/list/courses-list.component.ts
+import { CoursesService } from '@courses/services/courses.service';
+========
+import { CoursesService } from '../../courses.service';
+>>>>>>>> 02916ba (chore: core assets and shared):src/app/features/courses/components/list/courses-list.component.ts
+>>>>>>> 02916ba (chore: core assets and shared)
 import { CourseModalComponent } from '../modal/course-modal.component';
 import { APP_ROUTES } from '@shared/constants';
 
