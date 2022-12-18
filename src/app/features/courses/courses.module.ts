@@ -6,13 +6,14 @@ import { CoursesService } from './courses.service';
 import { CourseModalComponent } from './modal/course-modal.component';
 import { MaterialModule } from '@shared/material.module';
 import { AppFormsModule } from '@shared/forms.module';
-
+import { CourseItemComponent } from './components/item/course-item.component';
 
 
 @NgModule({
   declarations: [
     CoursesListComponent,
-    CourseModalComponent
+    CourseModalComponent,
+    CourseItemComponent
   ],
   imports: [
     CommonModule,
