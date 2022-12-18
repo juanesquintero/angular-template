@@ -4,21 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { HomeService } from './home/home.service';
-import { MaterialModule } from './shared/material.module';
+import { MaterialModule } from '@shared/material.module';
 import { AppComponent } from './app.component';
-import { AppFormsModule } from './shared/forms.module';
-import { AuthModule } from './auth/auth.module';
+import { AppFormsModule } from '@shared/forms.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { _authReducer } from './store/reducers/auth.reducer';
-import { AuthEffects } from './store/effects/auth.effect';
+import { _authReducer } from '@shared/store/reducers/auth.reducer';
+import { AuthEffects } from '@shared/store/effects/auth.effect';
+import { FeaturesModule } from '@features/features.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     RouterModule,
@@ -28,11 +25,10 @@ import { AuthEffects } from './store/effects/auth.effect';
     BrowserAnimationsModule,
     MaterialModule,
     AppFormsModule,
-    AuthModule,
+    FeaturesModule,
     StoreModule.forRoot({ auth: _authReducer }),
     EffectsModule.forRoot([ AuthEffects ]),
   ],
-  providers: [HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
