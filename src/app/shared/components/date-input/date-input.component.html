@@ -1,4 +1,12 @@
 <label for="date">
   Date
-  <input type="date" class="form-control" id="date" required />
+  <input
+  id="date"
+  name="date"
+  type="date"
+  class="form-control"
+  [value]="value"
+  (change)="revalue($event)"
+  required
+  />
 </label>

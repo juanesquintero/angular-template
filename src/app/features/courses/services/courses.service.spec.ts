@@ -11,8 +11,8 @@ describe('CoursesService', () => {
     service = TestBed.inject(CoursesService);
   });
 
-  it(`should have 'getAll' method`, () => {
-    expect(service.getAll).toBeTruthy();
+  it(`should have 'getList' method`, () => {
+    expect(service.getList).toBeTruthy();
   });
 
   it(`should have 'getOne' method`, () => {

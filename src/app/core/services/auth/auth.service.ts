@@ -1,52 +1,52 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-
-interface IUserInfo {
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  active: boolean;
-}
+import { ICredentials, IUser } from '@shared/models/user.model';
+import { environment } from '@src/environments/environment';
 
 
 @Injectable()
 export class AuthService {
-  isAuthenticated = new BehaviorSubject(this.isLoggedIn);
+  public isAuthenticated = new BehaviorSubject(this.isLoggedIn);
+  private endpoint = environment.api_path + '/auth';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   get isLoggedIn(): boolean {
     return !!(localStorage.getItem('accessToken') && localStorage.getItem('userInfo'));
   }
 
-  login() {
-    localStorage.setItem(
-      'accessToken',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-    );
-    localStorage.setItem(
-      'userInfo',
-      JSON.stringify(
-        {
-          username: 'jhon_doe',
-          email: 'jhon_doe@mail.com',
-          firstName: 'John',
-          lastName: 'Doe',
-          active: true
-        }
-      )
-    );
-    this.isAuthenticated.next(true);
+  get userInfo(): IUser | null {
+    return localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') || '') : null;
+  }
+
+  get token(): string  {
+    return localStorage.getItem('accessToken') || '';
+  }
+
+  login(user: ICredentials) {
+    this.http.post(
+      this.endpoint + '/login',
+      user
+    ).subscribe((res: any) => {
+      localStorage.setItem('accessToken', res.token);
+      this.setUser(res.token);
+    })
+  }
+
+  setUser(token: string) {
+    this.http.post(
+      this.endpoint + '/userInfo',
+      { token }
+    ).subscribe((res: any) => {
+      localStorage.setItem('userInfo', JSON.stringify(res));
+      this.isAuthenticated.next(true);
+    })
   }
 
   logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userInfo');
     this.isAuthenticated.next(false);
-  }
-
-  getUserInfo(): IUserInfo | null {
-    return localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') || '') : null;
   }
 }

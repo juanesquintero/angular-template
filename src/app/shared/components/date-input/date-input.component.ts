@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'ws-date-input',
@@ -6,12 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./date-input.component.scss']
 })
 export class DateInputComponent implements OnInit {
-
-  @Input() value?: Date;
+  @Input() value!: Date;
+  @Output() valueChange = new EventEmitter<Date>();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  revalue(event: any) {
+    this.value = event.target?.value;
+    this.valueChange.emit(this.value);
+  }
 }

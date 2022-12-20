@@ -26,7 +26,7 @@ describe('CourseItemComponent', () => {
     expect(component.ngOnInit).toBeTruthy();
   });
 
-  it(`should render course 'title' & 'description'`, () => {
+  it(`should render course 'name' & 'description'`, () => {
     const courseItemHTML = compiled.querySelector('.course-item__content')?.innerHTML;
 
     expect(courseItemHTML).toContain('<h3');

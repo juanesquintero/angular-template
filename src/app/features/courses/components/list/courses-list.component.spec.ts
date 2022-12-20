@@ -50,7 +50,7 @@ describe('CoursesListComponent', () => {
   it(`should contain 'courses' list elements`, () => {
     if (component.courses) {
       const properties = Object.keys(component.courses[0]).sort();
-      expect(properties).toEqual(['id', 'title', 'creationDate', 'duration', 'description'].sort());
+      expect(properties).toEqual(['id', 'name', 'creationDate', 'duration', 'description'].sort());
     }
   });
 });

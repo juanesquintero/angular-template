@@ -1,41 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { coursesMock } from '@shared/mocks/courses.mock';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { ICourse, ICourseDTO } from '@shared/models/course.model';
+import { environment } from '@src/environments/environment';
 
 @Injectable()
 export class CoursesService {
 
-  public courses: ICourse[] = coursesMock;
+  private endpoint = environment.api_path + '/courses';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAll(): Observable<ICourse[]> {
-    return of(this.courses);
+  getList(
+    start?: number,
+    count?: number,
+    textFragment?: string
+  ): Observable<ICourse[]> {
+    const params = { start, count, textFragment };
+    const validParams = JSON.parse(JSON.stringify(params));
+    return this.http.get<ICourse[]>(
+      this.endpoint,
+      { params: validParams }
+    );
   }
 
-  getOne(id: string): Observable<ICourse> {
-    return of(this.courses.find(c => c.id == id) as ICourse);
+  getOne(id: number): Observable<ICourse> {
+    return this.http.get<ICourse>(this.endpoint + '/' + id);
   }
 
-  create(newCourse: ICourseDTO): Observable<string> {
-    const id = Math.max(...this.courses.map(c => Number(c.id)));
-    this.courses.push({ id: id.toString(), ...newCourse });
-    return of(`${id} Course Created`);
+  create(newCourse: ICourse): Observable<ICourse> {
+    return this.http.post<ICourse>(this.endpoint, newCourse);
   }
 
-  update(
-    id: string,
-    updatedCourse: ICourseDTO
-  ): Observable<string> {
-    this.courses = this.courses.map((course: ICourse) => {
-      return course.id === id ? { id: id, ...updatedCourse } : course;
-    });
-    return of(`${id} Course Updated!`);
+  update(id: number, updatedCourse: ICourseDTO): Observable<ICourse> {
+    return this.http.patch<ICourse>(this.endpoint + '/' + id, updatedCourse);
   }
 
-  delete(id: string): Observable<string> {
-    this.courses = this.courses.filter(c => c.id !== id);
-    return of(`${id} Course Deleted!`);
+  delete(id: number): Observable<ICourse> {
+    return this.http.delete<ICourse>(this.endpoint + '/' + id);
   }
 }
