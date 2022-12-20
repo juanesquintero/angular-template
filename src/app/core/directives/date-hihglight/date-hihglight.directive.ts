@@ -15,7 +15,7 @@ export class DateHihglightDirective implements OnInit {
   private daysLimit = 14;
 
   get courseTimimg(): keyof typeof BorderColor {
-    const creationDate = this.course.creationDate;
+    const creationDate = this.course.date;
     const currentDate = new Date();
     const limitDate = new Date();
     limitDate.setDate(currentDate.getDate() - this.daysLimit);

@@ -7,7 +7,6 @@
       "@src/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@core/*": ["./src/app/core/*"],
-      "@environments/*": ["./src/environments/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@features/*": ["./src/app/features/*"],
       "@courses/*": ["./src/app/features/courses/*"],

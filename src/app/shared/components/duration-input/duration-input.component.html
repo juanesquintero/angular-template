@@ -2,12 +2,15 @@
   Duration
   <div class="input-group">
     <input
+      id="duration"
+      name="duration"
       type="number"
       class="form-control"
-      id="duration"
       placeholder="88"
+      [value]="value"
+      (change)="revalue($event)"
       required
-    />
+      />
     <div class="mx-2 text-muted">
       <span id="hours"> {{ 88 | duration }} </span>
     </div>

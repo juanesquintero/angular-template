@@ -5,39 +5,53 @@
       <div class="col-md-12 mb-3">
         <label for="title">Title</label>
         <input
+          id="title"
+          name="title"
           type="text"
           class="form-control"
-          id="title"
           required
         />
       </div>
       <div class="col-md-12 mb-3">
         <label for="description">Description</label>
         <textarea
-          class="form-control"
           id="description"
           name="description"
+          class="form-control"
           rows="6"
+          [(ngModel)]="course.description"
           required
         ></textarea>
       </div>
       <div class="col-md-4 mb-3">
-        <ws-duration-input></ws-duration-input>
+        <ws-duration-input
+          name="duration"
+          [value]="course.length"
+          (valueChange)="course.length = $event"
+        >
+        </ws-duration-input>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-3 mb-3">
-        <ws-date-input></ws-date-input>
+        <ws-date-input
+          name="duration"
+          [value]="course.date"
+          (valueChange)="course.date = $event">
+        </ws-date-input>
       </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6 mb-3">
-        <ws-tags-input label="Authors">
-        </ws-tags-input>
+        <ws-tags-input
+          label="Authors"
+          [options]="authorsOptions[0]"
+          [selectedOptions]="authorsOptions[1]"
+        ></ws-tags-input>
       </div>
     </div>
     <span class="d-flex justify-content-end">
-      <a class="btn text-muted mx-3 border" routerLink="/courses">
-        Cancel
-      </a>
+      <a class="btn text-muted mx-3 border" routerLink="/courses"> Cancel </a>
       <button class="btn btn-success" type="submit" (click)="onSubmit()">
         {{ action?.submit }}
       </button>

@@ -2,7 +2,7 @@
   <div class="course-item__content">
     <span class="d-flex">
       <h3>
-        {{ course.title | uppercase }}
+        {{ course.name | uppercase }}
       </h3>
       <i
         class="text-warning m-1 mx-3 bi"
@@ -19,11 +19,11 @@
     <span class="course-item__details">
       <span class="d-flex">
         <i class="bi bi-clock"></i>
-        <p>{{ course.duration | duration }}</p>
+        <p>{{ course.length | duration }}</p>
       </span>
       <span class="d-flex">
         <i class="bi bi-calendar"></i>
-        <p>{{ course.creationDate | date: "MMM d, YYYY" }}</p>
+        <p>{{ course.date | date: "MMM d, YYYY" }}</p>
       </span>
     </span>
 

@@ -1,6 +1,11 @@
 <section class="courses-search-section">
   <span>
-    <input type="text" [(ngModel)]="searchedText" name="search" (ngModelChange)="onChange()" />
+    <input
+      id="search"
+      name="search"
+      type="text"
+      [(ngModel)]="searchedText"
+      (ngModelChange)="onChange()"/>
     <button
       class="btn btn-success"
       (click)="onSearch()"

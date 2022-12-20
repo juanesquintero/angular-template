@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from '@shared/models/course.model';
-import { FilterPipeBy } from '@core/pipes/filter-by/filter-by.pipe';
 import { CoursesService } from '@courses/services/courses.service';
+
+const range = 5;
 
 @Component({
   selector: 'ws-courses-list',
@@ -12,9 +13,10 @@ export class CoursesListComponent implements OnInit {
   public courses?: ICourse[];
   public coursesFiltered?: ICourse[];
   public emptyMsg = 'no data feel free to add new course';
+  public start = 0;
+  public count = range;
 
   constructor(
-    private filterBy: FilterPipeBy,
     private coursesService: CoursesService,
   ) { }
 
@@ -22,8 +24,12 @@ export class CoursesListComponent implements OnInit {
     this.getCourses();
   }
 
-  getCourses(): void {
-    this.coursesService.getAll().subscribe(res => {
+  getCourses(textFragment?: string): void {
+    this.coursesService.getList(
+      this.start,
+      this.count,
+      textFragment
+    ).subscribe(res => {
       this.courses = res;
       this.coursesFiltered = res;
     });
@@ -35,21 +41,38 @@ export class CoursesListComponent implements OnInit {
 
   onFilter(text: string) {
     if (text.trim()) {
-      this.coursesFiltered = this.filterBy.transform(this.courses || [], 'LIKE', text, 'title');
+      this.resetCount();
+      this.getCourses(text);
     } else {
-      this.coursesFiltered = this.courses;
+      this.getCourses();
     }
   }
 
-  onRemove(id: string) {
+  onRemove(id: number) {
     if (id) {
       this.coursesService.delete(id)
       .subscribe(res => {
-        alert(res);
-        this.getCourses();
+        alert(id + ' Deleted!');
+        this.resetList();
       })
     } else {
       alert('Error removing course');
     }
   }
+
+  onLoadMore() {
+    this.start += range;
+    this.count += range;
+    this.getCourses();
+  }
+
+  resetList() {
+    this.resetCount();
+    this.getCourses();
+  }
+
+  resetCount(){
+    this.start = 0;
+    this.count = range;
+  };
 }

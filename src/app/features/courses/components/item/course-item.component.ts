@@ -10,7 +10,7 @@ import { CoursesService } from '@courses/services/courses.service';
 })
 export class CourseItemComponent implements OnInit {
   @Input() course?: ICourse;
-  @Output() remove: EventEmitter<string> = new EventEmitter();
+  @Output() remove: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 

@@ -18,13 +18,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   get displayName() : string {
-    const user = this.authService.getUserInfo();
-    return user?.firstName + ' ' + user?.lastName;
+    const user = this.authService.userInfo;
+    return user?.name?.first + ' ' + user?.name?.last;
   }
 
-
   onLogout(): void {
-    console.log('Logout ' + this.displayName);
     this.authService.logout();
     this.router.navigate(['login']);
   }
