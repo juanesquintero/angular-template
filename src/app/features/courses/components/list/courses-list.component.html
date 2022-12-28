@@ -15,7 +15,9 @@
     <app-course-item
       [isAdmin]="isAdmin"
       [openModal]="openModal"
-      [tableColumns]="table.columns"
     ></app-course-item>
+
+    <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: table.columns"></tr>
   </mat-table>
 </section>
