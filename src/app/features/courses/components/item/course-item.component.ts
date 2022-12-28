@@ -8,11 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CourseItemComponent implements OnInit {
   @Input() isAdmin!: boolean;
   @Input() openModal!: any;
-  @Input() tableColumns!: string[];
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
