@@ -18,6 +18,7 @@ export class CourseAddEditComponent implements OnInit {
   public courseId?: number;
   public tagsOptions?: any;
   public authors?: IAuthor[];
+  private taggifyAuthor = (a: IAuthor) => ({ value: a.name, ...a });
 
   constructor(
     private router: Router,
@@ -40,11 +41,12 @@ export class CourseAddEditComponent implements OnInit {
     return this.action?.value == ACTIONS.add;
   }
 
-  get authorsOptions(): [IAuthorOpt[], IAuthorOpt[]] {
-    const func = (a: IAuthor) => ({ value: a.name, ...a });
-    const allAuthors = this.authors?.map(func) || [];
-    const selectedAuthors = this.course.authors?.map(func) || [];
-    return [allAuthors, selectedAuthors];
+  get authorsOptions(): IAuthorOpt[] {
+    return this.authors?.map(this.taggifyAuthor) || [];
+  }
+
+  get authorsSelected(): IAuthorOpt[] {
+    return this.course.authors?.map(this.taggifyAuthor) || []
   }
 
   ngOnInit(): void { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ICredentials, IUser } from '@shared/models/user.model';
 import { environment } from '@src/environments/environment';
 
@@ -12,16 +12,42 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  get isLoggedIn(): boolean {
-    return !!(localStorage.getItem('accessToken') && localStorage.getItem('userInfo'));
+  private set _userInfo(userInfo: IUser)  {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
   }
 
-  get userInfo(): IUser | null {
-    return localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') || '') : null;
+  private set _token(accessToken: string) {
+    localStorage.setItem('accessToken', accessToken);
   }
 
-  get token(): string  {
+  private get _userInfo() : IUser {
+    return JSON.parse(localStorage.getItem('userInfo') || '{}');
+  }
+
+  private get _token(): string  {
     return localStorage.getItem('accessToken') || '';
+  }
+
+  get isLoggedIn(): boolean {
+    return !!(this._token && this._userInfo);
+  }
+
+  get userInfo(): Observable<IUser> {
+    return of(this._userInfo);
+  }
+
+  get token(): Observable<string>  {
+    return of(this._token);
+  }
+
+  private setUser() {
+    this.http.post(
+      this.endpoint + '/userInfo',
+      { token : this._token }
+    ).subscribe((res: any) => {
+      this._userInfo = res;
+      this.isAuthenticated.next(true);
+    })
   }
 
   login(user: ICredentials) {
@@ -29,18 +55,8 @@ export class AuthService {
       this.endpoint + '/login',
       user
     ).subscribe((res: any) => {
-      localStorage.setItem('accessToken', res.token);
-      this.setUser(res.token);
-    })
-  }
-
-  setUser(token: string) {
-    this.http.post(
-      this.endpoint + '/userInfo',
-      { token }
-    ).subscribe((res: any) => {
-      localStorage.setItem('userInfo', JSON.stringify(res));
-      this.isAuthenticated.next(true);
+      this._token = res.token;
+      this.setUser();
     })
   }
 

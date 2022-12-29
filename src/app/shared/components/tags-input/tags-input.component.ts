@@ -8,7 +8,7 @@ import * as Tagify from '@yaireo/tagify';
 })
 export class TagsInputComponent implements AfterViewInit {
 
-  @ViewChild('tagsInput') element?: ElementRef;
+  @ViewChild('tagsInput') element!: ElementRef;
   @Input() label!: string;
   @Input() options?: any[];
   @Input() selectedOptions?: any[];
@@ -18,16 +18,13 @@ export class TagsInputComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    if (this.element) {
-      this.control = new Tagify(
-        this.element.nativeElement, {
-          whitelist: this.options,
-          autoComplete: {
-            enabled: true
-          }
-      });
-      this.control.addTags(this.selectedOptions)
-
-    }
+    this.control = new Tagify(
+      this.element.nativeElement, {
+      whitelist: this.options,
+      autoComplete: {
+        enabled: true
+      }
+    });
+    this.control.addTags(this.selectedOptions)
   }
 }
