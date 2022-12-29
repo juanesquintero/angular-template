@@ -12,7 +12,9 @@ import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 import { FilterPipeBy } from './pipes/filter-by/filter-by.pipe';
 import { IfAuthenticatedDirective } from './directives/if-authenticated/if-authenticated.directive';
 import { AuthorsService } from './services/authors/authors.service';
-import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
+import { TokenInterceptor } from './interceptors/token/token.interceptor';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
 
 
 @NgModule({
@@ -26,11 +28,13 @@ import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
     OrderByPipe,
     FilterPipeBy,
     IfAuthenticatedDirective,
+    LoadingComponent,
   ],
   exports: [
     HeaderComponent,
     BreadcrumbsComponent,
     FooterComponent,
+    LoadingComponent,
     DateHihglightDirective,
     DurationPipe,
     OrderByPipe,
@@ -43,7 +47,12 @@ import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
     AuthorsService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true
     },
   ],

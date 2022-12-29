@@ -13,7 +13,7 @@ export interface ICourse extends ICourseDTO {
 }
 
 export interface IAuthor {
-  id: number
+  id: number;
   name: string;
   lastName?: string;
 }

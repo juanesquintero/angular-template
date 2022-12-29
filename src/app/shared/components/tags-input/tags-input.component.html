@@ -1,4 +1,10 @@
-<label for="{{ label }}">
+<label [for]="label">
   {{ label }}
-  <input #tagsInput type="text" class="form-control" required />
+  <input
+    #tagsInput
+    [id]="label"
+    [name]="label"
+    type="text"
+    class="form-control"
+    required />
 </label>

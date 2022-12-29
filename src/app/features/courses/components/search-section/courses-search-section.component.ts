@@ -1,32 +1,38 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { fromEvent, debounceTime } from 'rxjs';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'ws-courses-search-section',
   templateUrl: './courses-search-section.component.html',
   styleUrls: ['./courses-search-section.component.scss']
 })
-export class CoursesSectionComponent implements OnInit {
-
-  @Output('onSearch') searchedCourse: EventEmitter<string> = new EventEmitter();
-  public searchedText: string = '';
+export class CoursesSectionComponent implements AfterViewInit {
+  @Output('onSearch') search: EventEmitter<string> = new EventEmitter();
+  @ViewChild('searchInput') input!: ElementRef;
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    const _this = this;
+    fromEvent<Event>(this.input.nativeElement, 'keyup')
+      .pipe(debounceTime(800))
+      .subscribe({
+        next(event: Event) {
+          _this.onSearch.apply(_this, [event.target]);
+        }
+      })
   }
 
-  onChange(): void {
-    if (!this.searchedText.trim()) {
-      this.onSearch();
+  onSearch(target?: any){
+    if (!target) target = this.input.nativeElement;
+    const text = (target as HTMLInputElement).value.trim();
+    if (text.length >= 3 || text.length == 0) {
+      this.search.emit(text)
     }
   }
 
-  onSearch(): void {
-    this.searchedCourse.emit(this.searchedText);
-  }
-
-  addCourse(): void {
+  goToNewCourse(): void {
     this.router.navigate(['courses', 'new'])
   }
 }

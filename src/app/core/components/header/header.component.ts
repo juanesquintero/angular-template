@@ -1,3 +1,4 @@
+import { IUserName } from '@shared/models/user.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services/auth/auth.service';
@@ -9,22 +10,27 @@ import { AuthService } from '@core/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() title?: string;
+  public userName?: IUserName;
+
+  public get username(): string {
+    const { first, last } = this.userName as IUserName;
+    return first + ' ' + last;
+  }
 
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
-
-  ngOnInit(): void {}
-
-  get displayName() : string {
-    const user = this.authService.userInfo;
-    return user?.name?.first + ' ' + user?.name?.last;
+  ) {
+    this.authService.userInfo
+      .subscribe(userInfo => {
+        this.userName = userInfo?.name;
+      });
   }
+
+  ngOnInit(): void { }
 
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['login']);
   }
-
 }

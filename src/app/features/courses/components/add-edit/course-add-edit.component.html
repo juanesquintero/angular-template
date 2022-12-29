@@ -9,6 +9,7 @@
           name="title"
           type="text"
           class="form-control"
+          [(ngModel)]="course.name"
           required
         />
       </div>
@@ -45,8 +46,8 @@
       <div class="col-md-6 mb-3">
         <ws-tags-input
           label="Authors"
-          [options]="authorsOptions[0]"
-          [selectedOptions]="authorsOptions[1]"
+          [options]="authorsOptions"
+          [selectedOptions]="authorsSelected"
         ></ws-tags-input>
       </div>
     </div>
