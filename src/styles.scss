@@ -131,6 +131,10 @@ footer a {
       min-height: 90vh;
       display: flex;
       flex-direction: column;
+      padding: 2rem;
+      margin: 1rem;
+      background-color: $blurry-white;
+      border-radius: 0.8rem;
     }
 
     &__toogle-btn {
