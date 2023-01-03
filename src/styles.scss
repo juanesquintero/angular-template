@@ -40,30 +40,6 @@ $theme: mat.define-light-theme(
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0.5rem 0;
-}
-
-p {
-  margin: 0;
-}
-
-footer {
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  line-height: 1.25rem;
-}
-
-footer a {
-  display: flex;
-  align-items: center;
-}
 
 /* Responsive Styles */
 @media screen and (max-width: 48rem) {
