@@ -6,18 +6,16 @@
     </button>
   </header>
 
-  <mat-table
+  <mat-list
     #tableElement
-    [dataSource]="table.rows"
-    class="mat-elevation-z8 courses-list__table"
+    class="courses-list__table"
     matSort
   >
     <app-course-item
+      *ngFor="let course of courses"
       [isAdmin]="isAdmin"
       [openModal]="openModal"
+      [course]="course"
     ></app-course-item>
-
-    <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
-  <tr mat-row *matRowDef="let row; columns: table.columns"></tr>
-  </mat-table>
+  </mat-list>
 </section>
