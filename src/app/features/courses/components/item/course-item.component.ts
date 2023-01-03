@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ICourseDTO } from '@shared/models/courses.model';
 
 @Component({
   selector: 'app-course-item',
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CourseItemComponent implements OnInit {
   @Input() isAdmin!: boolean;
   @Input() openModal!: any;
+  @Input() course!: ICourseDTO;
 
   constructor() { }
 

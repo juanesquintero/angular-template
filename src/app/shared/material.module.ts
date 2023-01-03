@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,9 +10,10 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -35,6 +37,7 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatSidenavModule,
     MatCardModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
