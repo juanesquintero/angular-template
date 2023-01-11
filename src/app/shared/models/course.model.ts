@@ -1,6 +1,6 @@
 export interface ICourseDTO {
   name: string;
-  date: Date;
+  date: Date | string;
   length: number;
   description: string;
   topRated?: boolean;
@@ -12,8 +12,14 @@ export interface ICourse extends ICourseDTO {
   id: number;
 }
 
+export interface ICoursesListParams {
+  start?: number;
+  count?: number;
+  textFragment?: string;
+}
+
 export interface IAuthor {
-  id: number;
+  id: number | string;
   name: string;
   lastName?: string;
 }

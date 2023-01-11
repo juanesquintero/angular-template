@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
-import { fromEvent, debounceTime } from 'rxjs';
+import { fromEvent, debounceTime, ReplaySubject } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Component, ElementRef, EventEmitter, Output, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
@@ -10,26 +11,32 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild, AfterViewInit }
 export class CoursesSectionComponent implements AfterViewInit {
   @Output('onSearch') search: EventEmitter<string> = new EventEmitter();
   @ViewChild('searchInput') input!: ElementRef;
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(private router: Router) { }
 
   ngAfterViewInit() {
-    const _this = this;
-    fromEvent<Event>(this.input.nativeElement, 'keyup')
-      .pipe(debounceTime(800))
-      .subscribe({
-        next(event: Event) {
-          _this.onSearch.apply(_this, [event.target]);
-        }
-      })
+    this.eventListener();
   }
 
-  onSearch(target?: any){
-    if (!target) target = this.input.nativeElement;
-    const text = (target as HTMLInputElement).value.trim();
-    if (text.length >= 3 || text.length == 0) {
-      this.search.emit(text)
-    }
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
+
+  eventListener() {
+    fromEvent<Event>(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(800),
+        distinctUntilChanged(),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe((event: Event) => {
+        const text = (event.target as HTMLInputElement).value.trim();
+        if (text.length >= 3 || text.length == 0) {
+          this.search.emit(text)
+        }
+      })
   }
 
   goToNewCourse(): void {

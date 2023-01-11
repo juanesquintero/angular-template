@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ICourse, ICourseDTO } from '@shared/models/course.model';
+import { ICourse, ICourseDTO, ICoursesListParams } from '@shared/models/course.model';
 import { environment } from '@src/environments/environment';
 
 @Injectable()
@@ -11,13 +11,9 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  getList(
-    start?: number,
-    count?: number,
-    textFragment?: string
-  ): Observable<ICourse[]> {
-    const params = { start, count, textFragment };
-    const validParams = JSON.parse(JSON.stringify(params));
+  getList(params: ICoursesListParams): Observable<ICourse[]> {
+    const queryParams = { ...params };
+    const validParams = JSON.parse(JSON.stringify(queryParams));
     return this.http.get<ICourse[]>(
       this.endpoint,
       { params: validParams }
@@ -28,7 +24,7 @@ export class CoursesService {
     return this.http.get<ICourse>(this.endpoint + '/' + id);
   }
 
-  create(newCourse: ICourse): Observable<ICourse> {
+  create(newCourse: ICourseDTO): Observable<ICourse> {
     return this.http.post<ICourse>(this.endpoint, newCourse);
   }
 

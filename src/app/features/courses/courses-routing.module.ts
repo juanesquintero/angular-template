@@ -1,6 +1,6 @@
-import { AuthGuard } from './../../core/guards/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@core/guards/auth/auth.guard';
 import { CoursesListComponent } from '@courses/components/list/courses-list.component';
 import { CourseAddEditComponent } from './components/add-edit/course-add-edit.component';
 

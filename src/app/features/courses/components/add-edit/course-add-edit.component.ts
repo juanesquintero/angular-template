@@ -1,3 +1,4 @@
+import { CoursesStore } from '@courses/store/courses.store';
 import { Component, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash-es';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +11,8 @@ import { IAuthor, IAuthorOpt, ICourse, ICourseAction } from '@shared/models/cour
 @Component({
   selector: 'ws-course-add-edit',
   templateUrl: './course-add-edit.component.html',
-  styleUrls: ['./course-add-edit.component.scss']
+  styleUrls: ['./course-add-edit.component.scss'],
+  providers: [CoursesStore],
 })
 export class CourseAddEditComponent implements OnInit {
   public action?: ICourseAction;
@@ -18,20 +20,8 @@ export class CourseAddEditComponent implements OnInit {
   public courseId?: number;
   public tagsOptions?: any;
   public authors?: IAuthor[];
-  private taggifyAuthor = (a: IAuthor) => ({ value: a.name, ...a });
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private coursesService: CoursesService,
-    private authorsService: AuthorsService,
-  ) {
-    this.defineAction();
-    if (this.isEdition) {
-      this.getCourse();
-    }
-    this.getAuthors();
-  }
+  public authorsSelected?: IAuthorOpt[];
+  public authorsOptions?: IAuthorOpt[];
 
   get isEdition(): boolean {
     return this.action?.value == ACTIONS.edit;
@@ -41,12 +31,17 @@ export class CourseAddEditComponent implements OnInit {
     return this.action?.value == ACTIONS.add;
   }
 
-  get authorsOptions(): IAuthorOpt[] {
-    return this.authors?.map(this.taggifyAuthor) || [];
-  }
-
-  get authorsSelected(): IAuthorOpt[] {
-    return this.course.authors?.map(this.taggifyAuthor) || []
+  constructor(
+    private route: ActivatedRoute,
+    private coursesService: CoursesService,
+    private authorsService: AuthorsService,
+    private coursesStore: CoursesStore,
+  ) {
+    this.defineAction();
+    if (this.isEdition) {
+      this.getCourse();
+    }
+    this.getAuthors();
   }
 
   ngOnInit(): void { }
@@ -64,14 +59,21 @@ export class CourseAddEditComponent implements OnInit {
     if (this.courseId) {
       this.coursesService.getOne(this.courseId).subscribe((course: ICourse) => {
         this.course = course;
+        this.authorsSelected = this.course.authors?.map(
+          (a: IAuthor) => {
+            const name = a.name + ' ' + a.lastName;
+            return { id: String(a.id), name, value: name }
+          }
+        ) || [];
       });
     }
   }
 
   getAuthors(): void {
     this.authorsService.getList().subscribe(res => {
-      this.authors = res
+      this.authorsOptions = res.map((a: IAuthor) => ({ ...a, value: a.name })) || [];
     });
+
   }
 
   onSubmit(): void {
@@ -89,22 +91,13 @@ export class CourseAddEditComponent implements OnInit {
     }
   }
 
-  goToList() {
-    this.router.navigate(['courses']);
-  }
-
   update() {
     if (this.courseId) {
-      this.coursesService.update(
-        this.courseId,
-        this.course
-      ).subscribe(res => this.goToList());
+      this.coursesStore.updateCourse({ id: this.courseId, course: this.course });
     }
   }
 
   create() {
-    this.coursesService.create(
-      this.course
-    ).subscribe(res => this.goToList());
+    this.coursesStore.createCourse(this.course);
   }
 }

@@ -9,7 +9,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { DurationPipe } from './pipes/duration/duration.pipe';
 import { DateHihglightDirective } from './directives/date-hihglight/date-hihglight.directive';
 import { OrderByPipe } from './pipes/order-by/order-by.pipe';
-import { FilterPipeBy } from './pipes/filter-by/filter-by.pipe';
+import { FilterByPipe } from './pipes/filter-by/filter-by.pipe';
 import { IfAuthenticatedDirective } from './directives/if-authenticated/if-authenticated.directive';
 import { AuthorsService } from './services/authors/authors.service';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
@@ -26,7 +26,7 @@ import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
     DateHihglightDirective,
     DurationPipe,
     OrderByPipe,
-    FilterPipeBy,
+    FilterByPipe,
     IfAuthenticatedDirective,
     LoadingComponent,
   ],
@@ -38,11 +38,11 @@ import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
     DateHihglightDirective,
     DurationPipe,
     OrderByPipe,
-    FilterPipeBy,
+    FilterByPipe,
     IfAuthenticatedDirective,
   ],
   providers: [
-    FilterPipeBy,
+    FilterByPipe,
     AuthService,
     AuthorsService,
     {

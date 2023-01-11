@@ -1,7 +1,4 @@
-export interface ICredentials {
-  login: string;
-  password: string;
-}
+import { ICredentials } from './auth.model';
 
 export interface IUser extends ICredentials {
   id: number;
