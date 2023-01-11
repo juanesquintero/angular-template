@@ -14,7 +14,7 @@ export class DurationInputComponent implements OnInit {
   ngOnInit(): void { }
 
   revalue(event: any) {
-    this.value = event.target?.value;
+    this.value = Number(event.target?.value);
     this.valueChange.emit(this.value);
   }
 }

@@ -3,9 +3,9 @@ import { isObject, isString } from 'lodash-es';
 
 type IOperator = '<' | '>' | '!=' | '==' | 'LIKE';
 @Pipe({
-  name: 'filter'
+  name: 'filterBy'
 })
-export class FilterPipeBy implements PipeTransform {
+export class FilterByPipe implements PipeTransform {
 
   transform<T>(items: T[], operator: IOperator, condition: unknown, field?: string, ): T[] {
 

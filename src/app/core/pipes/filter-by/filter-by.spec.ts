@@ -1,8 +1,8 @@
-import { FilterPipeBy } from './filter-by.pipe';
+import { FilterByPipe } from './filter-by.pipe';
 
 describe('OrderByPipe', () => {
   it('create an instance', () => {
-    const pipe = new FilterPipeBy();
+    const pipe = new FilterByPipe();
     expect(pipe).toBeTruthy();
   });
 });

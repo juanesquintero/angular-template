@@ -22,6 +22,7 @@ export class IfAuthenticatedDirective implements OnInit {
   private showView(): void {
     this.viewContainer.createEmbeddedView(this.templateRef);
   }
+
   private toggleView(status: boolean): void {
     this.viewContainer.clear();
     if(this.authenticatedRequired) {

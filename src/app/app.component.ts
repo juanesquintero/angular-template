@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   listenToLoading(): void {
-    this.loading = this.loadingService.isRequestInprogress.pipe(delay(0))
+    this.loading = this.loadingService.isLoading;
   }
 }

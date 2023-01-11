@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {  Component, ElementRef, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import * as Tagify from '@yaireo/tagify';
 
 @Component({
@@ -6,7 +6,7 @@ import * as Tagify from '@yaireo/tagify';
   templateUrl: './tags-input.component.html',
   styleUrls: ['./tags-input.component.scss']
 })
-export class TagsInputComponent implements AfterViewInit {
+export class TagsInputComponent implements OnChanges {
 
   @ViewChild('tagsInput') element!: ElementRef;
   @Input() label!: string;
@@ -17,14 +17,20 @@ export class TagsInputComponent implements AfterViewInit {
 
   constructor() { }
 
-  ngAfterViewInit(): void {
-    this.control = new Tagify(
-      this.element.nativeElement, {
-      whitelist: this.options,
-      autoComplete: {
-        enabled: true
-      }
-    });
-    this.control.addTags(this.selectedOptions)
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['options']?.firstChange) {
+      this.tagifyInput();
+    }
+  }
+
+  tagifyInput(): void {
+    if (!this.control) {
+      this.control = new Tagify(this.element.nativeElement, {
+        whitelist: this.options || [],
+        autoComplete: { enabled: true }
+      });
+      this.control.addTags(this.selectedOptions || []);
+    }
+    console.log(this.control, this.selectedOptions, this.options);
   }
 }

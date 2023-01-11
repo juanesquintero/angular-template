@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '@core/services/auth/auth.service';
+import { Store } from '@ngrx/store';
+import { loginRequest } from '@core/store/actions/auth.action';
+import { ICredentials } from '@shared/models/auth.model';
 
 @Component({
   selector: 'ws-login-page',
@@ -11,18 +12,15 @@ export class LoginPageComponent implements OnInit {
   public email: string = 'flastname';
   public password: string = 'flastname';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) { }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
   onLogin(): void {
-    this.authService.login({
+    const credentials: ICredentials = {
       login: this.email,
       password: this.password
-    });
-    this.router.navigate(['courses']);
+    };
+    this.store.dispatch(loginRequest(credentials));
   }
 }
