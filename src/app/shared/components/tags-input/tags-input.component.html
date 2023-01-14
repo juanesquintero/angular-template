@@ -1,4 +1,4 @@
-<label [for]="label">
+<label [for]="label" [formGroup]="form">
   {{ label }}
   <input
     #tagsInput
@@ -6,5 +6,6 @@
     [name]="label"
     type="text"
     class="form-control"
-    required />
+    [formControlName]="control"
+    />
 </label>

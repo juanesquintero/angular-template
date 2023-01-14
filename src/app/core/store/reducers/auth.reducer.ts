@@ -1,12 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
+import { AuthLocalService } from '../../services/auth/auth.service.local';
 import * as AuthActions from '../actions/auth.action';
 import { AuthState } from '../selectors';
 
+const authLocalService = new AuthLocalService();
+
 export const authInitialState: AuthState  = {
-  token: '',
-  userInfo: null,
+  token: authLocalService.token,
+  userInfo: authLocalService.userInfo,
   loginError: '',
-  isAuthenticated: false,
+  isAuthenticated: authLocalService.isLoggedIn,
 }
 
 export const authReducer = createReducer(

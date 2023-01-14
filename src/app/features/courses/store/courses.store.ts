@@ -7,6 +7,7 @@ import { CoursesService } from '../services/courses.service';
 
 export interface CoursesState {
   courses: ICourse[];
+  courseSelected: ICourse;
 }
 
 type DeleteParam = { id: number, count: number };
@@ -19,10 +20,14 @@ export class CoursesStore extends ComponentStore<CoursesState> {
     private coursesService: CoursesService,
     private router: Router
   ) {
-    super({ courses: [] });
+    super({
+      courses: [],
+      courseSelected: {} as ICourse,
+    });
   }
 
   readonly courses$: Observable<ICourse[]> = this.select(state => state.courses);
+  readonly course$: Observable<ICourse> = this.select(state => state.courseSelected);
 
   readonly getCourses = this.effect((params$: Observable<ICoursesListParams>) => {
     return params$.pipe(
@@ -30,6 +35,21 @@ export class CoursesStore extends ComponentStore<CoursesState> {
         this.coursesService.getList({ ...params }).pipe(
           tap({
             next: (courses) => this.refreshCourses(courses)
+          }),
+          catchError(() => EMPTY),
+        )),
+    );
+  });
+
+  readonly getCourse = this.effect((id$: Observable<number>) => {
+    return id$.pipe(
+      switchMap((id: number) =>
+        this.coursesService.getOne(id).pipe(
+          tap({
+            next: (course) => {
+              this.selectCourse(course);
+              this.addCourse(course);
+            }
           }),
           catchError(() => EMPTY),
         )),
@@ -81,7 +101,15 @@ export class CoursesStore extends ComponentStore<CoursesState> {
     );
   });
 
+  readonly selectCourse = this.updater(
+    (state, course: ICourse) => ({ courses: state.courses, courseSelected: course })
+  );
+
   readonly refreshCourses = this.updater(
-    (state, courses: ICourse[]) => ({ courses })
+    (state, courses: ICourse[]) => ({ courses, courseSelected: state.courseSelected })
+  );
+
+  readonly addCourse = this.updater(
+    (state, course: ICourse) => ({ courses: [course, ...state.courses], courseSelected: state.courseSelected })
   );
 }

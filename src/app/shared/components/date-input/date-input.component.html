@@ -1,12 +1,10 @@
-<label for="date">
+<label for="date" [formGroup]="form">
   Date
   <input
-  id="date"
-  name="date"
-  type="date"
-  class="form-control"
-  [value]="value"
-  (change)="revalue($event)"
-  required
-  />
+    id="date"
+    name="date"
+    type="date"
+    class="form-control"
+    [formControlName]="control"
+    />
 </label>

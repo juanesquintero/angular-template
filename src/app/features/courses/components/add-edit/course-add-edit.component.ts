@@ -1,11 +1,12 @@
 import { CoursesStore } from '@courses/store/courses.store';
 import { Component, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash-es';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ACTIONS, COURSE_ACTIONS } from '@src/app/shared/constants';
-import { CoursesService } from '@courses/services/courses.service';
 import { AuthorsService } from '@core/services/authors/authors.service';
 import { IAuthor, IAuthorOpt, ICourse, ICourseAction } from '@shared/models/course.model';
+import { Observable } from 'rxjs';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,13 +16,35 @@ import { IAuthor, IAuthorOpt, ICourse, ICourseAction } from '@shared/models/cour
   providers: [CoursesStore],
 })
 export class CourseAddEditComponent implements OnInit {
+  public course$: Observable<ICourse> = this.coursesStore.course$;
+  public form: FormGroup = new FormGroup({});
+
   public action?: ICourseAction;
-  public course: ICourse = {} as ICourse;
   public courseId?: number;
+
   public tagsOptions?: any;
-  public authors?: IAuthor[];
   public authorsSelected?: IAuthorOpt[];
   public authorsOptions?: IAuthorOpt[];
+
+  get name(): AbstractControl | null {
+    return this.form.get('name');
+  }
+
+  get description(): AbstractControl | null {
+    return this.form.get('description');
+  }
+
+  get length(): AbstractControl | null {
+    return this.form.get('length');
+  }
+
+  get date(): AbstractControl | null {
+    return this.form.get('date');
+  }
+
+  get authors(): AbstractControl | null {
+    return this.form.get('authors');
+  }
 
   get isEdition(): boolean {
     return this.action?.value == ACTIONS.edit;
@@ -33,20 +56,37 @@ export class CourseAddEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private coursesService: CoursesService,
     private authorsService: AuthorsService,
     private coursesStore: CoursesStore,
   ) {
     this.defineAction();
-    if (this.isEdition) {
-      this.getCourse();
-    }
+    this.defineCourse();
     this.getAuthors();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.initForm();
+  }
 
-  defineAction() {
+  initForm(course?: ICourse): void {
+    this.form = new FormGroup({
+      name: new FormControl(course?.name || '', [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl(course?.description || '', [Validators.required, Validators.maxLength(500)]),
+      length: new FormControl(course?.length || null, [Validators.required, Validators.min(15)]),
+      date: new FormControl((course?.date as string)?.split('T')[0] || '', Validators.required),
+      authors: new FormControl(course?.authors || [], Validators.required),
+    });
+  }
+
+  defineCourse(): void {
+    if (this.isEdition) {
+      this.courseId = Number(this.route.snapshot.paramMap.get('id')) || 0;
+      this.coursesStore.getCourse(this.courseId);
+      this.getCourse();
+    }
+  }
+
+  defineAction(): void {
     if (this.route.snapshot.paramMap.get('id')) {
       this.action = COURSE_ACTIONS.edit;
     } else {
@@ -55,11 +95,10 @@ export class CourseAddEditComponent implements OnInit {
   }
 
   getCourse(): void {
-    this.courseId = Number(this.route.snapshot.paramMap.get('id')) || 0;
-    if (this.courseId) {
-      this.coursesService.getOne(this.courseId).subscribe((course: ICourse) => {
-        this.course = course;
-        this.authorsSelected = this.course.authors?.map(
+    if (this.courseId && this.course$) {
+      this.course$.subscribe((course: ICourse) => {
+        this.initForm(course);
+        this.authorsSelected = course.authors?.map(
           (a: IAuthor) => {
             const name = a.name + ' ' + a.lastName;
             return { id: String(a.id), name, value: name }
@@ -73,15 +112,13 @@ export class CourseAddEditComponent implements OnInit {
     this.authorsService.getList().subscribe(res => {
       this.authorsOptions = res.map((a: IAuthor) => ({ ...a, value: a.name })) || [];
     });
-
   }
 
   onSubmit(): void {
-    if (isEmpty(this.course)) {
+    if (this.form.invalid) {
       alert('Invalid Course');
       return;
     }
-
     if (this.isEdition) {
       this.update();
     } else if (this.isAddition) {
@@ -91,13 +128,13 @@ export class CourseAddEditComponent implements OnInit {
     }
   }
 
-  update() {
+  update(): void {
     if (this.courseId) {
-      this.coursesStore.updateCourse({ id: this.courseId, course: this.course });
+      this.coursesStore.updateCourse({ id: this.courseId, course: this.form.value });
     }
   }
 
-  create() {
-    this.coursesStore.createCourse(this.course);
+  create(): void {
+    this.coursesStore.createCourse(this.form.value);
   }
 }

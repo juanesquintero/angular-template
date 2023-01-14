@@ -1,7 +1,6 @@
+import { AuthService } from '@core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { loginRequest } from '@core/store/actions/auth.action';
-import { ICredentials } from '@shared/models/auth.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ws-login-page',
@@ -9,18 +8,22 @@ import { ICredentials } from '@shared/models/auth.model';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  public email: string = 'flastname';
-  public password: string = 'flastname';
+  public form: FormGroup =  new FormGroup({});
 
-  constructor(private store: Store) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm(): void {
+    this.form = new FormGroup({
+      login: new FormControl('flastname', [Validators.required]),
+      password: new FormControl('flastname', [Validators.required, Validators.minLength(8)]),
+    });
+  }
 
   onLogin(): void {
-    const credentials: ICredentials = {
-      login: this.email,
-      password: this.password
-    };
-    this.store.dispatch(loginRequest(credentials));
+    this.authService.login(this.form.value);
   }
 }
