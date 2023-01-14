@@ -15,6 +15,7 @@ import { AuthorsService } from './services/authors/authors.service';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
+import { AuthLocalService } from './services/auth/auth.service.local';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
   providers: [
     FilterByPipe,
     AuthService,
+    AuthLocalService,
     AuthorsService,
     {
       provide: HTTP_INTERCEPTORS,

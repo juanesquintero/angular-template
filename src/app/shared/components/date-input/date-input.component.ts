@@ -1,24 +1,49 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
-
+import { Component, Input, forwardRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'ws-date-input',
   templateUrl: './date-input.component.html',
-  styleUrls: ['./date-input.component.scss']
+  styleUrls: ['./date-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true
+    }
+  ]
 })
-export class DateInputComponent implements OnChanges  {
-  @Input() value!: Date | string;
-  @Output() valueChange = new EventEmitter<Date>();
+export class DateInputComponent implements ControlValueAccessor {
+  @Input() form!: FormGroup;
+  @Input() control!: string;
 
-  constructor() {}
+  isDisabled: boolean = false;
+  onChange = (_: any) => { };
+  onTouch = () => { };
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.value){
-      this.value = (this.value as string).split('T')[0]
+  get value(): Date | string {
+    return this.form.get(this.control)?.value;
+  }
+
+  set value(date: Date | string) {
+    if (date !== undefined && this.value !== date) {
+      this.form.controls[this.control].setValue(date);
+      this.onChange(date)
+      this.onTouch();
     }
   }
 
-  revalue(event: any) {
-    this.value = event.target?.value;
-    this.valueChange.emit(this.value as Date);
+  constructor() { }
+
+  writeValue(value: string): void {
+    this.value = value
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
   }
 }

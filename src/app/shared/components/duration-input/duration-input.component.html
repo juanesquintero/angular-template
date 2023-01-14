@@ -1,18 +1,16 @@
-<label for="duration">
+<label for="duration" [formGroup]="form">
   Duration
   <div class="input-group">
     <input
       id="duration"
       name="duration"
       type="number"
-      class="form-control"
+      class="form-control rounded"
       placeholder="0"
-      [value]="value"
-      (change)="revalue($event)"
-      required
-      />
-    <div class="mx-2 text-muted">
-      <span id="hours"> {{  value | duration }} </span>
+      [formControlName]="control"
+    />
+    <div class="mx-3 text-muted">
+      <span id="hours"> {{ value | duration }} </span>
     </div>
   </div>
 </label>

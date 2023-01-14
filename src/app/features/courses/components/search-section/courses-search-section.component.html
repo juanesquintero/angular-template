@@ -1,10 +1,10 @@
-<section class="courses-search-section">
+<section class="courses-search-section" [formGroup]="form">
   <span>
     <input
       id="search"
       name="search"
       type="text"
-      #searchInput
+      [formControlName]="controlName"
     />
   </span>
   <br />
