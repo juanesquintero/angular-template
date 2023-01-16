@@ -28,6 +28,7 @@ export const authReducer = createReducer(
     }
   }),
   on(AuthActions.userInfoSuccess, (state, response ): AuthState => {
+    authLocalService.isAuthenticated.next(true);
     return {
       ...state,
       isAuthenticated: true,
@@ -35,8 +36,10 @@ export const authReducer = createReducer(
     }
   }),
   on(AuthActions.logout, (state, response ): AuthState => {
+    authLocalService.isAuthenticated.next(false);
     return {
-      ...authInitialState
+      ...authInitialState,
+      isAuthenticated: false,
     }
   }),
 );

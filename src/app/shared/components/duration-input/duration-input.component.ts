@@ -14,6 +14,7 @@ import { Component, forwardRef, Input } from '@angular/core';
   ]
 })
 export class DurationInputComponent implements ControlValueAccessor {
+  @Input() label!: string;
   @Input() form!: FormGroup;
   @Input() control!: string;
 

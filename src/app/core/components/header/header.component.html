@@ -3,21 +3,36 @@
     <span class="d-flex align-items-center">
       <ws-logo> </ws-logo>
       <h2 class="header-content__title">
-        {{ title }}
+        {{ "ws.header.app_title" | translate }}
       </h2>
     </span>
+
+    <span class="ms-auto me-2">
+      <select
+        class="form-select form-select-sm"
+        name="lang"
+        id="lang"
+        [(ngModel)]="locale.locale"
+        (ngModelChange)="locale.changeLang($event)"
+      >
+        <option *ngFor="let lang of locale.languages" [value]="lang.code">
+          <i class="flag">{{ lang.flag }}</i>
+          {{ lang.language }} - {{ lang.country }}
+        </option>
+      </select>
+    </span>
+
     <span *wsIsAuthenticated>
-      <button
-        class="btn btn-sm btn-outline-light border-0"
-        *ngIf="userName">
+      <span class="mx-3" *ngIf="userName">
         <i class="bi bi-person-fill"></i>
         {{ username }}
-      </button>
+      </span>
       <button
         class="btn btn-sm btn-outline-light border-0"
-        (click)="onLogout()">
+        (click)="onLogout()"
+      >
         <i class="bi bi-box-arrow-left"></i>
-        Log out
+        {{ "ws.header.logout" | translate }}
       </button>
     </span>
 
@@ -25,9 +40,10 @@
       <a
         routerLink="/login"
         class="btn btn-sm btn-outline-light border-0"
-        (click)="onLogout()">
+        (click)="onLogout()"
+      >
         <i class="bi bi-box-arrow-in-right mr-1"></i>
-        Log In
+        {{ "ws.header.login" | translate }}
       </a>
     </span>
   </div>

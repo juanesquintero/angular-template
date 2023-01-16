@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { TranslateStore } from '@ngx-translate/core';
+import { TranslateAppModule } from '@src/config/translate.config';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/core.module';
@@ -29,9 +31,11 @@ import { CourseAddEditComponent } from './components/add-edit/course-add-edit.co
     CoreModule,
     SharedModule,
     RouterModule,
+    TranslateAppModule
   ],
   providers: [
-    CoursesService
+    CoursesService,
+    TranslateStore
   ]
 })
 export class CoursesModule { }

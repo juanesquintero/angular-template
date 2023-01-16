@@ -1,0 +1,74 @@
+{
+  "ws": {
+    "header": {
+      "app_title": "Video Cursos",
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión"
+    },
+    "footer": {
+      "copyright": "Copyright © Videocursos. Todos los derechos reservados"
+    },
+    "loading": {
+      "loading": "Cargando..."
+    },
+    "login_page": {
+      "title": "Iniciar sesión",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "forgot_password": "¿Olvidaste la contraseña?",
+      "submit": "Entrar",
+      "errors": {
+        "password_required": "Se requiere contraseña.",
+        "username_required": "El nombre de usuario es obligatorio."
+      }
+    },
+    "courses": {
+      "breadcrumb": "Cursos",
+      "add_course": "+ Agregar Curso",
+      "list": {
+        "load_more": "Cargar más",
+        "empty_state": "Sin datos, puedes agregar un nuevo Curso"
+      },
+      "item": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+      },
+      "add_edit": {
+        "name": "Nombre",
+        "description": "Descripción",
+        "length": "Largo",
+        "date": "Fecha",
+        "authors": "Autores",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "update": "Actualizar",
+        "edit_title": "Editar Curso",
+        "add_title": "Nuevo Curso",
+        "breadcrumbs": {
+          "new_course": "Cursos / Nuevo Curso",
+          "edit_course": "Cursos / {{id}}"
+        },
+        "errors": {
+          "name": {
+            "required": "El nombre/título del curso es obligatorio",
+            "length": "Debe tener un máximo de 50 caracteres"
+          },
+          "description": {
+            "required": "Se requiere una descripción del curso",
+            "length": "Debe tener un máximo de 500 caracteres"
+          },
+          "duration": {
+            "required": "Se requiere duración/longitud",
+            "min": "Debe ser mayor a 15 min"
+          },
+          "date": {
+            "required": "La fecha de inicio es obligatoria"
+          },
+          "authors": {
+            "required": "Los autores del curso son obligatorios"
+          }
+        }
+      }
+    }
+  }
+}

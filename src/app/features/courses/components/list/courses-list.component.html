@@ -1,20 +1,24 @@
 <section *wsIsAuthenticated>
-  <ws-courses-search-section (onSearch)="onFilter($event)"></ws-courses-search-section>
-  <ul class="courses-list" *ngIf="(courses$ | async)?.length ; else emptyState">
+  <ws-courses-search-section
+    (onSearch)="onFilter($event)"
+  ></ws-courses-search-section>
+  <ul class="courses-list" *ngIf="(courses$ | async)?.length; else emptyState">
     <li
       class="courses-list__item"
-      *ngFor="let course of ((courses$ | async) || [])  | orderBy : 'creationDate'"
+      *ngFor="let course of (courses$ | async) || [] | orderBy : 'creationDate'"
     >
       <ws-course-item [count]="params.count" [course]="course"></ws-course-item>
     </li>
     <span class="courses-list__load-more">
-      <button class="btn" (click)="onLoadMore()">Load More</button>
+      <button class="btn" (click)="onLoadMore()">
+        {{ "ws.courses.list.load_more" | translate }}
+      </button>
     </span>
   </ul>
 
   <ng-template class="courses-list" #emptyState>
     <span class="courses-list__load-more">
-      <strong>{{ emptyMsg | uppercase }}</strong>
+      <strong>{{ 'ws.courses.list.empty_state' | translate | uppercase }}</strong>
     </span>
   </ng-template>
 </section>

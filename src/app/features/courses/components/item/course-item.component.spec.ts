@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseItemComponent } from './course-item.component';
 import { ICourse } from '@shared/models/course.model';
-import { DurationPipe } from '@core/pipes/duration/duration.pipe';
+import { DurationPipe } from '@src/app/shared/pipes/duration/duration.pipe';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;

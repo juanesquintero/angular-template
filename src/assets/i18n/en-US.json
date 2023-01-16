@@ -1,0 +1,74 @@
+{
+  "ws": {
+    "header": {
+      "app_title": "Video Courses",
+      "login": "Log In",
+      "logout": "Log out"
+    },
+    "footer": {
+      "copyright": "Copyright © Videocourses. All rights reserved"
+    },
+    "loading": {
+      "loading": "Loading..."
+    },
+    "login_page": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "forgot_password": "Forgot password?",
+      "submit": "Login",
+      "errors": {
+        "password_required": "Password is required.",
+        "username_required": "Username is required."
+      }
+    },
+    "courses": {
+      "breadcrumb": "Courses",
+      "add_course": "+ Add course",
+      "list": {
+        "load_more": "Load More",
+        "empty_state": "No data, feel free to add new Course"
+      },
+      "item": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "add_edit": {
+        "name": "Name",
+        "description": "Description",
+        "length": "Length",
+        "date": "Date",
+        "authors": "Authors",
+        "cancel": "Cancel",
+        "save": "Save",
+        "update": "Update",
+        "edit_title": "Edit Course",
+        "add_title": "New Course",
+        "breadcrumbs": {
+          "new_course": "Courses / New Course",
+          "edit_course": "Courses / {{id}}"
+        },
+        "errors": {
+          "name":{
+            "required": "The course name/title is required",
+            "length": "Must be max 50 characters"
+          },
+          "description":{
+            "required": "A course description is required",
+            "length": "Must be max 500 characters"
+          },
+          "duration":{
+            "required": "Duration/Length is required",
+            "min": "Must be greater than 15 min"
+          },
+          "date":{
+            "required": "Start date is required"
+          },
+          "authors":{
+            "required": "Course authors are required"
+          }
+        }
+      }
+    }
+  }
+}

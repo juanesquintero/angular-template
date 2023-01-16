@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LocaleService } from '@core/services/locale/locale.service';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ICourse } from '@shared/models/course.model';
-import { CoursesService } from '@courses/services/courses.service';
 import { CoursesStore } from '../../store/courses.store';
 
 @Component({
@@ -9,13 +9,22 @@ import { CoursesStore } from '../../store/courses.store';
   styleUrls: ['./course-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseItemComponent implements OnInit {
+export class CourseItemComponent implements OnInit, OnDestroy  {
   @Input() course!: ICourse;
   @Input() count!: number;
 
-  constructor(private coursesStore: CoursesStore) { }
+  constructor(
+    private coursesStore: CoursesStore,
+    public locale: LocaleService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.locale.subcribe();
+  }
+
+  ngOnDestroy(): void {
+    this.locale.unsubscribe();
+  }
 
   onRemove() {
     const confirmirmation = confirm('Do you really want to delete this course? Yes/No');

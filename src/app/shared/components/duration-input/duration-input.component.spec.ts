@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DurationPipe } from '@core/pipes/duration/duration.pipe';
+import { DurationPipe } from '@src/app/shared/pipes/duration/duration.pipe';
 
 import { DurationInputComponent } from './duration-input.component';
 

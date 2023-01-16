@@ -1,9 +1,11 @@
 <section class="course-add-edit">
   <form class="course-add-edit-card" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3 class="mb-4">{{ action?.title }}</h3>
+    <h3 class="mb-4">{{ action.title | translate }}</h3>
     <div class="form-row">
       <div class="col-md-12 mb-3">
-        <label for="title">Title</label>
+        <label for="title">
+          {{ "ws.courses.add_edit.name" | translate }}
+        </label>
         <input
           id="title"
           name="title"
@@ -14,13 +16,15 @@
         <ws-input-error
           [control]="name"
           [errors]="{
-            required: 'The course name/title is required',
-            maxlength: 'Must be max 50 characters'
+            required: 'ws.courses.add_edit.errors.name.required',
+            maxlength: 'ws.courses.add_edit.errors.name.length'
           }"
         ></ws-input-error>
       </div>
       <div class="col-md-12 mb-3">
-        <label for="description">Description</label>
+        <label for="description">{{
+          "ws.courses.add_edit.description" | translate
+        }}</label>
         <textarea
           id="description"
           name="description"
@@ -31,38 +35,46 @@
         <ws-input-error
           [control]="description"
           [errors]="{
-            required: 'A course description is required',
-            maxlength: 'Must be max 500 characters'
+            required: 'ws.courses.add_edit.errors.description.required',
+            maxlength: 'ws.courses.add_edit.errors.description.length'
           }"
         ></ws-input-error>
       </div>
       <div class="col-md-4 mb-3">
-        <ws-duration-input name="duration" [form]="form" control="length">
+        <ws-duration-input
+          label="ws.courses.add_edit.length"
+          [form]="form"
+          control="length"
+        >
         </ws-duration-input>
-        <br>
+        <br />
         <ws-input-error
           [control]="length"
           [errors]="{
-            required: 'Duration/Length is required',
-            min: 'Must be greater than 15 min'
+            required: 'ws.courses.add_edit.errors.duration.required',
+            min: 'ws.courses.add_edit.errors.duration.min'
           }"
         ></ws-input-error>
       </div>
     </div>
     <div class="form-row">
-      <div class="col-md-3 mb-3">
-        <ws-date-input name="duration" [form]="form" control="date">
+      <div class="col-md-4 mb-3">
+        <ws-date-input
+          label="ws.courses.add_edit.date"
+          [form]="form"
+          control="date"
+        >
         </ws-date-input>
         <ws-input-error
           [control]="date"
-          [errors]="{ required: 'Start date is required' }"
+          [errors]="{ required: 'ws.courses.add_edit.errors.date.required' }"
         ></ws-input-error>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <ws-tags-input
-          label="Authors"
+          label="ws.courses.add_edit.authors"
           [options]="authorsOptions"
           [selectedOptions]="authorsSelected"
           [form]="form"
@@ -70,14 +82,16 @@
         ></ws-tags-input>
         <ws-input-error
           [control]="authors"
-          [errors]="{ required: 'Course authors are required' }"
+          [errors]="{ required: 'ws.courses.add_edit.errors.authors.required' }"
         ></ws-input-error>
       </div>
     </div>
     <span class="d-flex justify-content-end">
-      <a class="btn text-muted mx-3 border" routerLink="/courses"> Cancel </a>
+      <a class="btn text-muted mx-3 border" routerLink="/courses">
+        {{ "ws.courses.add_edit.cancel" | translate }}
+      </a>
       <button class="btn btn-success" type="submit" [disabled]="form.invalid">
-        {{ action?.submit }}
+        {{ action.submit | translate }}
       </button>
     </span>
   </form>

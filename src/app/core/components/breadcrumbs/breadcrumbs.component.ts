@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'ws-breadcrumbs',
@@ -7,25 +7,37 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
+
+  private activedRoute?: ActivatedRoute | null;
+
+  get params(): any {
+    return this.activedRoute?.params;
+  }
+
+  get breadcrumb(): string {
+    return (this.activedRoute?.snapshot.data?.['breadcrumb']) as string;
+  }
+
+  get path(): any {
+    return this.router.parseUrl(this.router.url).toString()
+      .replace('/', '')
+      .replaceAll('/', ' / ');
+  }
+
   constructor(
     private router: Router,
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    this.getActivedRoute();
+  }
 
   ngOnInit(): void { }
 
-  get path(): string {
-    return (this.activeRoute?.title || this.activeRoute?.path) as string;
-  }
-
-  get activeRoute(): Route {
-    return this.router.config.filter(route => route.path == this.currentPath)[0];
-  }
-
-  get currentPath(): any {
-    return this.router.parseUrl(this.router.url).toString().replace('/', '');
-  }
-
-  get currentPathBeautified(): any {
-    return this.currentPath.replace('/', ' / ');
+  getActivedRoute(): void {
+    this.router.events.forEach(e => {
+      if (e instanceof NavigationEnd) {
+        this.activedRoute = this.route.root?.firstChild;
+      }
+    });
   }
 }

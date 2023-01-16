@@ -1,6 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { LocaleService } from '@core/services/locale/locale.service';
 @Component({
   selector: 'ws-date-input',
   templateUrl: './date-input.component.html',
@@ -14,6 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class DateInputComponent implements ControlValueAccessor {
+  @Input() label!: string;
   @Input() form!: FormGroup;
   @Input() control!: string;
 
@@ -33,7 +35,7 @@ export class DateInputComponent implements ControlValueAccessor {
     }
   }
 
-  constructor() { }
+  constructor(public locale: LocaleService) { }
 
   writeValue(value: string): void {
     this.value = value
