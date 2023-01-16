@@ -68,6 +68,16 @@
             "required": "Course authors are required"
           }
         }
+      },
+      "alerts":{
+        "invalid_course": "Invalid Course",
+        "specify_action": "Please specify valid action",
+        "missing_id_removal": "Not course id to remove",
+        "remove_confirmation": "Do you really want to delete this course? Cancel/OK",
+        "removed_course": "Course Deleted!",
+        "remove_error": "Error removing Course",
+        "updated_course": "Course Updated!",
+        "created_course": "Course Created!"
       }
     }
   }

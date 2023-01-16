@@ -68,6 +68,16 @@
             "required": "Los autores del curso son obligatorios"
           }
         }
+      },
+      "alerts":{
+        "invalid_course": "Curso Invalido",
+        "specify_action": "Especifique la acción, por favor",
+        "missing_id_removal": "ID de curso faltante",
+        "remove_confirmation": "¿Seguro que quiere eliminar este Curso? Cancelar/OK",
+        "removed_course": "Curso Eliminado!",
+        "remove_error": "Error eliminando Curso",
+        "updated_course": "Curso Actualizado!",
+        "created_course": "Curso Creado!"
       }
     }
   }
