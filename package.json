@@ -24,6 +24,8 @@
     "@ngrx/effects": "^14.0.0",
     "@ngrx/store": "^14.0.0",
     "@ngrx/store-devtools": "^14.0.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@yaireo/tagify": "^4.17.4",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.10.0",

@@ -23,19 +23,19 @@
       </span>
       <span class="d-flex">
         <i class="bi bi-calendar"></i>
-        <p>{{ course.date | date: "MMM d, YYYY" }}</p>
+        <p>{{ course.date | date : "MMM d, YYYY" : undefined : locale.locale }}</p>
       </span>
     </span>
 
     <span class="course-item__actions">
       <a [routerLink]="'/courses/'+course.id" class="btn btn-sm btn-primary">
         <i class="bi bi-pencil-fill"></i>
-        Edit
+        {{ "ws.courses.item.edit" | translate }}
       </a>
 
       <button (click)="onRemove()">
         <i class="bi bi-trash-fill"></i>
-        Delete
+        {{ "ws.courses.item.delete" | translate }}
       </button>
     </span>
   </div>

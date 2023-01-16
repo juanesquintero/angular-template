@@ -8,18 +8,26 @@ const routes: Routes = [
   {
     path: 'courses',
     component: CoursesListComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'ws.courses.breadcrumb',
+    },
   },
   {
     path: 'courses/new',
     component: CourseAddEditComponent,
-    title: 'Courses / New Course',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'ws.courses.add_edit.breadcrumbs.new_course',
+    },
   },
   {
     path: 'courses/:id',
     component: CourseAddEditComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'ws.courses.add_edit.breadcrumbs.edit_course',
+    },
   },
 ];
 

@@ -1,3 +1,7 @@
 <section class="breadcrumbs" *wsIsAuthenticated>
-  <strong> {{ (path || currentPathBeautified || '/')  | titlecase }}</strong>
+  <strong>
+    {{
+      (breadcrumb | translate : (params | async)) || path || "/" | titlecase
+    }}</strong
+  >
 </section>

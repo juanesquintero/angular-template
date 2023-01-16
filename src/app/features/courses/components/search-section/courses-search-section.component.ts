@@ -2,8 +2,8 @@ import { Router } from '@angular/router';
 import { debounceTime, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Component, EventEmitter, Output, AfterViewInit, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
-import { minLengthTrim } from '@src/app/shared/validators';
+import { FormControl, FormGroup } from '@angular/forms';
+import { minLengthTrim } from '@src/app/shared/utils/validators';
 
 @Component({
   selector: 'ws-courses-search-section',

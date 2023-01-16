@@ -1,4 +1,3 @@
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -6,16 +5,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { DurationPipe } from './pipes/duration/duration.pipe';
-import { DateHihglightDirective } from './directives/date-hihglight/date-hihglight.directive';
-import { OrderByPipe } from './pipes/order-by/order-by.pipe';
-import { FilterByPipe } from './pipes/filter-by/filter-by.pipe';
-import { IfAuthenticatedDirective } from './directives/if-authenticated/if-authenticated.directive';
 import { AuthorsService } from './services/authors/authors.service';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading/loading.interceptor';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AuthLocalService } from './services/auth/auth.service.local';
+import { SharedModule } from '../shared/shared.module';
+import { TranslateAppModule } from '@src/config/translate.config';
+import { TranslateStore } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,11 +23,6 @@ import { AuthLocalService } from './services/auth/auth.service.local';
     BreadcrumbsComponent,
     FooterComponent,
     LogoComponent,
-    DateHihglightDirective,
-    DurationPipe,
-    OrderByPipe,
-    FilterByPipe,
-    IfAuthenticatedDirective,
     LoadingComponent,
   ],
   exports: [
@@ -36,14 +30,8 @@ import { AuthLocalService } from './services/auth/auth.service.local';
     BreadcrumbsComponent,
     FooterComponent,
     LoadingComponent,
-    DateHihglightDirective,
-    DurationPipe,
-    OrderByPipe,
-    FilterByPipe,
-    IfAuthenticatedDirective,
   ],
   providers: [
-    FilterByPipe,
     AuthService,
     AuthLocalService,
     AuthorsService,
@@ -57,10 +45,14 @@ import { AuthLocalService } from './services/auth/auth.service.local';
       useClass: LoadingInterceptor,
       multi: true
     },
+    TranslateStore
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-  ]
+    FormsModule,
+    SharedModule,
+    TranslateAppModule
+  ],
 })
 export class CoreModule { }

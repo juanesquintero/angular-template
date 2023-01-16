@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,9 @@ import { AuthEffects } from '@store/effects/auth.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '@src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { TranslateAppModule } from '@src/config/translate.config';
+import { TranslateStore } from '@ngx-translate/core';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,15 +29,18 @@ import { EffectsModule } from '@ngrx/effects';
     ReactiveFormsModule,
     AppRoutingModule,
     CoreModule,
+    SharedModule,
     CoursesModule,
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
+    TranslateAppModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [TranslateStore],
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

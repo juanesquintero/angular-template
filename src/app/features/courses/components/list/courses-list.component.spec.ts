@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
-import { OrderByPipe } from '@core/pipes/order-by/order-by.pipe';
-import { FilterByPipe } from '@core/pipes/filter-by/filter-by.pipe';
+import { OrderByPipe } from '@src/app/shared/pipes/order-by/order-by.pipe';
+import { FilterByPipe } from '@src/app/shared/pipes/filter-by/filter-by.pipe';
 import { CoursesService } from '@courses/services/courses.service';
 import { AuthService } from '@src/app/core/services/auth/auth.service';
-import { IfAuthenticatedDirective } from '@src/app/core/directives/if-authenticated/if-authenticated.directive';
+import { IfAuthenticatedDirective } from '@src/app/shared/directives/if-authenticated/if-authenticated.directive';
 
 const authService: AuthService= jasmine.createSpyObj('AuthService', {
   isAuthenticated: true

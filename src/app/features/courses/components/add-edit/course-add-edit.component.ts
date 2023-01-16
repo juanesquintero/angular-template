@@ -2,7 +2,7 @@ import { CoursesStore } from '@courses/store/courses.store';
 import { Component, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash-es';
 import { ActivatedRoute } from '@angular/router';
-import { ACTIONS, COURSE_ACTIONS } from '@src/app/shared/constants';
+import { ACTIONS, COURSE_ACTIONS } from '@src/app/shared/utils/constants';
 import { AuthorsService } from '@core/services/authors/authors.service';
 import { IAuthor, IAuthorOpt, ICourse, ICourseAction } from '@shared/models/course.model';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class CourseAddEditComponent implements OnInit {
   public course$: Observable<ICourse> = this.coursesStore.course$;
   public form: FormGroup = new FormGroup({});
 
-  public action?: ICourseAction;
+  public action!: ICourseAction;
   public courseId?: number;
 
   public tagsOptions?: any;

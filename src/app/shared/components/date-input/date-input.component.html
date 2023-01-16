@@ -1,10 +1,11 @@
 <label for="date" [formGroup]="form">
-  Date
+  {{ label | translate }}
   <input
     id="date"
     name="date"
     type="date"
     class="form-control"
+    [lang]="locale.locale"
     [formControlName]="control"
     />
 </label>
