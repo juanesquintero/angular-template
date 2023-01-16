@@ -1,4 +1,4 @@
-import { DEFAULT_LANG } from './../config/translate.config';
+import { LocaleService } from '@core/services/locale/locale.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '@core/services/loading/loading.service';
@@ -16,10 +16,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private loadingService: LoadingService,
-    private translate: TranslateService,
+    private locale: LocaleService,
   ) {
-    translate.setDefaultLang(DEFAULT_LANG.code);
-    registerLocaleData(localeEsCo, 'es-CO');
+   locale.initConfig(); 
   }
 
   ngOnInit(): void {

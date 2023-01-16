@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentStore } from '@ngrx/component-store';
 import { ICourse, ICoursesListParams, ICourseDTO } from '@shared/models/course.model';
+import { LocaleService } from '@src/app/core/services/locale/locale.service';
 import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
 import { CoursesService } from '../services/courses.service';
 
@@ -18,7 +19,8 @@ export class CoursesStore extends ComponentStore<CoursesState> {
 
   constructor(
     private coursesService: CoursesService,
-    private router: Router
+    private router: Router,
+    private locale: LocaleService,
   ) {
     super({
       courses: [],
@@ -62,7 +64,7 @@ export class CoursesStore extends ComponentStore<CoursesState> {
         this.coursesService.delete(params.id).pipe(
           tap({
             next:(course) => {
-              alert('COURSE Deleted!');
+              alert(this.locale.translate('ws.courses.alerts.removed_course'));
               this.getCourses({start: 0, count: params.count})
             }
           }),
@@ -77,7 +79,7 @@ export class CoursesStore extends ComponentStore<CoursesState> {
         this.coursesService.update(params.id, params.course).pipe(
           tap({
             next:(course) => {
-              alert('COURSE Updated!');
+              alert(this.locale.translate('ws.courses.alerts.updated_course'));
               this.router.navigate(['courses']);
             },
           }),
@@ -92,7 +94,7 @@ export class CoursesStore extends ComponentStore<CoursesState> {
         this.coursesService.create(params).pipe(
           tap({
             next:(course) => {
-              alert('COURSE created!');
+              alert(this.locale.translate('ws.courses.alerts.created_course'));
               this.router.navigate(['courses']);
             },
           }),

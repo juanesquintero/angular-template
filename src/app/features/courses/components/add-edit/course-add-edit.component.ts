@@ -1,3 +1,4 @@
+import { LocaleService } from '@core/services/locale/locale.service';
 import { CoursesStore } from '@courses/store/courses.store';
 import { Component, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash-es';
@@ -58,6 +59,7 @@ export class CourseAddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private authorsService: AuthorsService,
     private coursesStore: CoursesStore,
+    private locale: LocaleService,
   ) {
     this.defineAction();
     this.defineCourse();
@@ -116,7 +118,7 @@ export class CourseAddEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.invalid) {
-      alert('Invalid Course');
+      alert(this.locale.translate('ws.courses.alerts.invalid_course'));
       return;
     }
     if (this.isEdition) {
@@ -124,7 +126,7 @@ export class CourseAddEditComponent implements OnInit {
     } else if (this.isAddition) {
       this.create();
     } else {
-      alert('Please specify valid action');
+      alert(this.locale.translate('ws.courses.alerts.specify_action'));
     }
   }
 

@@ -1,7 +1,7 @@
-import { LocaleService } from '@core/services/locale/locale.service';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input , OnInit } from '@angular/core';
 import { ICourse } from '@shared/models/course.model';
 import { CoursesStore } from '../../store/courses.store';
+import { LocaleService } from '@core/services/locale/locale.service';
 
 @Component({
   selector: 'ws-course-item',
@@ -9,30 +9,27 @@ import { CoursesStore } from '../../store/courses.store';
   styleUrls: ['./course-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseItemComponent implements OnInit, OnDestroy  {
+export class CourseItemComponent implements OnInit  {
   @Input() course!: ICourse;
   @Input() count!: number;
+  messages: Record<string, string> = {};
 
   constructor(
     private coursesStore: CoursesStore,
     public locale: LocaleService
   ) {}
 
-  ngOnInit(): void {
-    this.locale.subcribe();
-  }
-
-  ngOnDestroy(): void {
-    this.locale.unsubscribe();
-  }
+  ngOnInit(): void {}
 
   onRemove() {
-    const confirmirmation = confirm('Do you really want to delete this course? Yes/No');
+    const confirmirmation = confirm(
+      this.locale.translate('ws.courses.alerts.remove_confirmation')
+    );
     const { id } = this.course;
     if (id && confirmirmation) {
       this.coursesStore.deleteCourse({ id, count: this.count });
     } else {
-      alert('Not course id to remove');
+      alert(this.locale.translate('ws.courses.alerts.missing_id_removal'));
     }
   }
 
