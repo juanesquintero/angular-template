@@ -12,10 +12,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { _authReducer } from '@shared/store/reducers/auth.reducer';
 import { AuthEffects } from '@shared/store/effects/auth.effect';
 import { FeaturesModule } from '@features/features.module';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
   ],
   imports: [
     RouterModule,
