@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     NotFoundPageComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
