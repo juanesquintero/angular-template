@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:cov": "ng test --no-watch --code-coverage",
+    "dev": "ng serve",
     "dev:ssr": "ng run web-school:serve-ssr",
     "serve:ssr": "node dist/web-school/server/main.js",
     "build:ssr": "ng build && ng run web-school:server",
