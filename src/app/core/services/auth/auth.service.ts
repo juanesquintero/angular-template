@@ -15,7 +15,7 @@ import { selectIsAuthenticated, selectToken, selectUserInfo } from '@store/selec
 export class AuthService {
   private endpoint = environment.api_path + '/auth';
   readonly isAuthenticated: Observable<boolean>;
-  readonly userInfo: Observable<IUser | null>;
+  readonly user: Observable<IUser | null>;
   readonly token: Observable<string>;
 
   constructor(
@@ -24,7 +24,7 @@ export class AuthService {
     private authLocalService: AuthLocalService,
   ) {
     this.isAuthenticated = this.store.pipe(select(selectIsAuthenticated));
-    this.userInfo = this.store.pipe(select(selectUserInfo));
+    this.user = this.store.pipe(select(selectUserInfo));
     this.token = this.store.pipe(select(selectToken));
   }
 
@@ -47,7 +47,7 @@ export class AuthService {
       if (res) this.authLocalService.token = res;
     })
     this.store.pipe(select(selectUserInfo)).subscribe((res) => {
-      if (res) this.authLocalService.userInfo = res;
+      if (res) this.authLocalService.user = res;
     })
   }
 }

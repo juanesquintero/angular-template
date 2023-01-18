@@ -7,7 +7,7 @@ const authLocalService = new AuthLocalService();
 
 export const authInitialState: AuthState  = {
   token: authLocalService.token,
-  userInfo: authLocalService.userInfo,
+  userInfo: authLocalService.user,
   loginError: '',
   isAuthenticated: authLocalService.isLoggedIn,
 }
