@@ -20,7 +20,9 @@ export class CoursesListComponent implements OnInit {
     textFragment: ''
   }
 
-  constructor(private coursesStore: CoursesStore) { }
+  constructor(
+    private coursesStore: CoursesStore,
+  ) { }
 
   ngOnInit(): void {
     this.getCourses();
