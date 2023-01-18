@@ -1,3 +1,4 @@
+import { AuthService } from '@core/services/auth/auth.service';
 import { LocaleService } from '@core/services/locale/locale.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';

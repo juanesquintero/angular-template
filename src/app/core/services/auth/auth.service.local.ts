@@ -1,18 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from '@shared/models/user.model';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import { LOCAL_STORAGE } from '@ng-web-apis/common';
 
 const [userKey, tokenKey] = ['userInfo', 'accessToken']
 
 @Injectable()
 export class AuthLocalService {
   public isAuthenticated = new BehaviorSubject(this.isLoggedIn);
-  private localStorage: LocalStorageService;
 
-  constructor() {
-    this.localStorage = new LocalStorageService();
-  }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: Storage) {}
 
   set user(userInfo: IUser | null)  {
     this.localStorage?.setItem(userKey, JSON.stringify(userInfo))

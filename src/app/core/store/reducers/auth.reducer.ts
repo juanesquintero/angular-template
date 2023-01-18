@@ -1,45 +1,44 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthLocalService } from '../../services/auth/auth.service.local';
 import * as AuthActions from '../actions/auth.action';
 import { AuthState } from '../selectors';
 
-const authLocalService = new AuthLocalService();
 
-export const authInitialState: AuthState  = {
-  token: authLocalService.token,
-  userInfo: authLocalService.user,
+export const authInitialState: AuthState = {
+  token: '',
+  userInfo: null,
   loginError: '',
-  isAuthenticated: authLocalService.isLoggedIn,
+  isAuthenticated: false,
 }
 
 export const authReducer = createReducer(
   authInitialState,
-  on(AuthActions.loginSuccess, (state, response ): AuthState => {
+  on(AuthActions.loginSuccess, (state, response): AuthState => {
     return {
       ...state,
       token: response.token,
     }
   }),
-  on(AuthActions.loginFailure, (state, error ): AuthState => {
+  on(AuthActions.loginFailure, (state, error): AuthState => {
     return {
       ...state,
       ...authInitialState,
       loginError: error.error,
     }
   }),
-  on(AuthActions.userInfoSuccess, (state, response ): AuthState => {
-    authLocalService.isAuthenticated.next(true);
+  on(AuthActions.userInfoSuccess, (state, response): AuthState => {
     return {
       ...state,
       isAuthenticated: true,
       userInfo: response
     }
   }),
-  on(AuthActions.logout, (state, response ): AuthState => {
-    authLocalService.isAuthenticated.next(false);
+  on(AuthActions.logout, (state, response): AuthState => {
     return {
       ...authInitialState,
       isAuthenticated: false,
     }
+  }),
+  on(AuthActions.load, (state, localState): AuthState => {
+    return { ...localState }
   }),
 );
