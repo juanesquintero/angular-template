@@ -12,7 +12,8 @@
     "dev:ssr": "ng run web-school:serve-ssr",
     "serve:ssr": "node dist/web-school/server/main.js",
     "build:ssr": "ng build && ng run web-school:server",
-    "prerender": "ng run web-school:prerender"
+    "prerender": "ng run web-school:prerender",
+    "prerender:routes": "ng run web-school:prerender --routes-file routes.txt."
   },
   "private": true,
   "dependencies": {
