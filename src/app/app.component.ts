@@ -2,9 +2,6 @@ import { LocaleService } from '@core/services/locale/locale.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '@core/services/loading/loading.service';
-import { TranslateService } from '@ngx-translate/core';
-import { registerLocaleData } from '@angular/common';
-import localeEsCo from '@angular/common/locales/es-CO';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +15,7 @@ export class AppComponent implements OnInit {
     private loadingService: LoadingService,
     private locale: LocaleService,
   ) {
-   locale.initConfig(); 
+    locale.initConfig();
   }
 
   ngOnInit(): void {
