@@ -8,6 +8,10 @@ import { AuthorsService } from '@core/services/authors/authors.service';
 import { IAuthor, IAuthorOpt, ICourse, ICourseAction } from '@shared/models/course.model';
 import { Observable } from 'rxjs';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+
+type authorsType = IAuthor[] | null;
+const AUTHORS_KEY = makeStateKey<authorsType>('authors');
 
 
 @Component({
@@ -22,6 +26,7 @@ export class CourseAddEditComponent implements OnInit {
 
   public action!: ICourseAction;
   public courseId?: number;
+  private _authors?: authorsType;
 
   public tagsOptions?: any;
   public authorsSelected?: IAuthorOpt[];
@@ -60,6 +65,7 @@ export class CourseAddEditComponent implements OnInit {
     private authorsService: AuthorsService,
     private coursesStore: CoursesStore,
     private locale: LocaleService,
+    private state: TransferState,
   ) {
     this.defineAction();
     this.defineCourse();
@@ -111,9 +117,14 @@ export class CourseAddEditComponent implements OnInit {
   }
 
   getAuthors(): void {
-    this.authorsService.getList().subscribe(res => {
-      this.authorsOptions = res.map((a: IAuthor) => ({ ...a, value: a.name })) || [];
-    });
+    this._authors = this.state.get<authorsType>(AUTHORS_KEY, null);
+    if (!this._authors) {
+      this.authorsService.getList().subscribe(res => {
+        this._authors = res;
+        this.state.set<authorsType>(AUTHORS_KEY, res);
+        this.authorsOptions = this._authors.map((a: IAuthor) => ({ ...a, value: a.name })) || [];
+      });
+    }
   }
 
   onSubmit(): void {

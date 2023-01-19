@@ -1,0 +1,4 @@
+/login
+/courses
+/courses/new
+/courses/8693
