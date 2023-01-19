@@ -1,37 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from '@shared/models/user.model';
+import { LOCAL_STORAGE } from '@ng-web-apis/common';
+
+const [userKey, tokenKey] = ['userInfo', 'accessToken']
 
 @Injectable()
 export class AuthLocalService {
   public isAuthenticated = new BehaviorSubject(this.isLoggedIn);
 
-  constructor() { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: Storage) {}
 
-  set userInfo(userInfo: IUser | null)  {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  set user(userInfo: IUser | null)  {
+    this.localStorage?.setItem(userKey, JSON.stringify(userInfo))
   }
 
   set token(accessToken: string) {
-    localStorage.setItem('accessToken', accessToken);
+    this.localStorage?.setItem(tokenKey, accessToken);
   }
 
-  get userInfo() : IUser | null {
-    const localValue = localStorage.getItem('userInfo');
+  get user() : IUser | null {
+    const localValue = this.localStorage?.getItem(userKey);
     return localValue ?  JSON.parse(localValue) : null;
   }
 
   get token(): string  {
-    return localStorage.getItem('accessToken') || '';
+    return this.localStorage?.getItem(tokenKey) || '';
   }
 
   get isLoggedIn(): boolean {
-    return !!(this.token && this.userInfo);
+    return !!(this.token && this.user);
   }
 
   logout() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('userInfo');
+    this.localStorage?.removeItem(tokenKey);
+    this.localStorage?.removeItem(userKey);
     this.isAuthenticated.next(false);
   }
 }
