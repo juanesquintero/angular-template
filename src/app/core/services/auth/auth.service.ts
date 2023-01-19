@@ -1,4 +1,3 @@
-import { AuthLocalService } from './auth.service.local';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,16 +14,15 @@ import { selectIsAuthenticated, selectToken, selectUserInfo } from '@store/selec
 export class AuthService {
   private endpoint = environment.api_path + '/auth';
   readonly isAuthenticated: Observable<boolean>;
-  readonly userInfo: Observable<IUser | null>;
+  readonly user: Observable<IUser | null>;
   readonly token: Observable<string>;
 
   constructor(
     private http: HttpClient,
     private store: Store<AppState>,
-    private authLocalService: AuthLocalService,
   ) {
     this.isAuthenticated = this.store.pipe(select(selectIsAuthenticated));
-    this.userInfo = this.store.pipe(select(selectUserInfo));
+    this.user = this.store.pipe(select(selectUserInfo));
     this.token = this.store.pipe(select(selectToken));
   }
 
@@ -38,16 +36,9 @@ export class AuthService {
 
   logout(): void {
     this.store.dispatch(logout());
-    this.authLocalService.logout();
   }
 
   login(credentials: ICredentials): void {
     this.store.dispatch(loginRequest(credentials));
-    this.store.pipe(select(selectToken)).subscribe((res) => {
-      if (res) this.authLocalService.token = res;
-    })
-    this.store.pipe(select(selectUserInfo)).subscribe((res) => {
-      if (res) this.authLocalService.userInfo = res;
-    })
   }
 }
