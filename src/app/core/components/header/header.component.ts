@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public locale: LocaleService
   ) {
-    this.authService.userInfo
+    this.authService.user
       .subscribe(userInfo => {
         this.userName = userInfo?.name;
       });
