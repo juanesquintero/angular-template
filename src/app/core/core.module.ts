@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateAppModule } from '@src/config/translate.config';
 import { TranslateStore } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { LangSelectorComponent } from './components/lang-selector/lang-selector.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     LogoComponent,
     LoadingComponent,
+    LangSelectorComponent,
   ],
   exports: [
     HeaderComponent,
