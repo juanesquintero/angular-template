@@ -17,10 +17,10 @@
       >
         <option *ngFor="let lang of locale.languages" [value]="lang.code">
           <i class="flag">{{ lang.flag }}</i>
-          <p class="d-none d-md-block">
+          <p *ngIf="mdSize">
             {{ lang.language }} - {{ lang.country }}
           </p>
-          <p class="d-block d-md-none">
+          <p *ngIf="!mdSize">
             {{ lang.code }}
           </p>
         </option>
