@@ -2,7 +2,6 @@
 
 .header {
   background: $blue-dark;
-  padding: .4rem 6rem;
   color: $white;
   font-size: 14px;
   text-align: left;
@@ -12,13 +11,5 @@
     justify-content: space-between;
     align-items: center;
     padding: .5rem 0;
-
-    &__title {
-      color: $white;
-      font-size: 1.2rem;
-      text-align: left;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
   }
 }
