@@ -16,6 +16,7 @@ import { TranslateAppModule } from '@src/config/translate.config';
 import { TranslateStore } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { LangSelectorComponent } from './components/lang-selector/lang-selector.component';
+import { SessionPanelComponent } from './components/session-panel/session-panel.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { LangSelectorComponent } from './components/lang-selector/lang-selector.
     LogoComponent,
     LoadingComponent,
     LangSelectorComponent,
+    SessionPanelComponent,
   ],
   exports: [
     HeaderComponent,
