@@ -1,55 +1,35 @@
-<header class="header">
-  <div class="header-content">
-    <span class="d-flex align-items-center">
-      <ws-logo> </ws-logo>
-      <h2 class="header-content__title">
-        {{ "ws.header.app_title" | translate }}
-      </h2>
-    </span>
+<header class="header px-2 px-md-4 px-lg-5">
+  <div class="header-content mx-0 mx-md-5">
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <ws-logo></ws-logo>
+        </a>
 
-    <span class="ms-auto me-2">
-      <select
-        class="form-select form-select-sm"
-        name="lang"
-        id="lang"
-        [(ngModel)]="locale.locale"
-        (ngModelChange)="locale.changeLang($event)"
-      >
-        <option *ngFor="let lang of locale.languages" [value]="lang.code">
-          <i class="flag">{{ lang.flag }}</i>
-          <p *ngIf="mdSize">
-            {{ lang.language }} - {{ lang.country }}
-          </p>
-          <p *ngIf="!mdSize">
-            {{ lang.code }}
-          </p>
-        </option>
-      </select>
-    </span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="toggleCollapsed()"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <span *wsIsAuthenticated>
-      <span class="mx-3" *ngIf="userName">
-        <i class="bi bi-person-fill"></i>
-        {{ username }}
-      </span>
-      <button
-        class="btn btn-sm btn-outline-light border-0"
-        (click)="onLogout()"
-      >
-        <i class="bi bi-box-arrow-left"></i>
-        {{ "ws.header.logout" | translate }}
-      </button>
-    </span>
+        <div
+          id="navbarHeader"
+          [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }"
+        >
+          <ul class="navbar-nav">
+            <ws-lang-selector [mdSize]="mdSize"></ws-lang-selector>
 
-    <span *wsIsAuthenticated="false">
-      <a
-        routerLink="/login"
-        class="btn btn-sm btn-outline-light border-0"
-        (click)="onLogout()"
-      >
-        <i class="bi bi-box-arrow-in-right mr-1"></i>
-        {{ "ws.header.login" | translate }}
-      </a>
-    </span>
+            <ws-session-panel [mdSize]="mdSize"></ws-session-panel>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 </header>

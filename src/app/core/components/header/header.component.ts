@@ -1,8 +1,4 @@
-import { IUserName } from '@shared/models/user.model';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '@core/services/auth/auth.service';
-import { LocaleService } from '../../services/locale/locale.service';
+import { Component, HostListener, Input } from '@angular/core';
 
 const MD_SIZE_PX = 768;
 
@@ -11,40 +7,24 @@ const MD_SIZE_PX = 768;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() title?: string;
-  public userName?: IUserName;
   private width: number = window?.innerWidth;
 
-  public get username(): string {
-    const { first, last } = this.userName as IUserName;
-    return first + ' ' + last;
-  }
+  public collapsed = true;
 
   public get mdSize(): boolean {
     return (this.width > MD_SIZE_PX);
   }
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    public locale: LocaleService
-  ) {
-    this.authService.user
-      .subscribe(userInfo => {
-        this.userName = userInfo?.name;
-      });
-  }
-
-  ngOnInit(): void { }
+  constructor() {}
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.width = window.innerWidth;
   }
 
-  onLogout(): void {
-    this.authService.logout();
-    this.router.navigate(['login']);
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 }
