@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./session-panel.component.scss']
 })
 export class SessionPanelComponent {
-  @Input() mdSize!: boolean;
+  @Input() isDesk!: boolean;
   public userName?: IUserName;
 
   public get username(): string {

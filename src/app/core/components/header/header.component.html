@@ -1,13 +1,14 @@
-<header class="header px-2 px-md-4 px-lg-5">
-  <div class="header-content mx-0 mx-md-5">
-    <nav class="navbar navbar-expand-md">
+<header class="header">
+
+    <nav class="header-bar">
+
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <ws-logo></ws-logo>
         </a>
 
         <button
-          class="navbar-toggler"
+          class="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarHeader"
@@ -16,20 +17,17 @@
           aria-label="Toggle navigation"
           (click)="toggleCollapsed()"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-list text-white h1"></i>
         </button>
 
         <div
           id="navbarHeader"
-          [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }"
-        >
-          <ul class="navbar-nav">
-            <ws-lang-selector [mdSize]="mdSize"></ws-lang-selector>
-
-            <ws-session-panel [mdSize]="mdSize"></ws-session-panel>
-          </ul>
+          class="header-bar__options"
+          [ngClass]="{collapse: collapsed}">
+            <ws-lang-selector></ws-lang-selector>
+            <ws-session-panel [isDesk]="isDesk"></ws-session-panel>
         </div>
       </div>
     </nav>
-  </div>
+
 </header>

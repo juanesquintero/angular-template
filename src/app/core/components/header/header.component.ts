@@ -13,7 +13,7 @@ export class HeaderComponent {
 
   public collapsed = true;
 
-  public get mdSize(): boolean {
+  public get isDesk(): boolean {
     return (this.width > MD_SIZE_PX);
   }
 
