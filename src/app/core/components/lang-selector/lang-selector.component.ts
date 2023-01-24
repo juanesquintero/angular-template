@@ -7,7 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./lang-selector.component.scss']
 })
 export class LangSelectorComponent {
-  @Input() mdSize!: boolean;
-
   constructor(public locale: LocaleService) { }
 }

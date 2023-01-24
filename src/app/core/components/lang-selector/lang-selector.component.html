@@ -1,4 +1,4 @@
-<span class="ms-auto me-2">
+<span class="d-flex me-2">
   <select
     class="form-select form-select-sm"
     name="lang"
@@ -8,11 +8,8 @@
   >
     <option *ngFor="let lang of locale.languages" [value]="lang.code">
       <i class="flag">{{ lang.flag }}</i>
-      <p *ngIf="mdSize">
+      <p>
         {{ lang.language }} - {{ lang.country }}
-      </p>
-      <p *ngIf="!mdSize">
-        {{ lang.code }}
       </p>
     </option>
   </select>
