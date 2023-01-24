@@ -17,6 +17,7 @@ import { TranslateStore } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { LangSelectorComponent } from './components/lang-selector/lang-selector.component';
 import { SessionPanelComponent } from './components/session-panel/session-panel.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { SessionPanelComponent } from './components/session-panel/session-panel.
   imports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     FormsModule,
     SharedModule,
     TranslateAppModule

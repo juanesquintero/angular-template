@@ -5,7 +5,6 @@ export interface ICourseDTO {
   description: string;
   topRated?: boolean;
   authors?: IAuthor[];
-
 }
 
 export interface ICourse extends ICourseDTO {

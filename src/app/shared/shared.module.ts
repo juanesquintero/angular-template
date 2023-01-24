@@ -12,6 +12,7 @@ import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 import { FilterByPipe } from './pipes/filter-by/filter-by.pipe';
 import { TranslateAppModule } from '@src/config/translate.config';
 import { TranslateStore } from '@ngx-translate/core';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TranslateStore } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateAppModule
