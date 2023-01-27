@@ -1,28 +1,27 @@
-<section [class.d-flex]="mdSize" [class.align-items-center]="mdSize">
-  <span *wsIsAuthenticated class="mx-3">
-    <p *ngIf="userName">
-      <i class="bi bi-person-fill"></i>
-      {{ username }}
-    </p>
-  </span>
+<section [class.d-flex]="isDesk" [class.align-items-center]="isDesk">
+  <div *wsIsAuthenticated
+    [ngClass]="isDesk ? 'session-panel__option' : 'session-panel__option-sm'">
+    <i class="bi bi-person-fill"></i>
+    {{ username || ''}}
+  </div>
 
   <button
     *wsIsAuthenticated
-    class="btn btn-sm btn-outline-light border-0"
+    class="session-panel__button"
+    [ngClass]="isDesk ? 'session-panel__option' : 'session-panel__option-sm'"
     (click)="onLogout()"
-  >
+    >
     <i class="bi bi-box-arrow-left"></i>
     {{ "ws.header.logout" | translate }}
   </button>
 
-  <span *wsIsAuthenticated="false">
-    <a
-      routerLink="/login"
-      class="btn btn-sm btn-outline-light border-0"
-      (click)="onLogout()"
-    >
-      <i class="bi bi-box-arrow-in-right mr-1"></i>
-      {{ "ws.header.login" | translate }}
-    </a>
-  </span>
+  <a
+    *wsIsAuthenticated="false"
+    routerLink="/login"
+    class="session-panel__button"
+    [ngClass]="isDesk ? 'session-panel__option' : 'session-panel__option-sm'"
+  >
+    <i class="bi bi-box-arrow-in-right"></i>
+    {{ "ws.header.login" | translate }}
+  </a>
 </section>

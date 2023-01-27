@@ -1,0 +1,14 @@
+@import 'styles.scss';
+
+.session-panel {
+  &__option {
+    @extend .ms-4, .mt-0;
+    &-sm {
+      @extend .mt-3, .ms-0;
+    }
+  }
+
+  &__button {
+    @extend .btn, .btn-sm, .btn-outline-light, .border-0;
+  }
+}
