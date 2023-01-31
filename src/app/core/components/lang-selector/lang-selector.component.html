@@ -8,12 +8,12 @@
   >
     <option *ngFor="let lang of locale.languages" [value]="lang.code">
       <i class="flag">{{ lang.flag }}</i>
-      <p *ngIf="isLong">
+      <p *ngIf="isLong || isMobile; else codeLabel">
         {{ lang.language }} - {{ lang.country }}
       </p>
-      <p *ngIf="!isLong">
+      <ng-template #codeLabel>
         {{ lang.code }}
-      </p>
+      </ng-template>
     </option>
   </select>
 </span>

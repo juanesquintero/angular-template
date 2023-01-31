@@ -11,7 +11,11 @@ export class LangSelectorComponent {
   @Input() width!: number;
 
   public get isLong() : boolean {
-    return this.width > LG_SIZE_PX && this.width < MD_SIZE_PX
+    return (this.width > LG_SIZE_PX);
+  }
+
+  public get isMobile() : boolean {
+    return (this.width < MD_SIZE_PX);
   }
 
   constructor(public locale: LocaleService) { }
