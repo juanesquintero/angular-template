@@ -1,6 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
+import { MD_SIZE_PX } from '@shared/utils/constants';
 
-const MD_SIZE_PX = 768;
 
 @Component({
   selector: 'ws-header',
@@ -9,7 +9,7 @@ const MD_SIZE_PX = 768;
 })
 export class HeaderComponent {
   @Input() title?: string;
-  private width: number = window?.innerWidth;
+  public width: number = window?.innerWidth;
 
   public collapsed = true;
 

@@ -19,3 +19,7 @@ export const COURSE_ACTIONS: { [key in ACTIONS]: ICourseAction } = {
     value: ACTIONS.add
   }
 }
+
+export const MD_SIZE_PX = 768;
+
+export const LG_SIZE_PX = 992;
