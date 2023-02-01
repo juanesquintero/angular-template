@@ -1,14 +1,18 @@
-@import 'variables.scss';
+@import 'styles.scss';
 
 .breadcrumbs {
-  padding: 1rem 7rem;
   background: $white;
-  margin: 0 auto;
+  @extend .p-3, .px-md-5;
 
-  & strong {
-    color: $blue-dark;
-    font-size: 1.2rem;
-    font-weight: 900;
+  &-container {
+    @extend .px-2, .px-md-4;
+
+    &__route {
+      @extend .mx-md-4, .mx-lg-5;
+
+      color: $blue-dark;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
   }
-
 }

@@ -1,7 +1,9 @@
 <section class="breadcrumbs" *wsIsAuthenticated>
-  <strong>
-    {{
-      (breadcrumb | translate : (params | async)) || path || "/" | titlecase
-    }}</strong
-  >
+  <span class="breadcrumbs-container">
+    <strong class="breadcrumbs-container__route">
+      {{
+        (breadcrumb | translate : (params | async)) || path || "/" | titlecase
+      }}
+    </strong>
+  </span>
 </section>
