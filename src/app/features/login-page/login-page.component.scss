@@ -6,14 +6,14 @@
   justify-content: center;
   height: 100%;
 
+  @extend .py-3;
+
   &-card {
     @extend .card;
 
     width: 26rem;
     height: auto;
     max-height: 24rem;
-    margin: 3rem;
-    padding: .7rem .4rem;
   }
 
   &-form {
