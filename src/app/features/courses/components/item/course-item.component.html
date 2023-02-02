@@ -15,25 +15,26 @@
     </p>
   </div>
 
-  <div class="course-item__column">
-    <span class="course-item__details">
-      <span class="d-flex">
-        <i class="bi bi-clock"></i>
-        <p>{{ course.length | duration }}</p>
-      </span>
-      <span class="d-flex">
-        <i class="bi bi-calendar"></i>
-        <p>{{ course.date | date : "MMM d, YYYY" : undefined : locale.locale }}</p>
-      </span>
-    </span>
+  <div class="course-item-column">
 
-    <span class="course-item__actions">
+    <div class="course-item-column__details">
+      <div class="course-item-column__label">
+        <i class="bi bi-clock mr-2"></i>
+        <p>{{ course.length | duration }}</p>
+      </div>
+      <div class="course-item-column__label">
+        <i class="bi bi-calendar mr-2"></i>
+        <p>{{ course.date | date : "MMM d, YYYY" : undefined : locale.locale }}</p>
+      </div>
+    </div>
+
+    <span class="course-item-column__actions">
       <a [routerLink]="'/courses/'+course.id" class="btn btn-sm btn-primary">
         <i class="bi bi-pencil-fill"></i>
         {{ "ws.courses.item.edit" | translate }}
       </a>
 
-      <button (click)="onRemove()">
+      <button (click)="onRemove()" class="course-item__button">
         <i class="bi bi-trash-fill"></i>
         {{ "ws.courses.item.delete" | translate }}
       </button>
