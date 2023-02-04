@@ -1,25 +1,28 @@
-@import 'styles.scss';
+@import "styles.scss";
 
 .course-item {
-  background-color: $white;
-  padding: 1rem 1.5rem;
-  border-radius: 1rem;
-
   display: grid;
   grid-template-columns: 70% 30%;
   grid-gap: 1rem;
   width: 100%;
+  background-color: $white;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
 
   &__button {
-    @extend .btn;
-    @extend .btn-sm;
-    @extend .btn-primary;
-    @extend .course-item-column__actions;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 1rem 0.4rem;
 
-    margin: 1rem 0.5rem;
+    @extend .btn, .btn-sm, .btn-primary, .col;
 
     & i {
-      margin-right: 0.5rem;
+      margin-right: 0.1rem;
+    }
+
+    & p {
+      @extend .d-none, .d-md-block, .p-0, .m-0, .ms-1;
     }
   }
 
@@ -57,9 +60,8 @@
     }
 
     &__actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: end;
+      @extend .row, .row-cols-1, .row-cols-lg-2;
     }
   }
 }

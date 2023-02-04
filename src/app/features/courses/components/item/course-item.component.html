@@ -16,28 +16,28 @@
   </div>
 
   <div class="course-item-column">
-
     <div class="course-item-column__details">
       <div class="course-item-column__label">
-        <i class="bi bi-clock mr-2"></i>
+        <i class="bi bi-clock"></i>
         <p>{{ course.length | duration }}</p>
       </div>
       <div class="course-item-column__label">
-        <i class="bi bi-calendar mr-2"></i>
-        <p>{{ course.date | date : "MMM d, YYYY" : undefined : locale.locale }}</p>
+        <i class="bi bi-calendar"></i>
+        <p>
+          {{ course.date | date : "MMM d, YYYY" : undefined : locale.locale }}
+        </p>
       </div>
     </div>
 
-    <span class="course-item-column__actions">
-      <a [routerLink]="'/courses/'+course.id" class="btn btn-sm btn-primary">
+    <div class="course-item-column__actions">
+      <a [routerLink]="'/courses/' + course.id" class="course-item__button">
         <i class="bi bi-pencil-fill"></i>
-        {{ "ws.courses.item.edit" | translate }}
+        <p>{{ "ws.courses.item.edit" | translate }}</p>
       </a>
-
       <button (click)="onRemove()" class="course-item__button">
         <i class="bi bi-trash-fill"></i>
-        {{ "ws.courses.item.delete" | translate }}
+        <p>{{ "ws.courses.item.delete" | translate }}</p>
       </button>
-    </span>
+    </div>
   </div>
 </section>
