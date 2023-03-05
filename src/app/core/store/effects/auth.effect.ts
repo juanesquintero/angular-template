@@ -21,6 +21,16 @@ export class AuthEffects {
     private router: Router,
   ) { }
 
+  logoutRequest$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(AuthActions.logout),
+      tap((action) => {
+        this.authLocalService.logout();
+      })
+    ),
+    { dispatch: false }
+  );
+
   loginRequest$ = createEffect(
     () => this.actions$.pipe(
       ofType(AuthActions.loginRequest),
@@ -61,16 +71,6 @@ export class AuthEffects {
       ofType(AuthActions.userInfoSuccess),
       tap((action) => {
         this.router.navigate(['courses'])
-      })
-    ),
-    { dispatch: false }
-  );
-
-  logoutRequest$ = createEffect(
-    () => this.actions$.pipe(
-      ofType(AuthActions.logout),
-      tap((action) => {
-        this.authLocalService.logout();
       })
     ),
     { dispatch: false }
